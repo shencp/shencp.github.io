@@ -6,7 +6,7 @@
 # Site
 title: 弗一
 subtitle: ''
-description: '万物皆有裂缝，那是光借以透过的地方。'
+description: '万物皆有裂缝，那是光透入的地方。'
 keywords:
 author: 弗一
 language: cn
@@ -15,7 +15,7 @@ timezone: ''
 # ------------------------------------------------------------------------------------------------
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://shencp.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
