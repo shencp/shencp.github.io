@@ -1,8 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>GTD执行手册</title>
+    <url>/2014/11/24/001_2021_03_07_GTD/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+
+
+<h1 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h1><p><img src="https://cdn.nlark.com/yuque/0/2021/png/584886/1615385376670-1d232c2d-a8e2-4cf1-bb8b-20b768be105d.png#align=left&display=inline&height=808&margin=%5Bobject%20Object%5D&name=image.png&originHeight=808&originWidth=609&size=707934&status=done&style=none&width=609" alt="image.png"></p>
+<h1 id="1-捕捉"><a href="#1-捕捉" class="headerlink" title="1 捕捉"></a>1 捕捉</h1><span id="more"></span>
+<p>用一个有形的”看板”，尽可能能全面的呈现所有需要你关注的事物<br>● 推荐用幕布，或者notion<br>● 每周一次</p>
+<h1 id="2-buffer分类"><a href="#2-buffer分类" class="headerlink" title="2 buffer分类"></a>2 buffer分类</h1><h2 id="立即执行，两分钟内完成"><a href="#立即执行，两分钟内完成" class="headerlink" title="立即执行，两分钟内完成"></a>立即执行，两分钟内完成</h2><h2 id="委派他人，跟踪进度"><a href="#委派他人，跟踪进度" class="headerlink" title="委派他人，跟踪进度"></a>委派他人，跟踪进度</h2><h2 id="时空切片，大的项目拆分"><a href="#时空切片，大的项目拆分" class="headerlink" title="时空切片，大的项目拆分"></a>时空切片，大的项目拆分</h2><h3 id="●-时间上映射为日程表"><a href="#●-时间上映射为日程表" class="headerlink" title="● 时间上映射为日程表"></a>● 时间上映射为日程表</h3><h3 id="●-空间上完成步骤内容的切分"><a href="#●-空间上完成步骤内容的切分" class="headerlink" title="● 空间上完成步骤内容的切分"></a>● 空间上完成步骤内容的切分</h3><h1 id="3-通过看板与buffer维度完成roadmap的构建，然后聚焦在有限的事务分片中，步步为营的蚕食事务！！！"><a href="#3-通过看板与buffer维度完成roadmap的构建，然后聚焦在有限的事务分片中，步步为营的蚕食事务！！！" class="headerlink" title="3 通过看板与buffer维度完成roadmap的构建，然后聚焦在有限的事务分片中，步步为营的蚕食事务！！！"></a>3 通过看板与buffer维度完成roadmap的构建，然后聚焦在有限的事务分片中，步步为营的蚕食事务！！！</h1><h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+      <categories>
+        <category>时间管理</category>
+        <category>GTD</category>
+      </categories>
+      <tags>
+        <tag>GTD</tag>
+        <tag>时间管理</tag>
+        <tag>效率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python机器学习--001 python基础</title>
+    <url>/2021/03/14/1-ReviewPython_solution/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+
+<p>** Review Python Basics and Intro to Jupyter Notebook **</p>
+<p>Optional Reading: Python Data Science Handbook, Ch. 1: IPython</p>
+<span id="more"></span>
+<h1 id="1-Numbers-and-strings"><a href="#1-Numbers-and-strings" class="headerlink" title="1. Numbers and strings"></a>1. Numbers and strings</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="number">10</span></span><br><span class="line">b = <span class="number">3</span></span><br><span class="line">c = <span class="string">&#x27;5&#x27;</span></span><br><span class="line"><span class="comment"># Add code to print the result of a multiply with b</span></span><br><span class="line">print(a*b)</span><br><span class="line"><span class="comment"># Add code to print the result of c replicated b times</span></span><br><span class="line">print(c*b)</span><br><span class="line"><span class="comment"># Add code to print the result of a added with b</span></span><br><span class="line">print(a+b)</span><br><span class="line"><span class="comment"># Add code to print the result of c concatenate with b</span></span><br><span class="line">print(c+<span class="built_in">str</span>(b))</span><br></pre></td></tr></table></figure>
+
+<pre><code>30
+555
+13
+53
+</code></pre>
+<h1 id="2-Decisions-and-loops"><a href="#2-Decisions-and-loops" class="headerlink" title="2. Decisions and loops"></a>2. Decisions and loops</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Add code to create a loop to keep asking the user for a number until the user presses the Enter key only.</span></span><br><span class="line"><span class="comment"># After the user enters 0, print number of positive numbers and number of negative numbers entered.</span></span><br><span class="line"><span class="comment"># Note that 0 is neither positive nor negative</span></span><br><span class="line"></span><br><span class="line">num = <span class="built_in">input</span>(<span class="string">&quot;Enter a number: &quot;</span>)</span><br><span class="line">pos = neg = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">len</span>(num) != <span class="number">0</span> :<span class="comment"># 一种验证方式</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">float</span>(num) &lt; <span class="number">0</span> :</span><br><span class="line">        neg += <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">float</span>(num) &gt; <span class="number">0</span> :</span><br><span class="line">        pos += <span class="number">1</span></span><br><span class="line">    num = <span class="built_in">input</span>(<span class="string">&quot;Enter a number: &quot;</span>)</span><br><span class="line">print(<span class="string">&quot;Positive:&quot;</span>, pos, <span class="string">&quot; Negative:&quot;</span>, neg)</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-Functions"><a href="#3-Functions" class="headerlink" title="3. Functions"></a>3. Functions</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pp</span>(<span class="params">*args</span>):</span><span class="comment"># 组团获取参数的方法</span></span><br><span class="line">    print(args,<span class="built_in">type</span>(args))</span><br><span class="line">pp(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>(1, 2, 3) &lt;class &#39;tuple&#39;&gt;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Write a function add, given the function calls below:</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">*args</span>):</span>     <span class="comment"># * packs all input args into a tuple named args</span></span><br><span class="line">    <span class="keyword">return</span>(<span class="built_in">sum</span>(args))</span><br><span class="line"></span><br><span class="line">print(add(<span class="number">1</span>, <span class="number">2</span>))   <span class="comment"># print: 3</span></span><br><span class="line">print(add())       <span class="comment"># print: 0</span></span><br><span class="line">print(add(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">17</span>,<span class="number">1</span>))   <span class="comment"># print: 153</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>3
+0
+154
+</code></pre>
+<h1 id="4-Containers-or-iterables"><a href="#4-Containers-or-iterables" class="headerlink" title="4. Containers or iterables"></a>4. Containers or iterables</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Use a container to store the characters of the string &quot;hello&quot;  </span></span><br><span class="line"><span class="comment"># What type of container would you use? Why?</span></span><br><span class="line">t = <span class="built_in">tuple</span>(<span class="string">&quot;hello&quot;</span>)    <span class="comment"># tuple is immutable and faster to access than list</span></span><br><span class="line">print(t+<span class="built_in">tuple</span>(<span class="string">&#x27;1&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<pre><code>(&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39;1&#39;)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Use a container to store the characters of the string &quot;hello&quot;</span></span><br><span class="line"><span class="comment"># Then add an exclamation point to the container, after the letter &#x27;o&#x27;, and capitalize the &#x27;h&#x27;</span></span><br><span class="line">L = <span class="built_in">list</span>(<span class="string">&quot;hello&quot;</span>)   <span class="comment"># need to use a list here because we need to change values</span></span><br><span class="line">L.append(<span class="string">&#x27;!&#x27;</span>)</span><br><span class="line">L[<span class="number">0</span>] = <span class="string">&#x27;H&#x27;</span></span><br><span class="line">print(L)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[&#39;H&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39;!&#39;]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Use a container to store the unique characters of the string &quot;hello&quot; </span></span><br><span class="line"><span class="comment"># unique characters means only h,e,l,o should be stored</span></span><br><span class="line">S = <span class="built_in">set</span>(<span class="string">&quot;hello&quot;</span>)    <span class="comment"># a set only contains unique elements, but there&#x27;s no order</span></span><br><span class="line">print(S)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;&#39;e&#39;, &#39;h&#39;, &#39;l&#39;, &#39;o&#39;&#125;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Use a container to store the unique characters of the string &quot;hello&quot; </span></span><br><span class="line"><span class="comment"># and its ascii value. Example: &#x27;h&#x27; should be stored with the ascii value 104</span></span><br><span class="line">D = <span class="built_in">dict</span>(<span class="built_in">zip</span>(<span class="string">&#x27;hello&#x27;</span>, [<span class="built_in">ord</span>(c) <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">&#x27;hello&#x27;</span>]))<span class="comment"># 两个list压缩为字典--注意有set的中间操作</span></span><br><span class="line">print(D)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;&#39;h&#39;: 104, &#39;e&#39;: 101, &#39;l&#39;: 108, &#39;o&#39;: 111&#125;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># another solution from several people in class:   </span></span><br><span class="line">dict_ = &#123;char:<span class="built_in">ord</span>(char) <span class="keyword">for</span> char <span class="keyword">in</span> <span class="string">&#x27;hello&#x27;</span>&#125;</span><br><span class="line">print(dict_)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;&#39;h&#39;: 104, &#39;e&#39;: 101, &#39;l&#39;: 108, &#39;o&#39;: 111&#125;
+</code></pre>
+<h1 id="5-Accessing-lists"><a href="#5-Accessing-lists" class="headerlink" title="5. Accessing lists"></a>5. Accessing lists</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">L = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">21</span>))</span><br><span class="line"><span class="comment"># Write code to print the first half of the list</span></span><br><span class="line">print(L[:<span class="number">10</span>])</span><br><span class="line"><span class="comment"># Write code to print the last 3 elements of the list</span></span><br><span class="line">print(L[-<span class="number">3</span>:])</span><br><span class="line"><span class="comment"># Write code to print every element of the list, all on one line, separated by space</span></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> L :</span><br><span class="line">    print(num, end=<span class="string">&quot; &quot;</span>)</span><br><span class="line">print()</span><br><span class="line"><span class="comment"># Write code to negate every other element of the list </span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(L),<span class="number">2</span>) :</span><br><span class="line">    L[i] *= -<span class="number">1</span></span><br><span class="line">print(L)</span><br><span class="line"></span><br><span class="line"><span class="comment"># from class discussion: negate all elements that are even in L</span></span><br><span class="line">list_neg =[-i <span class="keyword">if</span> i%<span class="number">2</span>==<span class="number">0</span> <span class="keyword">else</span> i   <span class="keyword">for</span> i <span class="keyword">in</span> L]</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[18, 19, 20]
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 
+[1, -2, 3, -4, 5, -6, 7, -8, 9, -10, 11, -12, 13, -14, 15, -16, 17, -18, 19, -20]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Write code to create a list of 20 elements and initialize it to 0</span></span><br><span class="line">L = [<span class="number">0</span>]*<span class="number">20</span></span><br><span class="line">print(L)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print([<span class="number">1</span>]*<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Write code to create a list of 10 lists, each inner list contains 20 elements, initialized to 5.</span></span><br><span class="line"><span class="comment"># print the list of lists as 10 rows of 20 columns</span></span><br><span class="line">L = [[<span class="number">5</span>]*<span class="number">20</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)] <span class="comment"># 扩展数组的一种方式</span></span><br><span class="line">L </span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[[5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># from class discussion:</span></span><br><span class="line">L = [[<span class="number">5</span>]*<span class="number">20</span>] * <span class="number">10</span></span><br><span class="line"><span class="comment"># will not produce the same list of 10 inner lists.</span></span><br><span class="line"><span class="comment"># Instead it will produce a list of 10 references, each reference</span></span><br><span class="line"><span class="comment"># points to the same and only one inner list.</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[[5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">L = [random.randint(<span class="number">1</span>,<span class="number">10</span>)]*<span class="number">8</span> <span class="comment"># 单次激发,单次扩展</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[8, 8, 8, 8, 8, 8, 8, 8]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">random.seed()</span><br><span class="line">L = [random.randint(<span class="number">1</span>,<span class="number">10</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>)] <span class="comment"># 逐次激发</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[7, 1, 3, 8, 1, 3, 9, 4]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Write code to create a new list which is made of even values from L</span></span><br><span class="line">L2 = [n <span class="keyword">for</span> n <span class="keyword">in</span> L <span class="keyword">if</span> n%<span class="number">1</span> == <span class="number">0</span>]</span><br><span class="line"><span class="comment"># Write code to print the new list, with the elemens sorted in descending order</span></span><br><span class="line">print(<span class="built_in">sorted</span>(L2,reverse=<span class="literal">True</span>))</span><br><span class="line"><span class="comment"># Write code to print True or False, depending on whether the value 4 is in the new list</span></span><br><span class="line">print(<span class="number">4</span> <span class="keyword">in</span> L2)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[9, 8, 7, 4, 3, 3, 1, 1]
+True
+</code></pre>
+<h1 id="6-Accessing-dictionaries-and-tuples"><a href="#6-Accessing-dictionaries-and-tuples" class="headerlink" title="6. Accessing dictionaries and tuples"></a>6. Accessing dictionaries and tuples</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Write a dictionary comprehension to store the letters A,B,C as keys and their ascii numbers as values</span></span><br><span class="line">D = &#123;c:<span class="built_in">ord</span>(c) <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">&quot;ABC&quot;</span>&#125;</span><br><span class="line">D</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&#123;&#39;A&#39;: 65, &#39;B&#39;: 66, &#39;C&#39;: 67&#125;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Write code to add D and its ascii value 68 to the dictionary</span></span><br><span class="line">D[<span class="string">&#x27;D&#x27;</span>] = <span class="number">68</span></span><br><span class="line">D</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&#123;&#39;A&#39;: 65, &#39;B&#39;: 66, &#39;C&#39;: 67, &#39;D&#39;: 68&#125;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> D.items() :</span><br><span class="line">    print(k,v)</span><br></pre></td></tr></table></figure>
+
+<pre><code>A 65
+B 66
+C 67
+D 68
+</code></pre>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(v1, v2, v3, v4) = D.values()</span><br><span class="line">print(v1, v2, v3, v4)</span><br></pre></td></tr></table></figure>
+
+<pre><code>65 66 67 68
+</code></pre>
+<h1 id="6-File-IO"><a href="#6-File-IO" class="headerlink" title="6. File IO"></a>6. File IO</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;sample.csv&quot;</span>, <span class="string">&quot;w&quot;</span>, newline=<span class="string">&#x27;&#x27;</span>) <span class="keyword">as</span> f :</span><br><span class="line">    writer = csv.writer(f)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>) :</span><br><span class="line">        t=[random.randint(<span class="number">1</span>,<span class="number">11</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>)]</span><br><span class="line">        print(t)</span><br><span class="line">        writer.writerow(t)</span><br><span class="line">        </span><br><span class="line"><span class="comment"># Write code to read in sample.csv and print all numbers in one line of output, separated by space</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;sample.csv&quot;</span>) <span class="keyword">as</span> f :</span><br><span class="line">    reader = csv.reader(f)</span><br><span class="line">    <span class="keyword">for</span> L <span class="keyword">in</span> reader :</span><br><span class="line">        print(<span class="string">f&quot;=<span class="subst">&#123;L&#125;</span>=&quot;</span>)</span><br><span class="line">        print(<span class="string">&quot; &quot;</span>.join(L))</span><br><span class="line">    print()</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Write code to read in sample.csv as a text file (without using csv reader) </span></span><br><span class="line"><span class="comment"># and print all numbers in one line of output, separated by space</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;sample.csv&quot;</span>) <span class="keyword">as</span> f :</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> f :</span><br><span class="line">        print(line.rstrip().replace(<span class="string">&#x27;,&#x27;</span>,<span class="string">&#x27; &#x27;</span>), end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    print()</span><br></pre></td></tr></table></figure>
+
+<pre><code>[3, 2, 9, 5]
+[4, 11, 7, 5]
+[11, 6, 9, 5]
+=[&#39;3&#39;, &#39;2&#39;, &#39;9&#39;, &#39;5&#39;]=
+3 2 9 5
+=[&#39;4&#39;, &#39;11&#39;, &#39;7&#39;, &#39;5&#39;]=
+4 11 7 5
+=[&#39;11&#39;, &#39;6&#39;, &#39;9&#39;, &#39;5&#39;]=
+11 6 9 5
+
+3 2 9 5 4 11 7 5 11 6 9 5 
+</code></pre>
+]]></content>
+      <categories>
+        <category>专业技术</category>
+        <category>python</category>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>字典数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>autogen.sh的使用</title>
+    <url>/2020/08/07/autogen.sh%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+
+<h1 id="Linux工具之autoconf和automake"><a href="#Linux工具之autoconf和automake" class="headerlink" title="Linux工具之autoconf和automake"></a>Linux工具之autoconf和automake</h1><span id="more"></span>
+
+<hr>
+<hr>
+<h2 id="●-1-autoscan-–-在-hello-c所在目录"><a href="#●-1-autoscan-–-在-hello-c所在目录" class="headerlink" title="● 1 autoscan – 在 hello.c所在目录"></a>● 1 <strong>autoscan – 在 hello.c所在目录</strong></h2><p>**┗ **autoscan.log<br>┗ configure.scan<br>┗ mv configure.scan configure.ac<br>┗ edit configure,ac</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#                                               -*- Autoconf -*-</span><br><span class="line"># Process this file with autoconf to produce a configure script.</span><br><span class="line"></span><br><span class="line">AC_PREREQ([2.69])</span><br><span class="line">AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])</span><br><span class="line"></span><br><span class="line"># ● add it</span><br><span class="line">AM_INIT_AUTOMAKE</span><br><span class="line"></span><br><span class="line"># ● change it </span><br><span class="line">AC_CONFIG_SRCDIR(hello.c)</span><br><span class="line">AC_CONFIG_HEADERS([config.h])</span><br><span class="line"></span><br><span class="line"># Checks for programs.</span><br><span class="line">AC_PROG_CC</span><br><span class="line"></span><br><span class="line"># Checks for libraries.</span><br><span class="line"></span><br><span class="line"># Checks for header files.</span><br><span class="line"></span><br><span class="line"># Checks for typedefs, structures, and compiler characteristics.</span><br><span class="line"></span><br><span class="line"># Checks for library functions.</span><br><span class="line"></span><br><span class="line"># add it </span><br><span class="line">AC_CONFIG_FILES([Makefile]) </span><br><span class="line"></span><br><span class="line">AC_OUTPUT</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="●-2-makefile-am-–-创建添加如下信息"><a href="#●-2-makefile-am-–-创建添加如下信息" class="headerlink" title="● 2 makefile.am – 创建添加如下信息"></a>● 2 makefile.am – 创建添加如下信息</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AUTOMAKE_OPTIONS&#x3D;foreign</span><br><span class="line">bin_PROGRAMS&#x3D;helloworld</span><br><span class="line">helloworld_SOURCES&#x3D;hello.c</span><br></pre></td></tr></table></figure>
+<p>┗ bin_<strong>PROGRAMS</strong> 指定可执行输出文件<br>┗ helloworld_**SOURCES **制定输入的原文件</p>
+<h2 id="●-3-执行aclocal"><a href="#●-3-执行aclocal" class="headerlink" title="● 3 执行aclocal"></a>● 3 执行aclocal</h2><p>├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── requests<br>│   └── traces.0</p>
+<h2 id="●-4-执行autoheader-with-sudo"><a href="#●-4-执行autoheader-with-sudo" class="headerlink" title="● 4 执行autoheader | with sudo"></a>● 4 执行autoheader | with sudo</h2><p>├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── <strong>output.1</strong><br>│   ├── requests<br>│   ├── traces.0<br>│   └── <strong>traces.1</strong><br>├── autoscan.log<br>├── <strong>config.h.in</strong></p>
+<p>:::warning<br>autom4te: cannot open autom4te.cache/requests: Permission denied<br>autoheader: ‘/usr/bin/autom4te’ failed with exit status: 1</p>
+<hr>
+<p>sudo XXX<br>:::</p>
+<h2 id="●-5-执行-autoconf-with-sudo"><a href="#●-5-执行-autoconf-with-sudo" class="headerlink" title="● 5 执行**autoconf | with sudo **"></a>● 5 执行**autoconf | with sudo **</h2><p>├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── output.1<br>│   ├── requests<br>│   ├── traces.0<br>│   └── traces.1<br>├── autoscan.log<br>├── config.h.in<br>├── <strong>configure</strong><br>├── configure.ac<br>├── main.c<br>└── Makefile.am</p>
+<h2 id="●-6-执行automake-–add-missing-with-sudo"><a href="#●-6-执行automake-–add-missing-with-sudo" class="headerlink" title="● 6 执行automake –add-missing | with sudo"></a>● 6 执行<strong>automake –add-missing | with sudo</strong></h2><p>**├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── output.1<br>│   ├── requests<br>│   ├── traces.0<br>│   └── traces.1<br>├── autoscan.log<br>├── <strong>compile -&gt; /usr/share/automake-1.16/compile</strong><br>├── config.h.in<br>├── configure<br>├── configure.ac<br>├── <strong>depcomp -&gt; /usr/share/automake-1.16/depcomp</strong><br>├── <strong>install-sh -&gt; /usr/share/automake-1.16/install-sh</strong><br>├── main.c<br>├── Makefile.am<br>├── <strong>Makefile.in</strong><br>└── <strong>missing -&gt; /usr/share/automake-1.16/missing</strong></p>
+<hr>
+<p>经过以上操作我们就可以像一般安装程序一config –&gt; make –&gt; make install</p>
+<p><img src="https://cdn.nlark.com/yuque/__puml/0e86771c8c5cc132e22ee57402c81cd7.svg#lake_card_v2=eyJjb2RlIjoiQHN0YXJ0dW1sXG5zdGFydFxuOmF1dG9zY2FuO1xubm90ZSBsZWZ0OuS6p-eUn2NvbmZpZ3VyZS5zY2FuXG46bXYgY29uZmlndXJlLnNjYW4gY29uZmlndXJlLmFjO1xuOua3u-WKoOW_heimgemAiemhuTtcbm5vdGUgcmlnaHRcbkFNX0lOSVRfQVVUT01BS0VcbkFDX0NPTkZJR19GSUxFUyhbTWFrZWZpbGVdKVxuZW5kIG5vdGVcbjrliJvlu7pNYWtlZmlsZS5hbTtcbm5vdGUgbGVmdFxuQVVUT01BS0VfT1BUSU9OUz1mb3JlaWduXG5iaW5fUFJPR1JBTVM9aGVsbG93b3JsZFxuaGVsbG93b3JsZF9TT1VSQ0VTPWhlbGxvLmNcbmVuZCBub3RlXG46c3VkbyBhY2xvY2FsO1xuOnN1ZG8gYXV0b2hlYWRlcjtcbjpzdWRvIGF1dG9jb25mO1xuOnN1ZG8gYXV0b21ha2UgLS1hZGQtbWlzc2luZztcbnN0b3BcbkBlbmR1bWwiLCJ0eXBlIjoicHVtbCIsImlkIjoibm9ZMUMiLCJ1cmwiOiJodHRwczovL2Nkbi5ubGFyay5jb20veXVxdWUvX19wdW1sLzBlODY3NzFjOGM1Y2MxMzJlMjJlZTU3NDAyYzgxY2Q3LnN2ZyIsImNhcmQiOiJkaWFncmFtIn0="></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> .&#x2F;configure</span><br><span class="line"> make</span><br><span class="line"> make install</span><br><span class="line"> ┗  &#x2F;usr&#x2F;bin&#x2F;install -c helloworld &#39;&#x2F;usr&#x2F;local&#x2F;bin&#39;</span><br><span class="line">这样直接可以直接执行，不用带上绝对路径</span><br></pre></td></tr></table></figure>
+<p>**</p>
+<h1 id="autogen-sh-登场"><a href="#autogen-sh-登场" class="headerlink" title="autogen.sh 登场"></a>autogen.sh 登场</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;sh</span><br><span class="line">echo </span><br><span class="line">echo ... helloworld autogen ...</span><br><span class="line">echo </span><br><span class="line"> </span><br><span class="line">MISSING&#x3D;&quot;&quot;</span><br><span class="line"> </span><br><span class="line">env aclocal --version &gt;&#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	ACLOCAL&#x3D;aclocal</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING aclocal&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env autoconf --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	AUTOCONF&#x3D;autoconf</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING autoconf&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env autoheader --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ]; then</span><br><span class="line">	AUTOHEADER&#x3D;autoheader</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING autoconf&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env automake --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	AUTOMAKE&#x3D;automake</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING automake&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env libtoolize --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	TOOL&#x3D;libtoolize</span><br><span class="line">else </span><br><span class="line">	env glibtoolize --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">	if [$? -eq 0 ];then</span><br><span class="line">		TOOL&#x3D;glibtoolize</span><br><span class="line">	else</span><br><span class="line">		MISSING&#x3D;&quot;$MISSING libtoolize&#x2F;glibtoolize&quot;</span><br><span class="line">	fi</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env tar -cf &#x2F;dev&#x2F;null &#x2F;dev&#x2F;null &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -ne 0 ];then</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING tar&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">if [ &quot;x$MISSING&quot; !&#x3D; &quot;x&quot; ];then</span><br><span class="line">	echo &quot;ABORTING.&quot;</span><br><span class="line">	echo </span><br><span class="line">	echo &quot;The following build tools are missing:&quot;</span><br><span class="line">	echo </span><br><span class="line">	</span><br><span class="line">	for pkg in $MISSING;do</span><br><span class="line">		echo &quot; *  $pkg&quot;</span><br><span class="line">	done</span><br><span class="line">	</span><br><span class="line">	echo </span><br><span class="line">	echo &quot;please install them and try again.&quot;</span><br><span class="line">	echo </span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">echo Running $ACLOCAL</span><br><span class="line">$ACLOCAL</span><br><span class="line"> </span><br><span class="line">echo Running $AUTOHEADER</span><br><span class="line">$AUTOHEADER</span><br><span class="line">	</span><br><span class="line">echo Running $TOOL</span><br><span class="line">$TOOL</span><br><span class="line">	</span><br><span class="line">echo Running $AUTOCONF</span><br><span class="line">$AUTOCONF</span><br><span class="line"> </span><br><span class="line">echo Running $AUTOMAKE</span><br><span class="line">$AUTOMAKE --add-missing --force-missing --copy --foreign</span><br><span class="line"> </span><br><span class="line">echo </span><br><span class="line">echo &quot;Please proceed with configuring, compiling and installing&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="●-目录结构"><a href="#●-目录结构" class="headerlink" title="● 目录结构"></a>● 目录结构</h2><p>├── autogen.sh<br>├── configure.ac<br>├── Makefile.am<br>└── src<br>   ├── hello.c<br>   └── Makefile.am<br>根目录的configure ac</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#                                               -*- Autoconf -*-</span><br><span class="line"># Process this file with autoconf to produce a configure script.</span><br><span class="line"></span><br><span class="line">AC_PREREQ([2.69])</span><br><span class="line">AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])</span><br><span class="line">AC_CONFIG_SRCDIR([src&#x2F;hello.c])</span><br><span class="line">AC_CONFIG_HEADERS([config.h])</span><br><span class="line"></span><br><span class="line"># ● add</span><br><span class="line">AM_INIT_AUTOMAKE(helloworld,1.0)</span><br><span class="line"></span><br><span class="line"># ● add</span><br><span class="line">AC_CONFIG_FILES([Makefile</span><br><span class="line">                src&#x2F;Makefile])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Checks for programs.</span><br><span class="line">AC_PROG_CC</span><br><span class="line"></span><br><span class="line"># Checks for libraries.</span><br><span class="line"></span><br><span class="line"># Checks for header files.</span><br><span class="line"></span><br><span class="line"># Checks for typedefs, structures, and compiler characteristics.</span><br><span class="line"></span><br><span class="line"># Checks for library functions.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">AC_OUTPUT</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>**</p>
+<h2 id="●-根目录的Makefile-am"><a href="#●-根目录的Makefile-am" class="headerlink" title="● 根目录的Makefile.am"></a>● 根目录的Makefile.am</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SUBDIRS &#x3D; src</span><br><span class="line">#ACLOCAL_AMFLAGS &#x3D; -I m4</span><br><span class="line"> </span><br><span class="line">.PHONY:clean</span><br><span class="line">clean:	distclean</span><br><span class="line">	find . -name Makefile.in -exec rm -rf &#123;&#125; \;</span><br><span class="line">	rm -rf autom4te.cache</span><br><span class="line">	rm -f aclocal.m4 autoscan.log config.h config.log config.sub configure depcomp Makefile compile config.h.in config.status install-sh missing stamp-h1 config.guess config.h.in~ ltmain.sh</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="●-src目录下的Makefile-am"><a href="#●-src目录下的Makefile-am" class="headerlink" title="● src目录下的Makefile.am"></a>● src目录下的Makefile.am</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AUTOMAKE_OPTIONS&#x3D;foreign</span><br><span class="line">bin_PROGRAMS&#x3D;helloworld</span><br><span class="line">helloworld_SOURCES&#x3D;hello.c</span><br><span class="line">helloworld_LDADD&#x3D;</span><br><span class="line">LIBS&#x3D;-lm</span><br><span class="line">INCLUDE&#x3D;-I&#x2F;usr&#x2F;include</span><br></pre></td></tr></table></figure>
+
+
+<p>:::warning<br>AC_CONFIG_FILES([Makefile<br>               src/Makefile])<br>要让Makefile.am遍地开花<br>:::</p>
+<h1 id="【参考资料】"><a href="#【参考资料】" class="headerlink" title="【参考资料】"></a>【参考资料】</h1><hr>
+<ul>
+<li><a href="https://blog.csdn.net/asbhunan129/article/details/87921434">Linux工具之autoconf和automake</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/l-makefile/">例解 autoconf 和 automake 生成 Makefile 文件</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>autogen</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++ 智能指针使用</title>
-    <url>/blog/2020/04/26/C%20%20%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</url>
+    <url>/2020/04/26/C%20%20%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
 
@@ -22,27 +258,8 @@
       </tags>
   </entry>
   <entry>
-    <title>python的字典轮询</title>
-    <url>/blog/2020/04/26/python%20%E5%AD%97%E5%85%B8%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-<p>对于字典 for X in 字典 if X in 字典 都是针对的字典的keys来操作的</p>
-<span id="more"></span>
-
-<h1 id="字典的轮询"><a href="#字典的轮询" class="headerlink" title="字典的轮询"></a>字典的轮询</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 字典数据</span></span><br><span class="line">ipinfo = &#123;</span><br><span class="line"><span class="string">&#x27;ext0&#x27;</span>: &#123;<span class="string">&#x27;bind-dpdk&#x27;</span>: <span class="string">&#x27;true&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;ip_addrs&#x27;</span>: [<span class="string">&#x27;10.110.178.22/26&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;2a00:8a00:8000:5801:0:1d:0:21/120&#x27;</span>],</span><br><span class="line">     <span class="string">&#x27;mac&#x27;</span>: <span class="string">&#x27;fa:16:3e:d3:79:67&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;mtu&#x27;</span>: <span class="string">&#x27;1500&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;provider-network-mtu&#x27;</span>: <span class="string">&#x27;9000&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;role&#x27;</span>: <span class="string">&#x27;external&#x27;</span>&#125;,</span><br><span class="line"> <span class="string">&#x27;ext1&#x27;</span>: &#123;<span class="string">&#x27;bind-dpdk&#x27;</span>: <span class="string">&#x27;true&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;ip_addrs&#x27;</span>: [<span class="string">&#x27;10.110.178.86/26&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;2a00:8a00:8000:5801:0:1d:0:107/120&#x27;</span>],</span><br><span class="line">     <span class="string">&#x27;mac&#x27;</span>: <span class="string">&#x27;fa:16:3e:8b:a6:b8&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;mtu&#x27;</span>: <span class="string">&#x27;1500&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;provider-network-mtu&#x27;</span>: <span class="string">&#x27;9000&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;role&#x27;</span>: <span class="string">&#x27;external&#x27;</span>&#125;,</span><br><span class="line"> <span class="string">&#x27;ext2&#x27;</span>: &#123;<span class="string">&#x27;bind-dpdk&#x27;</span>: <span class="string">&#x27;false&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;ip_addrs&#x27;</span>: [<span class="string">&#x27;10.110.178.161/26&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;2a00:8a00:8000:5801:0:1d:0:210/120&#x27;</span>],</span><br><span class="line">     <span class="string">&#x27;mac&#x27;</span>: <span class="string">&#x27;fa:16:3e:8b:a8:cc&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;mtu&#x27;</span>: <span class="string">&#x27;1500&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;provider-network-mtu&#x27;</span>: <span class="string">&#x27;9000&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;role&#x27;</span>: <span class="string">&#x27;trace&#x27;</span>&#125;,</span><br><span class="line"> <span class="string">&#x27;internal&#x27;</span>: &#123;<span class="string">&#x27;bind-dpdk&#x27;</span>: <span class="string">&#x27;false&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;ip_addrs&#x27;</span>: [<span class="string">&#x27;192.168.1.17/24&#x27;</span>],</span><br><span class="line">     <span class="string">&#x27;mac&#x27;</span>: <span class="string">&#x27;fa:16:3e:e8:56:e4&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;mtu&#x27;</span>: <span class="string">&#x27;1500&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;provider-network-mtu&#x27;</span>: <span class="string">&#x27;9000&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;role&#x27;</span>: <span class="string">&#x27;internal&#x27;</span>&#125;,</span><br><span class="line"> <span class="string">&#x27;intmsg0&#x27;</span>: &#123;<span class="string">&#x27;bind-dpdk&#x27;</span>: <span class="string">&#x27;true&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;ip_addrs&#x27;</span>: [<span class="string">&#x27;169.254.0.15/24&#x27;</span>],</span><br><span class="line">     <span class="string">&#x27;mac&#x27;</span>: <span class="string">&#x27;fa:16:3e:b3:d1:58&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;mtu&#x27;</span>: <span class="string">&#x27;1500&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;provider-network-mtu&#x27;</span>: <span class="string">&#x27;9000&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;role&#x27;</span>: <span class="string">&#x27;internal&#x27;</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 轮训方法1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ipinfo)):</span><br><span class="line">    ipinfo[<span class="built_in">list</span>(ipinfo.keys())[i]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 轮训方法2</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> ipinfo:</span><br><span class="line">     ipinfo[i]</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>专业技术</category>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>字典数据</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>gdb 用法整理</title>
-    <url>/blog/2020/08/07/gdb%20%E7%94%A8%E6%B3%95%E6%95%B4%E7%90%86/</url>
+    <url>/2020/08/07/gdb%20%E7%94%A8%E6%B3%95%E6%95%B4%E7%90%86/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
 
@@ -220,59 +437,46 @@
       </tags>
   </entry>
   <entry>
-    <title>autogen.sh的使用</title>
-    <url>/blog/2020/08/07/autogen.sh%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <title>python的字典轮询</title>
+    <url>/2020/04/26/python%20%E5%AD%97%E5%85%B8%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
+<p>对于字典 for X in 字典 if X in 字典 都是针对的字典的keys来操作的</p>
+<span id="more"></span>
 
-<h1 id="Linux工具之autoconf和automake"><a href="#Linux工具之autoconf和automake" class="headerlink" title="Linux工具之autoconf和automake"></a>Linux工具之autoconf和automake</h1><span id="more"></span>
-
-<hr>
-<hr>
-<h2 id="●-1-autoscan-–-在-hello-c所在目录"><a href="#●-1-autoscan-–-在-hello-c所在目录" class="headerlink" title="● 1 autoscan – 在 hello.c所在目录"></a>● 1 <strong>autoscan – 在 hello.c所在目录</strong></h2><p>**┗ **autoscan.log<br>┗ configure.scan<br>┗ mv configure.scan configure.ac<br>┗ edit configure,ac</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#                                               -*- Autoconf -*-</span><br><span class="line"># Process this file with autoconf to produce a configure script.</span><br><span class="line"></span><br><span class="line">AC_PREREQ([2.69])</span><br><span class="line">AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])</span><br><span class="line"></span><br><span class="line"># ● add it</span><br><span class="line">AM_INIT_AUTOMAKE</span><br><span class="line"></span><br><span class="line"># ● change it </span><br><span class="line">AC_CONFIG_SRCDIR(hello.c)</span><br><span class="line">AC_CONFIG_HEADERS([config.h])</span><br><span class="line"></span><br><span class="line"># Checks for programs.</span><br><span class="line">AC_PROG_CC</span><br><span class="line"></span><br><span class="line"># Checks for libraries.</span><br><span class="line"></span><br><span class="line"># Checks for header files.</span><br><span class="line"></span><br><span class="line"># Checks for typedefs, structures, and compiler characteristics.</span><br><span class="line"></span><br><span class="line"># Checks for library functions.</span><br><span class="line"></span><br><span class="line"># add it </span><br><span class="line">AC_CONFIG_FILES([Makefile]) </span><br><span class="line"></span><br><span class="line">AC_OUTPUT</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p> </p>
-<h2 id="●-2-makefile-am-–-创建添加如下信息"><a href="#●-2-makefile-am-–-创建添加如下信息" class="headerlink" title="● 2 makefile.am – 创建添加如下信息"></a>● 2 makefile.am – 创建添加如下信息</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AUTOMAKE_OPTIONS&#x3D;foreign</span><br><span class="line">bin_PROGRAMS&#x3D;helloworld</span><br><span class="line">helloworld_SOURCES&#x3D;hello.c</span><br></pre></td></tr></table></figure>
-<p>┗ bin_<strong>PROGRAMS</strong> 指定可执行输出文件<br>┗ helloworld_**SOURCES **制定输入的原文件</p>
-<h2 id="●-3-执行aclocal"><a href="#●-3-执行aclocal" class="headerlink" title="● 3 执行aclocal"></a>● 3 执行aclocal</h2><p>├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── requests<br>│   └── traces.0</p>
-<h2 id="●-4-执行autoheader-with-sudo"><a href="#●-4-执行autoheader-with-sudo" class="headerlink" title="● 4 执行autoheader | with sudo"></a>● 4 执行autoheader | with sudo</h2><p>├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── <strong>output.1</strong><br>│   ├── requests<br>│   ├── traces.0<br>│   └── <strong>traces.1</strong><br>├── autoscan.log<br>├── <strong>config.h.in</strong></p>
-<p>:::warning<br>autom4te: cannot open autom4te.cache/requests: Permission denied<br>autoheader: ‘/usr/bin/autom4te’ failed with exit status: 1</p>
-<hr>
-<p>sudo XXX<br>:::</p>
-<h2 id="●-5-执行-autoconf-with-sudo"><a href="#●-5-执行-autoconf-with-sudo" class="headerlink" title="● 5 执行**autoconf | with sudo **"></a>● 5 执行**autoconf | with sudo **</h2><p>├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── output.1<br>│   ├── requests<br>│   ├── traces.0<br>│   └── traces.1<br>├── autoscan.log<br>├── config.h.in<br>├── <strong>configure</strong><br>├── configure.ac<br>├── main.c<br>└── Makefile.am</p>
-<h2 id="●-6-执行automake-–add-missing-with-sudo"><a href="#●-6-执行automake-–add-missing-with-sudo" class="headerlink" title="● 6 执行automake –add-missing | with sudo"></a>● 6 执行<strong>automake –add-missing | with sudo</strong></h2><p>**├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── output.1<br>│   ├── requests<br>│   ├── traces.0<br>│   └── traces.1<br>├── autoscan.log<br>├── <strong>compile -&gt; /usr/share/automake-1.16/compile</strong><br>├── config.h.in<br>├── configure<br>├── configure.ac<br>├── <strong>depcomp -&gt; /usr/share/automake-1.16/depcomp</strong><br>├── <strong>install-sh -&gt; /usr/share/automake-1.16/install-sh</strong><br>├── main.c<br>├── Makefile.am<br>├── <strong>Makefile.in</strong><br>└── <strong>missing -&gt; /usr/share/automake-1.16/missing</strong></p>
-<hr>
-<p>经过以上操作我们就可以像一般安装程序一config –&gt; make –&gt; make install</p>
-<p><img src="https://cdn.nlark.com/yuque/__puml/0e86771c8c5cc132e22ee57402c81cd7.svg#lake_card_v2=eyJjb2RlIjoiQHN0YXJ0dW1sXG5zdGFydFxuOmF1dG9zY2FuO1xubm90ZSBsZWZ0OuS6p-eUn2NvbmZpZ3VyZS5zY2FuXG46bXYgY29uZmlndXJlLnNjYW4gY29uZmlndXJlLmFjO1xuOua3u-WKoOW_heimgemAiemhuTtcbm5vdGUgcmlnaHRcbkFNX0lOSVRfQVVUT01BS0VcbkFDX0NPTkZJR19GSUxFUyhbTWFrZWZpbGVdKVxuZW5kIG5vdGVcbjrliJvlu7pNYWtlZmlsZS5hbTtcbm5vdGUgbGVmdFxuQVVUT01BS0VfT1BUSU9OUz1mb3JlaWduXG5iaW5fUFJPR1JBTVM9aGVsbG93b3JsZFxuaGVsbG93b3JsZF9TT1VSQ0VTPWhlbGxvLmNcbmVuZCBub3RlXG46c3VkbyBhY2xvY2FsO1xuOnN1ZG8gYXV0b2hlYWRlcjtcbjpzdWRvIGF1dG9jb25mO1xuOnN1ZG8gYXV0b21ha2UgLS1hZGQtbWlzc2luZztcbnN0b3BcbkBlbmR1bWwiLCJ0eXBlIjoicHVtbCIsImlkIjoibm9ZMUMiLCJ1cmwiOiJodHRwczovL2Nkbi5ubGFyay5jb20veXVxdWUvX19wdW1sLzBlODY3NzFjOGM1Y2MxMzJlMjJlZTU3NDAyYzgxY2Q3LnN2ZyIsImNhcmQiOiJkaWFncmFtIn0="></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> .&#x2F;configure</span><br><span class="line"> make</span><br><span class="line"> make install</span><br><span class="line"> ┗  &#x2F;usr&#x2F;bin&#x2F;install -c helloworld &#39;&#x2F;usr&#x2F;local&#x2F;bin&#39;</span><br><span class="line">这样直接可以直接执行，不用带上绝对路径</span><br></pre></td></tr></table></figure>
-<p>**</p>
-<h1 id="autogen-sh-登场"><a href="#autogen-sh-登场" class="headerlink" title="autogen.sh 登场"></a>autogen.sh 登场</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;sh</span><br><span class="line">echo </span><br><span class="line">echo ... helloworld autogen ...</span><br><span class="line">echo </span><br><span class="line"> </span><br><span class="line">MISSING&#x3D;&quot;&quot;</span><br><span class="line"> </span><br><span class="line">env aclocal --version &gt;&#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	ACLOCAL&#x3D;aclocal</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING aclocal&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env autoconf --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	AUTOCONF&#x3D;autoconf</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING autoconf&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env autoheader --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ]; then</span><br><span class="line">	AUTOHEADER&#x3D;autoheader</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING autoconf&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env automake --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	AUTOMAKE&#x3D;automake</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING automake&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env libtoolize --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	TOOL&#x3D;libtoolize</span><br><span class="line">else </span><br><span class="line">	env glibtoolize --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">	if [$? -eq 0 ];then</span><br><span class="line">		TOOL&#x3D;glibtoolize</span><br><span class="line">	else</span><br><span class="line">		MISSING&#x3D;&quot;$MISSING libtoolize&#x2F;glibtoolize&quot;</span><br><span class="line">	fi</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env tar -cf &#x2F;dev&#x2F;null &#x2F;dev&#x2F;null &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -ne 0 ];then</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING tar&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">if [ &quot;x$MISSING&quot; !&#x3D; &quot;x&quot; ];then</span><br><span class="line">	echo &quot;ABORTING.&quot;</span><br><span class="line">	echo </span><br><span class="line">	echo &quot;The following build tools are missing:&quot;</span><br><span class="line">	echo </span><br><span class="line">	</span><br><span class="line">	for pkg in $MISSING;do</span><br><span class="line">		echo &quot; *  $pkg&quot;</span><br><span class="line">	done</span><br><span class="line">	</span><br><span class="line">	echo </span><br><span class="line">	echo &quot;please install them and try again.&quot;</span><br><span class="line">	echo </span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">echo Running $ACLOCAL</span><br><span class="line">$ACLOCAL</span><br><span class="line"> </span><br><span class="line">echo Running $AUTOHEADER</span><br><span class="line">$AUTOHEADER</span><br><span class="line">	</span><br><span class="line">echo Running $TOOL</span><br><span class="line">$TOOL</span><br><span class="line">	</span><br><span class="line">echo Running $AUTOCONF</span><br><span class="line">$AUTOCONF</span><br><span class="line"> </span><br><span class="line">echo Running $AUTOMAKE</span><br><span class="line">$AUTOMAKE --add-missing --force-missing --copy --foreign</span><br><span class="line"> </span><br><span class="line">echo </span><br><span class="line">echo &quot;Please proceed with configuring, compiling and installing&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="●-目录结构"><a href="#●-目录结构" class="headerlink" title="● 目录结构"></a>● 目录结构</h2><p>├── autogen.sh<br>├── configure.ac<br>├── Makefile.am<br>└── src<br>   ├── hello.c<br>   └── Makefile.am<br>根目录的configure ac</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#                                               -*- Autoconf -*-</span><br><span class="line"># Process this file with autoconf to produce a configure script.</span><br><span class="line"></span><br><span class="line">AC_PREREQ([2.69])</span><br><span class="line">AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])</span><br><span class="line">AC_CONFIG_SRCDIR([src&#x2F;hello.c])</span><br><span class="line">AC_CONFIG_HEADERS([config.h])</span><br><span class="line"></span><br><span class="line"># ● add</span><br><span class="line">AM_INIT_AUTOMAKE(helloworld,1.0)</span><br><span class="line"></span><br><span class="line"># ● add</span><br><span class="line">AC_CONFIG_FILES([Makefile</span><br><span class="line">                src&#x2F;Makefile])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Checks for programs.</span><br><span class="line">AC_PROG_CC</span><br><span class="line"></span><br><span class="line"># Checks for libraries.</span><br><span class="line"></span><br><span class="line"># Checks for header files.</span><br><span class="line"></span><br><span class="line"># Checks for typedefs, structures, and compiler characteristics.</span><br><span class="line"></span><br><span class="line"># Checks for library functions.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">AC_OUTPUT</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>**</p>
-<h2 id="●-根目录的Makefile-am"><a href="#●-根目录的Makefile-am" class="headerlink" title="● 根目录的Makefile.am"></a>● 根目录的Makefile.am</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SUBDIRS &#x3D; src</span><br><span class="line">#ACLOCAL_AMFLAGS &#x3D; -I m4</span><br><span class="line"> </span><br><span class="line">.PHONY:clean</span><br><span class="line">clean:	distclean</span><br><span class="line">	find . -name Makefile.in -exec rm -rf &#123;&#125; \;</span><br><span class="line">	rm -rf autom4te.cache</span><br><span class="line">	rm -f aclocal.m4 autoscan.log config.h config.log config.sub configure depcomp Makefile compile config.h.in config.status install-sh missing stamp-h1 config.guess config.h.in~ ltmain.sh</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="●-src目录下的Makefile-am"><a href="#●-src目录下的Makefile-am" class="headerlink" title="● src目录下的Makefile.am"></a>● src目录下的Makefile.am</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AUTOMAKE_OPTIONS&#x3D;foreign</span><br><span class="line">bin_PROGRAMS&#x3D;helloworld</span><br><span class="line">helloworld_SOURCES&#x3D;hello.c</span><br><span class="line">helloworld_LDADD&#x3D;</span><br><span class="line">LIBS&#x3D;-lm</span><br><span class="line">INCLUDE&#x3D;-I&#x2F;usr&#x2F;include</span><br></pre></td></tr></table></figure>
-
-
-<p>:::warning<br>AC_CONFIG_FILES([Makefile<br>               src/Makefile])<br>要让Makefile.am遍地开花<br>:::</p>
-<h1 id="【参考资料】"><a href="#【参考资料】" class="headerlink" title="【参考资料】"></a>【参考资料】</h1><hr>
-<ul>
-<li><a href="https://blog.csdn.net/asbhunan129/article/details/87921434">Linux工具之autoconf和automake</a></li>
-<li><a href="https://www.ibm.com/developerworks/cn/linux/l-makefile/">例解 autoconf 和 automake 生成 Makefile 文件</a></li>
-</ul>
+<h1 id="字典的轮询"><a href="#字典的轮询" class="headerlink" title="字典的轮询"></a>字典的轮询</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 字典数据</span></span><br><span class="line">ipinfo = &#123;</span><br><span class="line"><span class="string">&#x27;ext0&#x27;</span>: &#123;<span class="string">&#x27;bind-dpdk&#x27;</span>: <span class="string">&#x27;true&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;ip_addrs&#x27;</span>: [<span class="string">&#x27;10.110.178.22/26&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;2a00:8a00:8000:5801:0:1d:0:21/120&#x27;</span>],</span><br><span class="line">     <span class="string">&#x27;mac&#x27;</span>: <span class="string">&#x27;fa:16:3e:d3:79:67&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;mtu&#x27;</span>: <span class="string">&#x27;1500&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;provider-network-mtu&#x27;</span>: <span class="string">&#x27;9000&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;role&#x27;</span>: <span class="string">&#x27;external&#x27;</span>&#125;,</span><br><span class="line"> <span class="string">&#x27;ext1&#x27;</span>: &#123;<span class="string">&#x27;bind-dpdk&#x27;</span>: <span class="string">&#x27;true&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;ip_addrs&#x27;</span>: [<span class="string">&#x27;10.110.178.86/26&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;2a00:8a00:8000:5801:0:1d:0:107/120&#x27;</span>],</span><br><span class="line">     <span class="string">&#x27;mac&#x27;</span>: <span class="string">&#x27;fa:16:3e:8b:a6:b8&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;mtu&#x27;</span>: <span class="string">&#x27;1500&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;provider-network-mtu&#x27;</span>: <span class="string">&#x27;9000&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;role&#x27;</span>: <span class="string">&#x27;external&#x27;</span>&#125;,</span><br><span class="line"> <span class="string">&#x27;ext2&#x27;</span>: &#123;<span class="string">&#x27;bind-dpdk&#x27;</span>: <span class="string">&#x27;false&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;ip_addrs&#x27;</span>: [<span class="string">&#x27;10.110.178.161/26&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;2a00:8a00:8000:5801:0:1d:0:210/120&#x27;</span>],</span><br><span class="line">     <span class="string">&#x27;mac&#x27;</span>: <span class="string">&#x27;fa:16:3e:8b:a8:cc&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;mtu&#x27;</span>: <span class="string">&#x27;1500&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;provider-network-mtu&#x27;</span>: <span class="string">&#x27;9000&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;role&#x27;</span>: <span class="string">&#x27;trace&#x27;</span>&#125;,</span><br><span class="line"> <span class="string">&#x27;internal&#x27;</span>: &#123;<span class="string">&#x27;bind-dpdk&#x27;</span>: <span class="string">&#x27;false&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;ip_addrs&#x27;</span>: [<span class="string">&#x27;192.168.1.17/24&#x27;</span>],</span><br><span class="line">     <span class="string">&#x27;mac&#x27;</span>: <span class="string">&#x27;fa:16:3e:e8:56:e4&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;mtu&#x27;</span>: <span class="string">&#x27;1500&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;provider-network-mtu&#x27;</span>: <span class="string">&#x27;9000&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;role&#x27;</span>: <span class="string">&#x27;internal&#x27;</span>&#125;,</span><br><span class="line"> <span class="string">&#x27;intmsg0&#x27;</span>: &#123;<span class="string">&#x27;bind-dpdk&#x27;</span>: <span class="string">&#x27;true&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;ip_addrs&#x27;</span>: [<span class="string">&#x27;169.254.0.15/24&#x27;</span>],</span><br><span class="line">     <span class="string">&#x27;mac&#x27;</span>: <span class="string">&#x27;fa:16:3e:b3:d1:58&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;mtu&#x27;</span>: <span class="string">&#x27;1500&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;provider-network-mtu&#x27;</span>: <span class="string">&#x27;9000&#x27;</span>,</span><br><span class="line">     <span class="string">&#x27;role&#x27;</span>: <span class="string">&#x27;internal&#x27;</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 轮训方法1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ipinfo)):</span><br><span class="line">    ipinfo[<span class="built_in">list</span>(ipinfo.keys())[i]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 轮训方法2</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> ipinfo:</span><br><span class="line">     ipinfo[i]</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>linux</category>
+        <category>专业技术</category>
+        <category>python</category>
       </categories>
       <tags>
-        <tag>autogen</tag>
+        <tag>python</tag>
+        <tag>字典数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>shell的字符串操作</title>
+    <url>/2020/08/06/shell%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ip link show</span></span><br><span class="line"><span class="number">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="number">65536</span> qdisc noqueue state UNKNOWN mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/loopback <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> brd <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="number">2</span>: internal: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc fq_codel state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:e8:<span class="number">56</span>:e4 brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">6</span>: ext2: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc fq_codel state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:8b:a8:cc brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">7</span>: intmsg0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:b3:d1:<span class="number">58</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">8</span>: ext0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">9</span>: ext1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:8b:a6:b8 brd ff:ff:ff:ff:ff:ff</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip link show | grep -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> -B1 |grep -v -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span>  | cut -d: -f <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h1 id="以mac为坐标取出其对应的接口所在行"><a href="#以mac为坐标取出其对应的接口所在行" class="headerlink" title="以mac为坐标取出其对应的接口所在行"></a>以mac为坐标取出其对应的接口所在行</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip link show | grep -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> -B1 |grep -v -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span></span><br></pre></td></tr></table></figure>
+<p>● grep -i fa:16:3e:d3:79:67 -B1<br>mac所在行以及前面的一行<br>● 去除mac所在行</p>
+<h1 id="以空格为分割取第二列"><a href="#以空格为分割取第二列" class="headerlink" title="以空格为分割取第二列"></a>以空格为分割取第二列</h1><p>● cut -d: -f 2<br>-d 给出分割字符 -f指定是哪一列</p>
+]]></content>
+      <categories>
+        <category>专业技术</category>
+      </categories>
+      <tags>
+        <tag>shell</tag>
       </tags>
   </entry>
   <entry>
     <title>virtual 函数修饰符的用法</title>
-    <url>/blog/2020/08/06/virtual%20%E5%87%BD%E6%95%B0%E4%BF%AE%E9%A5%B0%E7%AC%A6%E7%9A%84%E7%94%A8%E6%B3%95/</url>
+    <url>/2020/08/06/virtual%20%E5%87%BD%E6%95%B0%E4%BF%AE%E9%A5%B0%E7%AC%A6%E7%9A%84%E7%94%A8%E6%B3%95/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
 
@@ -304,27 +508,8 @@
       </tags>
   </entry>
   <entry>
-    <title>shell的字符串操作</title>
-    <url>/blog/2020/08/06/shell%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ip link show</span></span><br><span class="line"><span class="number">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="number">65536</span> qdisc noqueue state UNKNOWN mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/loopback <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> brd <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="number">2</span>: internal: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc fq_codel state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:e8:<span class="number">56</span>:e4 brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">6</span>: ext2: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc fq_codel state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:8b:a8:cc brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">7</span>: intmsg0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:b3:d1:<span class="number">58</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">8</span>: ext0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">9</span>: ext1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:8b:a6:b8 brd ff:ff:ff:ff:ff:ff</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip link show | grep -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> -B1 |grep -v -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span>  | cut -d: -f <span class="number">2</span></span><br></pre></td></tr></table></figure>
-<h1 id="以mac为坐标取出其对应的接口所在行"><a href="#以mac为坐标取出其对应的接口所在行" class="headerlink" title="以mac为坐标取出其对应的接口所在行"></a>以mac为坐标取出其对应的接口所在行</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip link show | grep -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> -B1 |grep -v -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span></span><br></pre></td></tr></table></figure>
-<p>● grep -i fa:16:3e:d3:79:67 -B1<br>mac所在行以及前面的一行<br>● 去除mac所在行</p>
-<h1 id="以空格为分割取第二列"><a href="#以空格为分割取第二列" class="headerlink" title="以空格为分割取第二列"></a>以空格为分割取第二列</h1><p>● cut -d: -f 2<br>-d 给出分割字符 -f指定是哪一列</p>
-]]></content>
-      <categories>
-        <category>专业技术</category>
-      </categories>
-      <tags>
-        <tag>shell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>人死后是否有意识？如果有，意识去了哪里？</title>
-    <url>/blog/2020/08/07/%E4%BA%BA%E6%AD%BB%E5%90%8E%E6%98%AF%E5%90%A6%E6%9C%89%E6%84%8F%E8%AF%86%EF%BC%9F%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E6%84%8F%E8%AF%86%E5%8E%BB%E4%BA%86%E5%93%AA%E9%87%8C%EF%BC%9F/</url>
+    <url>/2020/08/07/%E4%BA%BA%E6%AD%BB%E5%90%8E%E6%98%AF%E5%90%A6%E6%9C%89%E6%84%8F%E8%AF%86%EF%BC%9F%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E6%84%8F%E8%AF%86%E5%8E%BB%E4%BA%86%E5%93%AA%E9%87%8C%EF%BC%9F/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
 
@@ -344,7 +529,7 @@
   </entry>
   <entry>
     <title>听歌觅本体法</title>
-    <url>/blog/2020/04/19/%E5%90%AC%E6%AD%8C%E8%A7%85%E6%9C%AC%E4%BD%93%E6%B3%95/</url>
+    <url>/2020/04/19/%E5%90%AC%E6%AD%8C%E8%A7%85%E6%9C%AC%E4%BD%93%E6%B3%95/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
 
@@ -483,28 +668,8 @@
       </tags>
   </entry>
   <entry>
-    <title>如何提拔的你的频率</title>
-    <url>/blog/2020/08/07/%E5%A6%82%E4%BD%95%E6%8F%90%E6%8B%94%E7%9A%84%E4%BD%A0%E7%9A%84%E9%A2%91%E7%8E%87/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-<h1 id="第一步-去宽恕"><a href="#第一步-去宽恕" class="headerlink" title="第一步 去宽恕"></a>第一步 去宽恕</h1><p>宽恕所有冒犯你的人，<br>抗拒不再有用，<br>抓住过去不放不再有用，</p>
-<span id="more"></span>
-<p><strong>不要再期待别人来修复你的问题，来改变你</strong>。<br>你不再需要等待那些人看到他们行为的错误，<br>为了你能自由地，快速地前进，<br>不要等待他们的改变，<br>不要等待别人为他们的所作所为道歉，<br>宽恕他们，获得自由，<br>放下遗憾，<br>放下任何需要别人给你许可才能提升。<br>宽恕他们所有人，<br>不管他们做了什么。</p>
-<h1 id="第二步-宽恕自己"><a href="#第二步-宽恕自己" class="headerlink" title="第二步 宽恕自己"></a>第二步 宽恕自己</h1><p>宽恕你把自己置身于任何让你感到挫折、愤怒、悔恨、悲伤的处境，<br>不要抓住它们不放，<br>放下它们，<br>你不再需要它们了，<br>不要因为你的所作所为而批判自己，<br>这一切把你带到了这里，<br>彻底地，坦然地宽恕自己，<br>在你原谅其他所有人所说的或做的一切之后，<br>你必须从那个状态转换到另一个状态，<br>为了提拔，这是急需处理的，<br>但这里简单，明显的是，前两个步骤，甚至出现在你们的主祷文中，<br><strong>允许你自己宽恕自己，就像你宽恕那些冒犯你的人</strong>，<br>宽恕是让你可以以最可能平滑的方式穿过针眼的关键，<br>所以在你宽恕别人后，<br>宽恕自己。</p>
-<h1 id="第三步-不被过去裹挟"><a href="#第三步-不被过去裹挟" class="headerlink" title="第三步 不被过去裹挟"></a>第三步 不被过去裹挟</h1><p>你可以从过去学到经验教训，<br>但不要再沉溺于过去的事情，<br>不要再沉溺于过去的自己以及过去的自己会如何对事情作出反应，<br>因为那不再是你了，<br>放下过去自己的消极反应和消极行为，<br>不要让你过去的行为，过去的情绪，过去的想法，过去的经历影响你的未来，<br>从过去学习，带回来你从中获得的知识和理解，<br>但不要变成过去的样子，<br><strong>现在成为过去的观察者，</strong><br>不是过去的参与者，<br>只是观察那些你需要应用到人生课程中的部分，<br>这样你就不会重复那些想法、情绪、行为和经历，<br>放下那个人格，<br>那不再是你了。</p>
-<h1 id="第四步-活在未来"><a href="#第四步-活在未来" class="headerlink" title="第四步 活在未来"></a>第四步 活在未来</h1><p>开始不从过去影响自己，<br>而从你未来的自己影响自己，<br>它在针眼的另一端呼唤你，<br>听从召唤，以你未来的自己会前进的方式前进，<br>想象、观想那个未来版本的你，<br>像那未来的自己一样行为举止，感受和思考，<br>从你们线性时空的角度来看，你们都有未来的自己，<br>利用你在时空中这样为自己设立了（高我）的事实，<br>你已将自己锚定在未来，<br>而且通过针眼，它在把你拉向它，<br>留心它，听取它，高我通过激情喊你回家吃饭，<br>跟随这个兴奋公式，因为那是未来的自己每天每时每刻尽力在做的事情，<br>没有多余的呼吸，<br>没有多余的行动，<br>除了与兴奋公式一致的行动，即尽你最大的能力按照你的激情行动，<br>不执着不假设结果，<br>并选择待在积极的状态，<br>这样你就可以收到任何显化的益处，<br>即使那应该是你客观上不喜欢的东西，<br>你知道它在那是有原因的，<br>通过知道这点来让它服务你，<br>让它展示给你它是如何服务你的，<br>只是保持积极的状态，你知道那不是意外，<br>它在那的原因是服务你，<br>未来的自己在针眼的另一端呼唤，<br>让它帮你轻松地，迅速地，毫不费力地渡过针眼，<br>锚定未来的自己，<br>从未来的你影响你自己，<br>不再是过去的自己。</p>
-<h1 id="第五步-活在当下"><a href="#第五步-活在当下" class="headerlink" title="第五步 活在当下"></a>第五步 活在当下</h1><p>在你穿过针眼的期间以及之后，<br>你可以让自己完全活在当下，<br>在这当下的时刻，<br>你会越来越轻松，越来越加速，<br>真正的你，你存在的核心是剥离所有基于恐惧的信念，简化你，<br>留下你的天然的本质，你的坚不可摧的核心，当下的自己，现在的自己，<br>当你与你的高我的振动越来越紧密，越来越和谐，<br>并那样在地球上行动，<br>你会更多地活在当下，<br>更可塑地，更灵活地，更流畅地体验时空，<br>如果你想要穿过针眼，保持与我们和其他像我们那样的存有的联系，<br>那现在在这个时候你要剥去那些不再服务你的东西，<br>这是绝对至关重要的，<br>这不是警告，<br>不要对此消极地反应，<br>这只是描述你如何可以比以往更赋有力量，更自由，更喜悦，<br>如果你愿意放下那些把你锚向不是真正的你的东西，<br>剪断那些结子，挣断那些绳子，把你自己从那些锁链中解脱出来，<br>这样在这压缩的时期里，你可以自由地，不费力地，喜悦地穿过针眼，<br>回到你的内心去发现去探索，<br>然后最终表现出你们生命，你们内在之光的真正之美，<br>我们留给你们这些信息，<br>那些住在恐惧和黑暗中的人，<br>把你无条件的爱发送给他们，<br>这样他们的内在之光也会被唤醒，<br>而且他们也会真正地服务地球上的众生，<br>再说一次，那些生活在恐惧和黑暗中的人，<br>把你无条件的爱传送给他们，<br>这样来唤醒他们的内在之光，<br>允许他们服务，真正地服务于地球上的众生，<br>宽恕，然后继续前进，<br>宽恕，然后放下，<br>宽恕，然后获得自由，<br>今天我们无条件地爱着你们所有人。</p>
-]]></content>
-      <categories>
-        <category>明心见性</category>
-      </categories>
-      <tags>
-        <tag>提拔频率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于如何找到人生目标</title>
-    <url>/blog/2020/04/28/%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E6%89%BE%E5%88%B0%E4%BA%BA%E7%94%9F%E7%9B%AE%E6%A0%87/</url>
+    <url>/2020/04/28/%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E6%89%BE%E5%88%B0%E4%BA%BA%E7%94%9F%E7%9B%AE%E6%A0%87/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
 
@@ -568,8 +733,73 @@
       </tags>
   </entry>
   <entry>
+    <title>工具与方法积累</title>
+    <url>/2020/06/30/%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%96%B9%E6%B3%95%E7%A7%AF%E7%B4%AF/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+<h1 id="经典案例收集"><a href="#经典案例收集" class="headerlink" title="经典案例收集"></a>经典案例收集</h1><h1 id="克隆复制对象"><a href="#克隆复制对象" class="headerlink" title="克隆复制对象"></a>克隆复制对象</h1><p>逻辑图 <a href="https://www.processon.com/u/58fc0a56e4b0639c2f5b2076/profile">https://www.processon.com/u/58fc0a56e4b0639c2f5b2076/profile</a><br>思维导图 <a href="https://www.processon.com/u/jingle1267/profile">https://www.processon.com/u/jingle1267/profile</a></p>
+<span id="more"></span>
+
+<h1 id="●-旅游路线图"><a href="#●-旅游路线图" class="headerlink" title="● 旅游路线图"></a>● 旅游路线图</h1><p><a href="https://www.processon.com/view/5c418c5de4b02f84d02d937d">https://www.processon.com/view/5c418c5de4b02f84d02d937d</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1590399375212-d09ce017-6b71-4c18-abcc-16e92bf476ab.png#align=left&display=inline&height=385&margin=%5Bobject%20Object%5D&name=image.png&originHeight=770&originWidth=1202&size=209980&status=done&style=none&width=601" alt="image.png"></p>
+<h1 id="●-经典git工作流程展示"><a href="#●-经典git工作流程展示" class="headerlink" title="● 经典git工作流程展示"></a>● 经典git工作流程展示</h1><p><a href="https://www.processon.com/view/5ad46af0e4b0518eacb413f8">https://www.processon.com/view/5ad46af0e4b0518eacb413f8</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1590399263737-672bf5b8-a430-431f-85cb-9db06da28583.png#align=left&display=inline&height=544&margin=%5Bobject%20Object%5D&name=image.png&originHeight=595&originWidth=816&size=110319&status=done&style=none&width=746" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589425945857-471b3c05-cac6-4876-96d1-61a1f86f2bf2.png#align=left&display=inline&height=899&margin=%5Bobject%20Object%5D&name=image.png&originHeight=899&originWidth=1164&size=99475&status=done&style=none&width=1164" alt="image.png"></p>
+<h1 id="●-框架"><a href="#●-框架" class="headerlink" title="● 框架"></a>● 框架</h1><p><a href="https://www.processon.com/view/5dc2c0ffe4b0e433945eefe9">https://www.processon.com/view/5dc2c0ffe4b0e433945eefe9</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589426389535-637c9fd0-1a4f-4e13-bdb5-f368d656ae9a.png#align=left&display=inline&height=750&margin=%5Bobject%20Object%5D&name=image.png&originHeight=750&originWidth=1396&size=128933&status=done&style=none&width=1396" alt="image.png"></p>
+<h1 id="●-设计原则与模式"><a href="#●-设计原则与模式" class="headerlink" title="● 设计原则与模式"></a>● 设计原则与模式</h1><p><a href="https://www.processon.com/view/5eb90e74e0b34d5f26ff3fc3#map">https://www.processon.com/view/5eb90e74e0b34d5f26ff3fc3#map</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589426583289-5832277e-5c5e-4f40-82ce-ee6fc3a3573e.png#align=left&display=inline&height=709&margin=%5Bobject%20Object%5D&name=image.png&originHeight=709&originWidth=1234&size=114675&status=done&style=none&width=1234" alt="image.png"></p>
+<h1 id="●-流程展示"><a href="#●-流程展示" class="headerlink" title="● 流程展示"></a>● 流程展示</h1><p><a href="https://www.processon.com/view/5a333f15e4b0b9ffb02324e2">https://www.processon.com/view/5a333f15e4b0b9ffb02324e2</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589432746584-794bab57-da6b-44f6-8a7a-06b0d1cafd80.png#align=left&display=inline&height=652&margin=%5Bobject%20Object%5D&name=image.png&originHeight=652&originWidth=1245&size=80590&status=done&style=none&width=1245" alt="image.png"></p>
+<h1 id="●-宝宝作息图"><a href="#●-宝宝作息图" class="headerlink" title="● 宝宝作息图"></a>● 宝宝作息图</h1><h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589432805210-88726782-8d5e-4987-9420-a0da9191d47d.png#align=left&display=inline&height=498&margin=%5Bobject%20Object%5D&name=image.png&originHeight=498&originWidth=944&size=75007&status=done&style=none&width=944" alt="image.png"></h1><h1 id="●-委派"><a href="#●-委派" class="headerlink" title="● 委派"></a>● 委派</h1><p><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589433051606-d190b405-05e3-46e1-8d88-0aebfa987242.png#align=left&display=inline&height=416&margin=%5Bobject%20Object%5D&name=image.png&originHeight=416&originWidth=792&size=51096&status=done&style=none&width=792" alt="image.png">
+ </p>
+<h1 id="●-车趣系统进度影响评估"><a href="#●-车趣系统进度影响评估" class="headerlink" title="● 车趣系统进度影响评估"></a>● 车趣系统进度影响评估</h1><p><a href="https://www.processon.com/view/5b690768e4b067df59fcefbe">https://www.processon.com/view/5b690768e4b067df59fcefbe</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589433659127-5d2b22e9-81f7-453c-a368-aaee6f36adf1.png#align=left&display=inline&height=550&margin=%5Bobject%20Object%5D&name=image.png&originHeight=550&originWidth=844&size=54429&status=done&style=none&width=844" alt="image.png"></p>
+<h1 id="●-金融平台构架"><a href="#●-金融平台构架" class="headerlink" title="● 金融平台构架"></a>● 金融平台构架</h1>]]></content>
+      <categories>
+        <category>专业技术</category>
+      </categories>
+      <tags>
+        <tag>可视化思维</tag>
+        <tag>画图</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何提拔的你的频率</title>
+    <url>/2020/08/07/%E5%A6%82%E4%BD%95%E6%8F%90%E6%8B%94%E7%9A%84%E4%BD%A0%E7%9A%84%E9%A2%91%E7%8E%87/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+<h1 id="第一步-去宽恕"><a href="#第一步-去宽恕" class="headerlink" title="第一步 去宽恕"></a>第一步 去宽恕</h1><p>宽恕所有冒犯你的人，<br>抗拒不再有用，<br>抓住过去不放不再有用，</p>
+<span id="more"></span>
+<p><strong>不要再期待别人来修复你的问题，来改变你</strong>。<br>你不再需要等待那些人看到他们行为的错误，<br>为了你能自由地，快速地前进，<br>不要等待他们的改变，<br>不要等待别人为他们的所作所为道歉，<br>宽恕他们，获得自由，<br>放下遗憾，<br>放下任何需要别人给你许可才能提升。<br>宽恕他们所有人，<br>不管他们做了什么。</p>
+<h1 id="第二步-宽恕自己"><a href="#第二步-宽恕自己" class="headerlink" title="第二步 宽恕自己"></a>第二步 宽恕自己</h1><p>宽恕你把自己置身于任何让你感到挫折、愤怒、悔恨、悲伤的处境，<br>不要抓住它们不放，<br>放下它们，<br>你不再需要它们了，<br>不要因为你的所作所为而批判自己，<br>这一切把你带到了这里，<br>彻底地，坦然地宽恕自己，<br>在你原谅其他所有人所说的或做的一切之后，<br>你必须从那个状态转换到另一个状态，<br>为了提拔，这是急需处理的，<br>但这里简单，明显的是，前两个步骤，甚至出现在你们的主祷文中，<br><strong>允许你自己宽恕自己，就像你宽恕那些冒犯你的人</strong>，<br>宽恕是让你可以以最可能平滑的方式穿过针眼的关键，<br>所以在你宽恕别人后，<br>宽恕自己。</p>
+<h1 id="第三步-不被过去裹挟"><a href="#第三步-不被过去裹挟" class="headerlink" title="第三步 不被过去裹挟"></a>第三步 不被过去裹挟</h1><p>你可以从过去学到经验教训，<br>但不要再沉溺于过去的事情，<br>不要再沉溺于过去的自己以及过去的自己会如何对事情作出反应，<br>因为那不再是你了，<br>放下过去自己的消极反应和消极行为，<br>不要让你过去的行为，过去的情绪，过去的想法，过去的经历影响你的未来，<br>从过去学习，带回来你从中获得的知识和理解，<br>但不要变成过去的样子，<br><strong>现在成为过去的观察者，</strong><br>不是过去的参与者，<br>只是观察那些你需要应用到人生课程中的部分，<br>这样你就不会重复那些想法、情绪、行为和经历，<br>放下那个人格，<br>那不再是你了。</p>
+<h1 id="第四步-活在未来"><a href="#第四步-活在未来" class="headerlink" title="第四步 活在未来"></a>第四步 活在未来</h1><p>开始不从过去影响自己，<br>而从你未来的自己影响自己，<br>它在针眼的另一端呼唤你，<br>听从召唤，以你未来的自己会前进的方式前进，<br>想象、观想那个未来版本的你，<br>像那未来的自己一样行为举止，感受和思考，<br>从你们线性时空的角度来看，你们都有未来的自己，<br>利用你在时空中这样为自己设立了（高我）的事实，<br>你已将自己锚定在未来，<br>而且通过针眼，它在把你拉向它，<br>留心它，听取它，高我通过激情喊你回家吃饭，<br>跟随这个兴奋公式，因为那是未来的自己每天每时每刻尽力在做的事情，<br>没有多余的呼吸，<br>没有多余的行动，<br>除了与兴奋公式一致的行动，即尽你最大的能力按照你的激情行动，<br>不执着不假设结果，<br>并选择待在积极的状态，<br>这样你就可以收到任何显化的益处，<br>即使那应该是你客观上不喜欢的东西，<br>你知道它在那是有原因的，<br>通过知道这点来让它服务你，<br>让它展示给你它是如何服务你的，<br>只是保持积极的状态，你知道那不是意外，<br>它在那的原因是服务你，<br>未来的自己在针眼的另一端呼唤，<br>让它帮你轻松地，迅速地，毫不费力地渡过针眼，<br>锚定未来的自己，<br>从未来的你影响你自己，<br>不再是过去的自己。</p>
+<h1 id="第五步-活在当下"><a href="#第五步-活在当下" class="headerlink" title="第五步 活在当下"></a>第五步 活在当下</h1><p>在你穿过针眼的期间以及之后，<br>你可以让自己完全活在当下，<br>在这当下的时刻，<br>你会越来越轻松，越来越加速，<br>真正的你，你存在的核心是剥离所有基于恐惧的信念，简化你，<br>留下你的天然的本质，你的坚不可摧的核心，当下的自己，现在的自己，<br>当你与你的高我的振动越来越紧密，越来越和谐，<br>并那样在地球上行动，<br>你会更多地活在当下，<br>更可塑地，更灵活地，更流畅地体验时空，<br>如果你想要穿过针眼，保持与我们和其他像我们那样的存有的联系，<br>那现在在这个时候你要剥去那些不再服务你的东西，<br>这是绝对至关重要的，<br>这不是警告，<br>不要对此消极地反应，<br>这只是描述你如何可以比以往更赋有力量，更自由，更喜悦，<br>如果你愿意放下那些把你锚向不是真正的你的东西，<br>剪断那些结子，挣断那些绳子，把你自己从那些锁链中解脱出来，<br>这样在这压缩的时期里，你可以自由地，不费力地，喜悦地穿过针眼，<br>回到你的内心去发现去探索，<br>然后最终表现出你们生命，你们内在之光的真正之美，<br>我们留给你们这些信息，<br>那些住在恐惧和黑暗中的人，<br>把你无条件的爱发送给他们，<br>这样他们的内在之光也会被唤醒，<br>而且他们也会真正地服务地球上的众生，<br>再说一次，那些生活在恐惧和黑暗中的人，<br>把你无条件的爱传送给他们，<br>这样来唤醒他们的内在之光，<br>允许他们服务，真正地服务于地球上的众生，<br>宽恕，然后继续前进，<br>宽恕，然后放下，<br>宽恕，然后获得自由，<br>今天我们无条件地爱着你们所有人。</p>
+]]></content>
+      <categories>
+        <category>明心见性</category>
+      </categories>
+      <tags>
+        <tag>提拔频率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>枚举与枚举字符串的转换</title>
+    <url>/2020/08/06/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%9E%9A%E4%B8%BE%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+
+<p>当我们定义一个枚举，往往需要打印枚举的值对应的变量名，具体的操作如下，需要一个特殊定义的宏就可以实现这个功能</p>
+<span id="more"></span>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CIO_CLI_STATS_ADD_NAME(name)             \</span></span><br><span class="line">    <span class="keyword">do</span>                                           \</span><br><span class="line">    &#123;                                            \</span><br><span class="line">        name_ptr = (<span class="meta">#name) <span class="comment">/*skip CIO_STATS_ */</span>; \</span></span><br><span class="line">    &#125; <span class="keyword">while</span> (<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">char</span> *name_ptr;</span><br><span class="line">    CIO_CLI_STATS_ADD_NAME(CPUL);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, name_ptr);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>** (#name) 只有在宏中才能这么用，其他代码的地方会报错 ** </p>
+]]></content>
+      <categories>
+        <category>专业技术</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>无梦无想时你在哪里？</title>
-    <url>/blog/2020/08/07/%E6%97%A0%E6%A2%A6%E6%97%A0%E6%83%B3%E6%97%B6%E4%BD%A0%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F/</url>
+    <url>/2020/08/07/%E6%97%A0%E6%A2%A6%E6%97%A0%E6%83%B3%E6%97%B6%E4%BD%A0%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
 <p>作者：道 真<br>有师兄在群里发：<br>开悟最好的标准就是雪岩祖钦禅师勘验高峰原妙禅师的三问：</p>
@@ -596,83 +826,43 @@
       </tags>
   </entry>
   <entry>
-    <title>工具与方法积累</title>
-    <url>/blog/2020/06/30/%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%96%B9%E6%B3%95%E7%A7%AF%E7%B4%AF/</url>
+    <title>看山是山，看山不是山 , 看山亦是山。</title>
+    <url>/2020/08/07/%E7%9C%8B%E5%B1%B1%E6%98%AF%E5%B1%B1%EF%BC%8C%E7%9C%8B%E5%B1%B1%E4%B8%8D%E6%98%AF%E5%B1%B1%20,%20%E7%9C%8B%E5%B1%B1%E4%BA%A6%E6%98%AF%E5%B1%B1%E3%80%82/</url>
+    <content><![CDATA[<p>有句禅语“看山是山，看山不是山 , 看山亦是山。”  <br>历史上许许多多大德，做出各种精妙的解答，各种鞭辟入里的见地。  <br>但是，他们只给出结果答案，却没有告诉后来人道路。      <br>以自己切身的修行体会，对这三句话，予以如实地阐述。       </p>
+<span id="more"></span>
+<h1 id="看山是山"><a href="#看山是山" class="headerlink" title="看山是山"></a>看山是山</h1><p>你走在路上，看见眼前的景象，你很确定，景象是你看到的。  <br>因为你，而有了看到，因为看到，而有了景象。  <br>景象，等同于看到；看到，等同于你。  <br>你不会怀疑，看到景象的，不是你自己吧？  <br>你不会怀疑，景象是你自己，所看到的吧？      <br>“你”是你的意识、眼睛、心愿、体验、记忆所构成。  <br>“世界”是微观能量，宇宙微粒聚合，形成的现象。      <br>“现象”与“你”，在这个时空节点上，聚合在一起，才有了你所看到的景象。  <br>因为内心，对你所看到，深信不疑。  <br>从而有了，你所看到的境界，以及看到景象的“你”。      <br>你与境界，都源自于心，只是被境界牵引的你，已经察觉不到这一点。      <br>可是，“你”并非是恒常不变的！<br>切记，世界只是缘起的现象！  <br>这一刻看到景象的你，与你所看到的景象，是刹那间变化的。  <br>是意识流与感受力，聚合外界的因缘，川流聚合的境界。      <br>世界，是微观能量相续聚合形成的现象，现象下面并无世界。  <br>自我，是心识妄想聚合体验习气的境界，境界之中并无自我。      <br>你与世界，在不停地变化之中，可是，为何会有此刻的真实世界？  <br>世界与你，都是因缘虚幻聚合，可是，为何会有看世界的，真实的你？      <br>因为贪恋，心在体验中昏沉；<br>因为思虑，心在境界中沉沦。      <br>你看到的世界，是所看之你的认知。  <br>或者说，世界是你认知所投射。      <br><strong>你与世界互为因果</strong>，世界是“你”投射的果。  <br>因为有“你”而有世界，你是世界缘起之因。  <br>你与世界都是因缘，世界与你，都是迷境。      <br>这就是“看山是山”。  <br>心随境转，即名凡夫。       </p>
+<h1 id="看山不是山"><a href="#看山不是山" class="headerlink" title="看山不是山"></a>看山不是山</h1><p>恒常不变的，只有内心中，你的“见”，那个能明了一切，却清醒无染的见。  <br>祂是不会随着你的变化而变化的。      <br>你幼年时，见到父母时心中明了，与你中年时，见到事业时心中明了，   与你临终时，见到医生的心中明了，是同一个清醒，同一种确定，同一个觉知。      <br>清醒不会随着你的，头脑知识的增减，情感善恶的转化，身体衰老的变化，而有丝毫改变丝毫损减。  <br>能够觉察身心自我的变幻，<strong>体察内心深处不变的清醒</strong>，这就是修行。  <br>这就是“<strong>知境为心</strong>”。      <br><strong>这个阶段中，最重要事是——选择。  **<br>在人生方向中，选择出离心；在是非矛盾中，选择宽恕心；在情欲执迷中，选择纯洁心。      <br>通过学法，认知心灵中清醒；通过禅定，培育清醒之强度。  <br>通过忏悔，净化清醒中杂质；通过宽恕，让清醒从体验与头脑中，纯净解脱。      <br>解脱了身心意识的，清醒心灵，将升华为纯澈。  <br>纯澈之中光芒绽放，光明熄灭习气，纯洁粉碎体验。  <br>失去欲望感受的支持，心中体验的习惯，就会融化分解。      <br>体验融解时，头脑意识失去了，思虑分辨的推动力，于是意识停顿。  <br>不受意识牵引的体验，就会彻底瓦解，融化消失。  <br>体验消融的过程，犹如冰块融化为水，会释放冰块中曾禁锢的，生死历史中一切妄念情绪。  <br>妄念情绪感知，在纯澈心光中沸腾，会形成形形色色境界，展现出三界六道。      <br>纯澈心光，驱散思虑阴影，照破体验昏沉。  <br>自我体验身心意识，如同衣服般脱落，脱落身心头脑，情感觉受的心。  <br>不再受身心自我的遮蔽。      <br> 纯光无染，纯澈无挂，光中离暗，空中无色。  <br>光明中会呈现，脱离光明的性质，性质中并没有生与死。  <br>这就是“</strong>知心为空**”。      <br>想阴破，入三摩地，离分段生死。      <br><strong>这个阶段中，最重要的事是——宽恕。</strong>  <br>宽恕内心欲望，宽恕内心恐惧，宽恕内心烦恼，宽恕他人过错，宽恕自我卑劣。  <br>宽恕中体验温暖，宽恕中觉受纯洁，宽恕中觉知清净，宽恕中实证安宁。      <br>三摩地中，证人无我，法无我，亲证到光明之中，不受光明形态约束的性质。  <br>性质本身无生无灭，无垢无净，不增不减，无来无去。  <br><strong>明性，不被觉受所体验；</strong><br><strong>觉性，不受觉知所牵引；</strong><br><strong>空性，不受存在所禁锢。</strong>  <br>觉明空一体性空，清净庄严，极明极耀极圆，普照十方圆明三世。      <br>人间世界自我身心，如太阳纯光中，飘浮的一粒灰尘。  <br>身心自我意识体验中，心灵纯明睁开了眼睛。      <br>觉成就，是你的内心睁开了眼睛。      <br>眼光纯澈无有杂染，纯澈光明没有遮蔽。  <br><strong>实证到，身语意并非是你自己</strong>。  <br>心可以同时看到，自我的心愿与意识的川流。  <br>看到身心意识的心，脱落了看，以及身心意识的牵绊。       </p>
+<h1 id="看山还是山"><a href="#看山还是山" class="headerlink" title="看山还是山"></a>看山还是山</h1><p>**这个阶段中，最重要的事是——纯洁。  **<br>极致的纯洁，纯洁到极致，明晰觉性，将从觉知中圆满复苏。  <br>宛如睁开的眼睛中，目光纯澈遍满，脱落了眼睛能见的障碍。      <br>明明了了，解脱自在，极乐极耀，圆明十方。  <br>心光中，明晰粉碎了存在，言语道断，如梦初醒。      <br>这就是“看山不是山”，也称为“知心为空”。      <br>**觉圆满，是宇宙空间成为你的心。       **<br>脱落了身心自我的，内在明空性质，与身外的空间合为一体。  <br>无论你的肉身在做什么，无论你的头脑在想什么，  <br>无论你的心灵愿望什么，无论你情欲在感受什么。      <br>心灵内在的，脱落了觉知意识的，那个明晰空性是不动的。  <br>内在空性与外界空间合为一体，虚空就是你的眼睛。  <br>空性与空间一体，周遍宇宙世界。      <br>你的起心动念，你的情绪感受，你的意识思维。  <br>你的思虑动机，你的心愿体验，身心灵川流不息的相续。  <br>在虚空性中，明明了了，清清楚楚，毫厘不爽。      <br>没有禅定的你，你的行住坐卧，如幻影浮云。  <br>浮云幻影无痕，虚空就是你的定境。      <br>没有修行的你，你的痛苦烦恼，本性皆是安然。  <br> 烦恼痛苦无根，安然就是你的生命。      <br>心光脱落了光明形态，你成为明晰性质。  <br>性质不受身心与世界制约，宇宙十方是你的倒影。  <br>内心光明是你的梦境。      <br>从梦境中彻底苏醒，你与世界，过去与未来，如沙尘从目光中滑落。  <br>明性离光，空性离相，觉性离照。  <br>觉明空一体，寂净觉满，妙乐安宁。      <br>能觉照到，心灵中，觉知与心识，自我与意识，相续轮回的体系。  <br>能觉照到，心识分别，所投射出的宇宙时空，如幻影般海市蜃楼。      <br>在能觉照中，寂静；于是所觉照的，熄灭。  <br>无我亦无我所，十方三世，只在一念中发生。      <br>梦醒时，并无做梦人。  <br>妙乐庄严，本来如是。      <br>这个阶段中，无重要之事。   想睡就睡，想玩就玩，想吃就吃，想喝就喝，随遇而安，随缘不变。  <br>喜怒哀乐，七情六欲，无一不缺，常驻贪嗔痴中，贪嗔痴性了无挂碍。  <br>行住坐卧，嬉笑怒骂，皆是禅定，身语意烦恼中，即心离心落落清净。      <br>于是，烦恼即菩提，如是，生死即涅槃。  <br>修与不修，尽是圆满；定或出定，皆是禅机。      <br>这就是“看山亦是山”。      <br>梦境无需分辨，离辨幻境无痕。  <br>也称为“知空为无二双融”。</p>
+]]></content>
+      <categories>
+        <category>明心见性</category>
+      </categories>
+      <tags>
+        <tag>观心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>观心悟道</title>
+    <url>/2020/08/07/%E8%A7%82%E5%BF%83%E6%82%9F%E9%81%93/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
-<h1 id="经典案例收集"><a href="#经典案例收集" class="headerlink" title="经典案例收集"></a>经典案例收集</h1><h1 id="克隆复制对象"><a href="#克隆复制对象" class="headerlink" title="克隆复制对象"></a>克隆复制对象</h1><p>逻辑图 <a href="https://www.processon.com/u/58fc0a56e4b0639c2f5b2076/profile">https://www.processon.com/u/58fc0a56e4b0639c2f5b2076/profile</a><br>思维导图 <a href="https://www.processon.com/u/jingle1267/profile">https://www.processon.com/u/jingle1267/profile</a></p>
-<span id="more"></span>
 
-<h1 id="●-旅游路线图"><a href="#●-旅游路线图" class="headerlink" title="● 旅游路线图"></a>● 旅游路线图</h1><p><a href="https://www.processon.com/view/5c418c5de4b02f84d02d937d">https://www.processon.com/view/5c418c5de4b02f84d02d937d</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1590399375212-d09ce017-6b71-4c18-abcc-16e92bf476ab.png#align=left&display=inline&height=385&margin=%5Bobject%20Object%5D&name=image.png&originHeight=770&originWidth=1202&size=209980&status=done&style=none&width=601" alt="image.png"></p>
-<h1 id="●-经典git工作流程展示"><a href="#●-经典git工作流程展示" class="headerlink" title="● 经典git工作流程展示"></a>● 经典git工作流程展示</h1><p><a href="https://www.processon.com/view/5ad46af0e4b0518eacb413f8">https://www.processon.com/view/5ad46af0e4b0518eacb413f8</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1590399263737-672bf5b8-a430-431f-85cb-9db06da28583.png#align=left&display=inline&height=544&margin=%5Bobject%20Object%5D&name=image.png&originHeight=595&originWidth=816&size=110319&status=done&style=none&width=746" alt="image.png"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589425945857-471b3c05-cac6-4876-96d1-61a1f86f2bf2.png#align=left&display=inline&height=899&margin=%5Bobject%20Object%5D&name=image.png&originHeight=899&originWidth=1164&size=99475&status=done&style=none&width=1164" alt="image.png"></p>
-<h1 id="●-框架"><a href="#●-框架" class="headerlink" title="● 框架"></a>● 框架</h1><p><a href="https://www.processon.com/view/5dc2c0ffe4b0e433945eefe9">https://www.processon.com/view/5dc2c0ffe4b0e433945eefe9</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589426389535-637c9fd0-1a4f-4e13-bdb5-f368d656ae9a.png#align=left&display=inline&height=750&margin=%5Bobject%20Object%5D&name=image.png&originHeight=750&originWidth=1396&size=128933&status=done&style=none&width=1396" alt="image.png"></p>
-<h1 id="●-设计原则与模式"><a href="#●-设计原则与模式" class="headerlink" title="● 设计原则与模式"></a>● 设计原则与模式</h1><p><a href="https://www.processon.com/view/5eb90e74e0b34d5f26ff3fc3#map">https://www.processon.com/view/5eb90e74e0b34d5f26ff3fc3#map</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589426583289-5832277e-5c5e-4f40-82ce-ee6fc3a3573e.png#align=left&display=inline&height=709&margin=%5Bobject%20Object%5D&name=image.png&originHeight=709&originWidth=1234&size=114675&status=done&style=none&width=1234" alt="image.png"></p>
-<h1 id="●-流程展示"><a href="#●-流程展示" class="headerlink" title="● 流程展示"></a>● 流程展示</h1><p><a href="https://www.processon.com/view/5a333f15e4b0b9ffb02324e2">https://www.processon.com/view/5a333f15e4b0b9ffb02324e2</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589432746584-794bab57-da6b-44f6-8a7a-06b0d1cafd80.png#align=left&display=inline&height=652&margin=%5Bobject%20Object%5D&name=image.png&originHeight=652&originWidth=1245&size=80590&status=done&style=none&width=1245" alt="image.png"></p>
-<h1 id="●-宝宝作息图"><a href="#●-宝宝作息图" class="headerlink" title="● 宝宝作息图"></a>● 宝宝作息图</h1><h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589432805210-88726782-8d5e-4987-9420-a0da9191d47d.png#align=left&display=inline&height=498&margin=%5Bobject%20Object%5D&name=image.png&originHeight=498&originWidth=944&size=75007&status=done&style=none&width=944" alt="image.png"></h1><h1 id="●-委派"><a href="#●-委派" class="headerlink" title="● 委派"></a>● 委派</h1><p><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589433051606-d190b405-05e3-46e1-8d88-0aebfa987242.png#align=left&display=inline&height=416&margin=%5Bobject%20Object%5D&name=image.png&originHeight=416&originWidth=792&size=51096&status=done&style=none&width=792" alt="image.png">
+<p>心对境产生了念头，念头的延续壮大成为情绪。<br> <br>比如说，我问你现在在想什么？你观察自己的心，可能是在念着这句话，而后视线移开，想起了刚才的事情，但是——你都能观察到这些念头。</p>
+<span id="more"></span>
+<p> <br>但一旦当我们意识到这一点，就会发现一个有趣的现象：<strong>你的思维念头并不是你，包括情绪，它们只是我们的一部分。</strong><br> <br>所以观心法的下手，首先是能够觉知到自己的思维念头，然后发现自己的思维念头，并不全是自己。<br> <br>观照时念头如消失，一不觉忽然又起，后来慢慢就能做到，看着自己的念头像看着电影里索然无味的剧情，或像看着水里的游鱼游来游去一样，我们只是以一个旁观者的角度如实观照。<br> <br>现在回想，自己当初是这么走过来的。<br> <br>当我走过来以后，渐渐发现很多学佛有一定成就的人也是修这个方法走过来的。<br> <br>学这个方法的人有一个特点，理性思维比较强，也喜欢自己一个人琢磨。<br> <br>观心法，也有一个特点，它更倾向于掌控自己的心念与情绪，因为一下手就要求处在<strong>一个全然客观的位置去观照觉知自己的念头，等于是自己看着自己在想什么、做什么。</strong><br> <br>当冷静客观的观照心中的念头久了，念头的河流忽然之间被截断，我在读大学的时候练习观心法没多久，有一天上课坐在电脑面前，一个念头一个念头的观照着，忽然之间念头断掉、没有了，那种喜悦如天青云朗，直接把当时的我震惊了。<br> <br>在这个阶段，很多人会以为自己开悟了，当时我也是这么认为的，其实不是。<br> <br>因为以前看过的书，或者我们心中认为悟道的境界是怎样的，我们在这时就会造出一个境界，以为这就是开悟。<br> <br>往往在这里会非常危险，因为以为自己已经得到的东西，我们便不会再去追求。<br> <br>因为没有得到，却以为自己得到了，傲慢狂慧也因此而生发。<br> <br>谦逊的心态才能让我们在修学路上持续受益。<br> <br>所以一念不生不代表悟道，它是观心法的一个阶段性的进步，在这个时候仍需保持客观冷静的觉照，加上对于自己是否明白的疑情在推动前行，那么我们就有可能更进一步——顿悟本来面目。<br> <br>这时我们可以去参禅了。<br> <br>至此一把擒来，就是所有修习观心法人的最初归宿。<br> <br>希望看到这篇文章的人也如是。<br> <br>另外我们还需要知道，方法其实是路径的意思。<br> <br>观心法是通往悟道的一个方法，它适合某些人，但对另外一些人可能不一定适合。<br> <br>通往悟道比较直接的方法，还有反闻闻自性（听歌寻本体），参话头等等。<br> <br>有兴趣的朋友们都可以了解一下。<br> <br>就算我们通过修学观心法开悟见性了，也才仅仅是开始踏上了真修实证的道路。<br> <br>犹如刚从娘胎里出来，婴儿生活不能自理，连说话走路都不行，但我们肯定知道，只要孩子出生了，就铁定具备长大成人的可能。<br> <br>也如同我们若真正悟道了，得道解脱就像黎明前的曙光一样，阳光必将要普照大地。<br> <br>在此再谈一谈修行的步骤：有的人可能是家庭中有烧香拜佛的信仰进而接触到佛法修行；有的人是对神奇的事物心生向往，了解多了对修行产生了兴趣；也有的人是内心中自发的喜欢独处，清静修行。<br> <br>无论怎样，每个人都有自己独特的因缘。<br> <br>如同阿难尊者目睹过去佛陀的庄严身相，而心生向往发愿修行成佛。<br> <br>像上面讲的观心法，还有听歌法，参禅参话头，目的都是通过方法达成下一步目标——悟道。<br> <br>在这里，路是不一样的，但目标是一样的。<br> <br>这个目标必然不是我们自己琢磨就能够明白，说是宇宙人生的真相，或者说道也好，觉性也行，指向的必然是同一目标。<br> <br>所以禅师才能知道自己的弟子明白的是不是同一个东西。<br> <br>我们修学同样如此，没有前人的书籍和过来人的教授几乎不可能明白，甚至连听都难以听闻。<br> <br>因为我们自己琢磨出来的，可能仅仅是自己心里以为的，跟历代圣贤都了悟的那个道，不一定就是同一个。<br> <br>这一点上面，我之前犯了这样的错误，我认识很多人也是这样。<br> <br>所以通过前人的文章经典，还有老师的言传身教，给我们一直描述苹果的大小，形状，颜色，滋味。<br> <br>然后告诉我们路径是怎么走的——当我们终于见到苹果的时候，便能一下子认出，原来这就是苹果呀。<br> <br>到这一步就知道了什么是宇宙人生的本源、真相。<br> <br>这是很关键的一步。<br> <br>开悟的人有几个特点：1，对世间的道理没有了疑惑，如果有，那么就是技术上面的。<br> <br>这是非常确定的。<br> <br>对于自己修行能够解脱，也没有任何的怀疑。<br> <br>原因在于，开悟是我们体悟到了宇宙人生的本源，看到了本质，自然就不会迷于幻相。<br> <br>2，破除了关于我的见解，不再认为有一个确定的不变的“我”存在。<br> <br>因为世间一切事物都是运动变化的，不存在一个不变的“我”。<br> <br>而在佛法的开悟当中，这个运动变化的我，他其实更是一个虚幻的存在，就像梦中的自己一样。<br> <br>所以关于“我”的错误的认知，将不再成为开悟者的障碍。<br> <br>3，不再固执不合理的禁戒，而以为是最好的。<br> <br>因为明了戒律的含义，所以能守戒不被戒缚。<br> <br>当然，还有其他更多的一些特点，比如说开悟后再看各种经典，基本上都能够通达，少有不懂的地方。<br> <br>如有不懂，可能是读书的少。<br> <br>还有烦恼慢慢减少，慈悲心逐渐增加，都是一些正常的现象，就不展开讲了。<br> <br>在开悟之后的修行将变得很简单，只是让“这份明白”一直都在，不是说我们让“它”在，它本来就在我们的生活里面，在穿衣吃饭中，在举手动足间，无时无处不在。<br> <br>这就是修行。<br> <br>在开悟的后续修行过程中会出现一些所谓神通现象，比如知道对方的想法，能了知他人的前生来世，会经历很多境界、很多不一样的世界。<br> <br>但修行人因为明白了根本，所以不会再迷惑，看待这些现象，就像看着电影里面钢铁侠大战灭霸一样简单平常。<br> <br>再为电影悲欢的人，电影剧终也该出戏了。<br> <br>毕竟再厉害的电影角色，演员们在平常生活中也跟我们一样要吃喝拉撒。<br> <br>幻游十方世界随缘授手，于生死间得大自在，而实能了证本无生死。<br> <br>就像此时此刻，大家在看我的文章一样，你们其实才是大千世界的造梦者。<br> <br>是故佛陀说，始知众生本来成佛，生死涅槃犹如昨梦。<br> <br>皆是昨梦呐。
+ 
  </p>
-<h1 id="●-车趣系统进度影响评估"><a href="#●-车趣系统进度影响评估" class="headerlink" title="● 车趣系统进度影响评估"></a>● 车趣系统进度影响评估</h1><p><a href="https://www.processon.com/view/5b690768e4b067df59fcefbe">https://www.processon.com/view/5b690768e4b067df59fcefbe</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589433659127-5d2b22e9-81f7-453c-a368-aaee6f36adf1.png#align=left&display=inline&height=550&margin=%5Bobject%20Object%5D&name=image.png&originHeight=550&originWidth=844&size=54429&status=done&style=none&width=844" alt="image.png"></p>
-<h1 id="●-金融平台构架"><a href="#●-金融平台构架" class="headerlink" title="● 金融平台构架"></a>● 金融平台构架</h1>]]></content>
-      <categories>
-        <category>专业技术</category>
-      </categories>
-      <tags>
-        <tag>可视化思维</tag>
-        <tag>画图</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>指定线程CPU占用率的check方法</title>
-    <url>/blog/2020/08/06/%E6%8C%87%E5%AE%9A%E7%BA%BF%E7%A8%8BCPU%E5%8D%A0%E7%94%A8%E7%8E%87%E7%9A%84check%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-
-<h1 id="进程cpu占用情况"><a href="#进程cpu占用情况" class="headerlink" title="进程cpu占用情况"></a>进程cpu占用情况</h1><span id="more"></span>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
-<h2 id="增加显示选项"><a href="#增加显示选项" class="headerlink" title="增加显示选项"></a>增加显示选项</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top</span><br><span class="line">f -- 进入选项定制界面</span><br><span class="line">space -- 空格选中</span><br><span class="line">Esc -- 退出</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="多核使用率分析"><a href="#多核使用率分析" class="headerlink" title="多核使用率分析"></a>多核使用率分析</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="单核热点代码段展示"><a href="#单核热点代码段展示" class="headerlink" title="单核热点代码段展示"></a>单核热点代码段展示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">perf top -C &lt;core-id&gt;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="如何获取各个线程的展示方式"><a href="#如何获取各个线程的展示方式" class="headerlink" title="如何获取各个线程的展示方式"></a>如何获取各个线程的展示方式</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top -H</span><br></pre></td></tr></table></figure>
-<h1 id="不冻结进程的方式来check线程或者进程的运行轨迹"><a href="#不冻结进程的方式来check线程或者进程的运行轨迹" class="headerlink" title="不冻结进程的方式来check线程或者进程的运行轨迹"></a>不冻结进程的方式来check线程或者进程的运行轨迹</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gstack &lt;pid&gt; or &lt;thread-id&gt;</span><br></pre></td></tr></table></figure>
-
-
 ]]></content>
       <categories>
-        <category>专业技术</category>
+        <category>明心见性</category>
       </categories>
       <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>枚举与枚举字符串的转换</title>
-    <url>/blog/2020/08/06/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%9E%9A%E4%B8%BE%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-
-<p>当我们定义一个枚举，往往需要打印枚举的值对应的变量名，具体的操作如下，需要一个特殊定义的宏就可以实现这个功能</p>
-<span id="more"></span>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CIO_CLI_STATS_ADD_NAME(name)             \</span></span><br><span class="line">    <span class="keyword">do</span>                                           \</span><br><span class="line">    &#123;                                            \</span><br><span class="line">        name_ptr = (<span class="meta">#name) <span class="comment">/*skip CIO_STATS_ */</span>; \</span></span><br><span class="line">    &#125; <span class="keyword">while</span> (<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">char</span> *name_ptr;</span><br><span class="line">    CIO_CLI_STATS_ADD_NAME(CPUL);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, name_ptr);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>** (#name) 只有在宏中才能这么用，其他代码的地方会报错 ** </p>
-]]></content>
-      <categories>
-        <category>专业技术</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
+        <tag>观心</tag>
       </tags>
   </entry>
   <entry>
     <title>画图那些事</title>
-    <url>/blog/2020/06/30/%E7%94%BB%E5%9B%BE%E9%82%A3%E4%BA%9B%E4%BA%8B/</url>
+    <url>/2020/06/30/%E7%94%BB%E5%9B%BE%E9%82%A3%E4%BA%9B%E4%BA%8B/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
 
@@ -736,43 +926,24 @@
       </tags>
   </entry>
   <entry>
-    <title>看山是山，看山不是山 , 看山亦是山。</title>
-    <url>/blog/2020/08/07/%E7%9C%8B%E5%B1%B1%E6%98%AF%E5%B1%B1%EF%BC%8C%E7%9C%8B%E5%B1%B1%E4%B8%8D%E6%98%AF%E5%B1%B1%20,%20%E7%9C%8B%E5%B1%B1%E4%BA%A6%E6%98%AF%E5%B1%B1%E3%80%82/</url>
-    <content><![CDATA[<p>有句禅语“看山是山，看山不是山 , 看山亦是山。”  <br>历史上许许多多大德，做出各种精妙的解答，各种鞭辟入里的见地。  <br>但是，他们只给出结果答案，却没有告诉后来人道路。      <br>以自己切身的修行体会，对这三句话，予以如实地阐述。       </p>
-<span id="more"></span>
-<h1 id="看山是山"><a href="#看山是山" class="headerlink" title="看山是山"></a>看山是山</h1><p>你走在路上，看见眼前的景象，你很确定，景象是你看到的。  <br>因为你，而有了看到，因为看到，而有了景象。  <br>景象，等同于看到；看到，等同于你。  <br>你不会怀疑，看到景象的，不是你自己吧？  <br>你不会怀疑，景象是你自己，所看到的吧？      <br>“你”是你的意识、眼睛、心愿、体验、记忆所构成。  <br>“世界”是微观能量，宇宙微粒聚合，形成的现象。      <br>“现象”与“你”，在这个时空节点上，聚合在一起，才有了你所看到的景象。  <br>因为内心，对你所看到，深信不疑。  <br>从而有了，你所看到的境界，以及看到景象的“你”。      <br>你与境界，都源自于心，只是被境界牵引的你，已经察觉不到这一点。      <br>可是，“你”并非是恒常不变的！<br>切记，世界只是缘起的现象！  <br>这一刻看到景象的你，与你所看到的景象，是刹那间变化的。  <br>是意识流与感受力，聚合外界的因缘，川流聚合的境界。      <br>世界，是微观能量相续聚合形成的现象，现象下面并无世界。  <br>自我，是心识妄想聚合体验习气的境界，境界之中并无自我。      <br>你与世界，在不停地变化之中，可是，为何会有此刻的真实世界？  <br>世界与你，都是因缘虚幻聚合，可是，为何会有看世界的，真实的你？      <br>因为贪恋，心在体验中昏沉；<br>因为思虑，心在境界中沉沦。      <br>你看到的世界，是所看之你的认知。  <br>或者说，世界是你认知所投射。      <br><strong>你与世界互为因果</strong>，世界是“你”投射的果。  <br>因为有“你”而有世界，你是世界缘起之因。  <br>你与世界都是因缘，世界与你，都是迷境。      <br>这就是“看山是山”。  <br>心随境转，即名凡夫。       </p>
-<h1 id="看山不是山"><a href="#看山不是山" class="headerlink" title="看山不是山"></a>看山不是山</h1><p>恒常不变的，只有内心中，你的“见”，那个能明了一切，却清醒无染的见。  <br>祂是不会随着你的变化而变化的。      <br>你幼年时，见到父母时心中明了，与你中年时，见到事业时心中明了，   与你临终时，见到医生的心中明了，是同一个清醒，同一种确定，同一个觉知。      <br>清醒不会随着你的，头脑知识的增减，情感善恶的转化，身体衰老的变化，而有丝毫改变丝毫损减。  <br>能够觉察身心自我的变幻，<strong>体察内心深处不变的清醒</strong>，这就是修行。  <br>这就是“<strong>知境为心</strong>”。      <br><strong>这个阶段中，最重要事是——选择。  **<br>在人生方向中，选择出离心；在是非矛盾中，选择宽恕心；在情欲执迷中，选择纯洁心。      <br>通过学法，认知心灵中清醒；通过禅定，培育清醒之强度。  <br>通过忏悔，净化清醒中杂质；通过宽恕，让清醒从体验与头脑中，纯净解脱。      <br>解脱了身心意识的，清醒心灵，将升华为纯澈。  <br>纯澈之中光芒绽放，光明熄灭习气，纯洁粉碎体验。  <br>失去欲望感受的支持，心中体验的习惯，就会融化分解。      <br>体验融解时，头脑意识失去了，思虑分辨的推动力，于是意识停顿。  <br>不受意识牵引的体验，就会彻底瓦解，融化消失。  <br>体验消融的过程，犹如冰块融化为水，会释放冰块中曾禁锢的，生死历史中一切妄念情绪。  <br>妄念情绪感知，在纯澈心光中沸腾，会形成形形色色境界，展现出三界六道。      <br>纯澈心光，驱散思虑阴影，照破体验昏沉。  <br>自我体验身心意识，如同衣服般脱落，脱落身心头脑，情感觉受的心。  <br>不再受身心自我的遮蔽。      <br> 纯光无染，纯澈无挂，光中离暗，空中无色。  <br>光明中会呈现，脱离光明的性质，性质中并没有生与死。  <br>这就是“</strong>知心为空**”。      <br>想阴破，入三摩地，离分段生死。      <br><strong>这个阶段中，最重要的事是——宽恕。</strong>  <br>宽恕内心欲望，宽恕内心恐惧，宽恕内心烦恼，宽恕他人过错，宽恕自我卑劣。  <br>宽恕中体验温暖，宽恕中觉受纯洁，宽恕中觉知清净，宽恕中实证安宁。      <br>三摩地中，证人无我，法无我，亲证到光明之中，不受光明形态约束的性质。  <br>性质本身无生无灭，无垢无净，不增不减，无来无去。  <br><strong>明性，不被觉受所体验；</strong><br><strong>觉性，不受觉知所牵引；</strong><br><strong>空性，不受存在所禁锢。</strong>  <br>觉明空一体性空，清净庄严，极明极耀极圆，普照十方圆明三世。      <br>人间世界自我身心，如太阳纯光中，飘浮的一粒灰尘。  <br>身心自我意识体验中，心灵纯明睁开了眼睛。      <br>觉成就，是你的内心睁开了眼睛。      <br>眼光纯澈无有杂染，纯澈光明没有遮蔽。  <br><strong>实证到，身语意并非是你自己</strong>。  <br>心可以同时看到，自我的心愿与意识的川流。  <br>看到身心意识的心，脱落了看，以及身心意识的牵绊。       </p>
-<h1 id="看山还是山"><a href="#看山还是山" class="headerlink" title="看山还是山"></a>看山还是山</h1><p>**这个阶段中，最重要的事是——纯洁。  **<br>极致的纯洁，纯洁到极致，明晰觉性，将从觉知中圆满复苏。  <br>宛如睁开的眼睛中，目光纯澈遍满，脱落了眼睛能见的障碍。      <br>明明了了，解脱自在，极乐极耀，圆明十方。  <br>心光中，明晰粉碎了存在，言语道断，如梦初醒。      <br>这就是“看山不是山”，也称为“知心为空”。      <br>**觉圆满，是宇宙空间成为你的心。       **<br>脱落了身心自我的，内在明空性质，与身外的空间合为一体。  <br>无论你的肉身在做什么，无论你的头脑在想什么，  <br>无论你的心灵愿望什么，无论你情欲在感受什么。      <br>心灵内在的，脱落了觉知意识的，那个明晰空性是不动的。  <br>内在空性与外界空间合为一体，虚空就是你的眼睛。  <br>空性与空间一体，周遍宇宙世界。      <br>你的起心动念，你的情绪感受，你的意识思维。  <br>你的思虑动机，你的心愿体验，身心灵川流不息的相续。  <br>在虚空性中，明明了了，清清楚楚，毫厘不爽。      <br>没有禅定的你，你的行住坐卧，如幻影浮云。  <br>浮云幻影无痕，虚空就是你的定境。      <br>没有修行的你，你的痛苦烦恼，本性皆是安然。  <br> 烦恼痛苦无根，安然就是你的生命。      <br>心光脱落了光明形态，你成为明晰性质。  <br>性质不受身心与世界制约，宇宙十方是你的倒影。  <br>内心光明是你的梦境。      <br>从梦境中彻底苏醒，你与世界，过去与未来，如沙尘从目光中滑落。  <br>明性离光，空性离相，觉性离照。  <br>觉明空一体，寂净觉满，妙乐安宁。      <br>能觉照到，心灵中，觉知与心识，自我与意识，相续轮回的体系。  <br>能觉照到，心识分别，所投射出的宇宙时空，如幻影般海市蜃楼。      <br>在能觉照中，寂静；于是所觉照的，熄灭。  <br>无我亦无我所，十方三世，只在一念中发生。      <br>梦醒时，并无做梦人。  <br>妙乐庄严，本来如是。      <br>这个阶段中，无重要之事。   想睡就睡，想玩就玩，想吃就吃，想喝就喝，随遇而安，随缘不变。  <br>喜怒哀乐，七情六欲，无一不缺，常驻贪嗔痴中，贪嗔痴性了无挂碍。  <br>行住坐卧，嬉笑怒骂，皆是禅定，身语意烦恼中，即心离心落落清净。      <br>于是，烦恼即菩提，如是，生死即涅槃。  <br>修与不修，尽是圆满；定或出定，皆是禅机。      <br>这就是“看山亦是山”。      <br>梦境无需分辨，离辨幻境无痕。  <br>也称为“知空为无二双融”。</p>
-]]></content>
-      <categories>
-        <category>明心见性</category>
-      </categories>
-      <tags>
-        <tag>观心</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>观心悟道</title>
-    <url>/blog/2020/08/07/%E8%A7%82%E5%BF%83%E6%82%9F%E9%81%93/</url>
+    <title>触目遇缘，无非是佛，身处世间，即大涅槃。</title>
+    <url>/2020/08/07/%E8%A7%A6%E7%9B%AE%E9%81%87%E7%BC%98%EF%BC%8C%E6%97%A0%E9%9D%9E%E6%98%AF%E4%BD%9B%EF%BC%8C%E8%BA%AB%E5%A4%84%E4%B8%96%E9%97%B4%EF%BC%8C%E5%8D%B3%E5%A4%A7%E6%B6%85%E6%A7%83%E3%80%82/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
-
-<p>心对境产生了念头，念头的延续壮大成为情绪。<br> <br>比如说，我问你现在在想什么？你观察自己的心，可能是在念着这句话，而后视线移开，想起了刚才的事情，但是——你都能观察到这些念头。</p>
+<p>修行哪能是一下子就可以的。<br> <br>得个入处，还得有个转身。<br> <br>古来禅德多也是这么过来的。<br> <br>可转身又是怎么一个转身呢？时候到了自然就转身了。</p>
 <span id="more"></span>
-<p> <br>但一旦当我们意识到这一点，就会发现一个有趣的现象：<strong>你的思维念头并不是你，包括情绪，它们只是我们的一部分。</strong><br> <br>所以观心法的下手，首先是能够觉知到自己的思维念头，然后发现自己的思维念头，并不全是自己。<br> <br>观照时念头如消失，一不觉忽然又起，后来慢慢就能做到，看着自己的念头像看着电影里索然无味的剧情，或像看着水里的游鱼游来游去一样，我们只是以一个旁观者的角度如实观照。<br> <br>现在回想，自己当初是这么走过来的。<br> <br>当我走过来以后，渐渐发现很多学佛有一定成就的人也是修这个方法走过来的。<br> <br>学这个方法的人有一个特点，理性思维比较强，也喜欢自己一个人琢磨。<br> <br>观心法，也有一个特点，它更倾向于掌控自己的心念与情绪，因为一下手就要求处在<strong>一个全然客观的位置去观照觉知自己的念头，等于是自己看着自己在想什么、做什么。</strong><br> <br>当冷静客观的观照心中的念头久了，念头的河流忽然之间被截断，我在读大学的时候练习观心法没多久，有一天上课坐在电脑面前，一个念头一个念头的观照着，忽然之间念头断掉、没有了，那种喜悦如天青云朗，直接把当时的我震惊了。<br> <br>在这个阶段，很多人会以为自己开悟了，当时我也是这么认为的，其实不是。<br> <br>因为以前看过的书，或者我们心中认为悟道的境界是怎样的，我们在这时就会造出一个境界，以为这就是开悟。<br> <br>往往在这里会非常危险，因为以为自己已经得到的东西，我们便不会再去追求。<br> <br>因为没有得到，却以为自己得到了，傲慢狂慧也因此而生发。<br> <br>谦逊的心态才能让我们在修学路上持续受益。<br> <br>所以一念不生不代表悟道，它是观心法的一个阶段性的进步，在这个时候仍需保持客观冷静的觉照，加上对于自己是否明白的疑情在推动前行，那么我们就有可能更进一步——顿悟本来面目。<br> <br>这时我们可以去参禅了。<br> <br>至此一把擒来，就是所有修习观心法人的最初归宿。<br> <br>希望看到这篇文章的人也如是。<br> <br>另外我们还需要知道，方法其实是路径的意思。<br> <br>观心法是通往悟道的一个方法，它适合某些人，但对另外一些人可能不一定适合。<br> <br>通往悟道比较直接的方法，还有反闻闻自性（听歌寻本体），参话头等等。<br> <br>有兴趣的朋友们都可以了解一下。<br> <br>就算我们通过修学观心法开悟见性了，也才仅仅是开始踏上了真修实证的道路。<br> <br>犹如刚从娘胎里出来，婴儿生活不能自理，连说话走路都不行，但我们肯定知道，只要孩子出生了，就铁定具备长大成人的可能。<br> <br>也如同我们若真正悟道了，得道解脱就像黎明前的曙光一样，阳光必将要普照大地。<br> <br>在此再谈一谈修行的步骤：有的人可能是家庭中有烧香拜佛的信仰进而接触到佛法修行；有的人是对神奇的事物心生向往，了解多了对修行产生了兴趣；也有的人是内心中自发的喜欢独处，清静修行。<br> <br>无论怎样，每个人都有自己独特的因缘。<br> <br>如同阿难尊者目睹过去佛陀的庄严身相，而心生向往发愿修行成佛。<br> <br>像上面讲的观心法，还有听歌法，参禅参话头，目的都是通过方法达成下一步目标——悟道。<br> <br>在这里，路是不一样的，但目标是一样的。<br> <br>这个目标必然不是我们自己琢磨就能够明白，说是宇宙人生的真相，或者说道也好，觉性也行，指向的必然是同一目标。<br> <br>所以禅师才能知道自己的弟子明白的是不是同一个东西。<br> <br>我们修学同样如此，没有前人的书籍和过来人的教授几乎不可能明白，甚至连听都难以听闻。<br> <br>因为我们自己琢磨出来的，可能仅仅是自己心里以为的，跟历代圣贤都了悟的那个道，不一定就是同一个。<br> <br>这一点上面，我之前犯了这样的错误，我认识很多人也是这样。<br> <br>所以通过前人的文章经典，还有老师的言传身教，给我们一直描述苹果的大小，形状，颜色，滋味。<br> <br>然后告诉我们路径是怎么走的——当我们终于见到苹果的时候，便能一下子认出，原来这就是苹果呀。<br> <br>到这一步就知道了什么是宇宙人生的本源、真相。<br> <br>这是很关键的一步。<br> <br>开悟的人有几个特点：1，对世间的道理没有了疑惑，如果有，那么就是技术上面的。<br> <br>这是非常确定的。<br> <br>对于自己修行能够解脱，也没有任何的怀疑。<br> <br>原因在于，开悟是我们体悟到了宇宙人生的本源，看到了本质，自然就不会迷于幻相。<br> <br>2，破除了关于我的见解，不再认为有一个确定的不变的“我”存在。<br> <br>因为世间一切事物都是运动变化的，不存在一个不变的“我”。<br> <br>而在佛法的开悟当中，这个运动变化的我，他其实更是一个虚幻的存在，就像梦中的自己一样。<br> <br>所以关于“我”的错误的认知，将不再成为开悟者的障碍。<br> <br>3，不再固执不合理的禁戒，而以为是最好的。<br> <br>因为明了戒律的含义，所以能守戒不被戒缚。<br> <br>当然，还有其他更多的一些特点，比如说开悟后再看各种经典，基本上都能够通达，少有不懂的地方。<br> <br>如有不懂，可能是读书的少。<br> <br>还有烦恼慢慢减少，慈悲心逐渐增加，都是一些正常的现象，就不展开讲了。<br> <br>在开悟之后的修行将变得很简单，只是让“这份明白”一直都在，不是说我们让“它”在，它本来就在我们的生活里面，在穿衣吃饭中，在举手动足间，无时无处不在。<br> <br>这就是修行。<br> <br>在开悟的后续修行过程中会出现一些所谓神通现象，比如知道对方的想法，能了知他人的前生来世，会经历很多境界、很多不一样的世界。<br> <br>但修行人因为明白了根本，所以不会再迷惑，看待这些现象，就像看着电影里面钢铁侠大战灭霸一样简单平常。<br> <br>再为电影悲欢的人，电影剧终也该出戏了。<br> <br>毕竟再厉害的电影角色，演员们在平常生活中也跟我们一样要吃喝拉撒。<br> <br>幻游十方世界随缘授手，于生死间得大自在，而实能了证本无生死。<br> <br>就像此时此刻，大家在看我的文章一样，你们其实才是大千世界的造梦者。<br> <br>是故佛陀说，始知众生本来成佛，生死涅槃犹如昨梦。<br> <br>皆是昨梦呐。
- 
- </p>
+<p> <br>不过嘛，得知道后面还有东西，得少为足自以为悟，当然不能更进一步了。<br> <br>宋·释道原《景德传灯录》卷十：<br>“师示一偈曰<br>**<br> <br><strong>百尺竿头须进步，十方世界是全身。</strong>’”<br> <br>青原惟信禅师说：<br> <br>**<br> <br>**<br> <br>**<br> <br>**<br> <br>大众，这三般见解，是同是别？<br> <br>有人缁素得出，许汝亲见老僧。<br> <br>这里入处与休歇处有不一样的地方。<br> <br>很多时候我们总是会困惑于学习工作太忙了，怎么修行呢？这位朋友也是这样，工作忙，又想修行，难免纠结。<br> <br>其实修行生活不矛盾的，净慧长老强调生活禅，<strong>就是把修行落实于生活，把生活融入修行。</strong><br> <br>修行并不只在看书打坐，<strong>每时每刻所见所感何尝不是觉性之显现。</strong><br> <br>但同时问题也就出来了，平常我们常常忘失修行的正念，被事情带着走，这又怎么办呢？<br>每个人修行都这样，差别在心法。<br> <br>为什么修行是不用修的呢，为什么佛说一切众生本来成佛。<br> <br>这些都还真不是修出来的。<br> <br>**<br> <br>只这个本来如是。<br> <br>我们却要去悟，去修。<br> <br>有些时候有些话，我们当时以为明白了，后来回头看时，其实并没有。<br> <br>我常常这样，所以有一段话，直到去年才算看明白。<br> <br>四祖道信大师《方寸论 》：夫百千法门，同归方寸。<br> <br>河沙妙德，总在心源。<br> <br>一切戒门、定门、慧门，神通变化，悉自具足，不离汝心。<br> <br>一切烦恼业障，本来空寂，一切因果皆如梦幻。<br> <br>**<br> <br>大道虚旷，绝思绝虑。<br> <br>  如是之法，汝今已得，更无缺少，与佛何殊，更无别法。<br> <br>汝但任心自在，莫作观行，亦莫澄心，莫起贪瞋，莫怀愁虑，荡荡无碍。<br> <br>任意纵横，不作诸善，不作诸恶，行住坐卧，触目遇缘，总是佛之妙用。<br> <br>快乐无忧，故名为佛。<br> <br>  朋友还问我，我是怎么安排学习和工作时间。<br> <br>怎么做到放下呢？ 我说，该干嘛干嘛呗。<br> <br>我们之所以纠结是因为觉得生活工作与修行是冲突的。<br> <br>因为我们认为修行是要专一专修的，生活工作却带来了打扰。<br> <br>也因为我们以为修行要守住。<br> <br>于是心向修行的人，难免有避世住山的念想。<br> <br>觉得山里进修令心安定下来，再入世会更游刃有余。<br> <br>这不能说是一种错误的观念，只是须知真修行并不需要守。<br> <br>若尽乾坤无非自己，语默动静思虑，何尝不是佛性之妙用。<br> <br>那么生活工作中的执着还需要放下吗？执着本就不存在。<br> <br>真修道人并不见得就有多用功，只因无他们用功处。<br> <br>为什么呢？整个世间如梦似幻。<br> <br>**<br> <br>所以这人世间是诸佛出身处。</p>
 ]]></content>
       <categories>
         <category>明心见性</category>
       </categories>
       <tags>
-        <tag>观心</tag>
+        <tag>明心见性</tag>
       </tags>
   </entry>
   <entry>
     <title>高效的秘密</title>
-    <url>/blog/2020/08/06/%E9%AB%98%E6%95%88%E7%9A%84%E7%A7%98%E5%AF%86/</url>
+    <url>/2020/08/06/%E9%AB%98%E6%95%88%E7%9A%84%E7%A7%98%E5%AF%86/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
 <p>如何让你的人生更高效？秘密全都在这里！</p>
@@ -795,24 +966,38 @@
       </tags>
   </entry>
   <entry>
-    <title>触目遇缘，无非是佛，身处世间，即大涅槃。</title>
-    <url>/blog/2020/08/07/%E8%A7%A6%E7%9B%AE%E9%81%87%E7%BC%98%EF%BC%8C%E6%97%A0%E9%9D%9E%E6%98%AF%E4%BD%9B%EF%BC%8C%E8%BA%AB%E5%A4%84%E4%B8%96%E9%97%B4%EF%BC%8C%E5%8D%B3%E5%A4%A7%E6%B6%85%E6%A7%83%E3%80%82/</url>
+    <title>指定线程CPU占用率的check方法</title>
+    <url>/2020/08/06/%E6%8C%87%E5%AE%9A%E7%BA%BF%E7%A8%8BCPU%E5%8D%A0%E7%94%A8%E7%8E%87%E7%9A%84check%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
-<p>修行哪能是一下子就可以的。<br> <br>得个入处，还得有个转身。<br> <br>古来禅德多也是这么过来的。<br> <br>可转身又是怎么一个转身呢？时候到了自然就转身了。</p>
-<span id="more"></span>
-<p> <br>不过嘛，得知道后面还有东西，得少为足自以为悟，当然不能更进一步了。<br> <br>宋·释道原《景德传灯录》卷十：<br>“师示一偈曰<br>**<br> <br><strong>百尺竿头须进步，十方世界是全身。</strong>’”<br> <br>青原惟信禅师说：<br> <br>**<br> <br>**<br> <br>**<br> <br>**<br> <br>大众，这三般见解，是同是别？<br> <br>有人缁素得出，许汝亲见老僧。<br> <br>这里入处与休歇处有不一样的地方。<br> <br>很多时候我们总是会困惑于学习工作太忙了，怎么修行呢？这位朋友也是这样，工作忙，又想修行，难免纠结。<br> <br>其实修行生活不矛盾的，净慧长老强调生活禅，<strong>就是把修行落实于生活，把生活融入修行。</strong><br> <br>修行并不只在看书打坐，<strong>每时每刻所见所感何尝不是觉性之显现。</strong><br> <br>但同时问题也就出来了，平常我们常常忘失修行的正念，被事情带着走，这又怎么办呢？<br>每个人修行都这样，差别在心法。<br> <br>为什么修行是不用修的呢，为什么佛说一切众生本来成佛。<br> <br>这些都还真不是修出来的。<br> <br>**<br> <br>只这个本来如是。<br> <br>我们却要去悟，去修。<br> <br>有些时候有些话，我们当时以为明白了，后来回头看时，其实并没有。<br> <br>我常常这样，所以有一段话，直到去年才算看明白。<br> <br>四祖道信大师《方寸论 》：夫百千法门，同归方寸。<br> <br>河沙妙德，总在心源。<br> <br>一切戒门、定门、慧门，神通变化，悉自具足，不离汝心。<br> <br>一切烦恼业障，本来空寂，一切因果皆如梦幻。<br> <br>**<br> <br>大道虚旷，绝思绝虑。<br> <br>  如是之法，汝今已得，更无缺少，与佛何殊，更无别法。<br> <br>汝但任心自在，莫作观行，亦莫澄心，莫起贪瞋，莫怀愁虑，荡荡无碍。<br> <br>任意纵横，不作诸善，不作诸恶，行住坐卧，触目遇缘，总是佛之妙用。<br> <br>快乐无忧，故名为佛。<br> <br>  朋友还问我，我是怎么安排学习和工作时间。<br> <br>怎么做到放下呢？ 我说，该干嘛干嘛呗。<br> <br>我们之所以纠结是因为觉得生活工作与修行是冲突的。<br> <br>因为我们认为修行是要专一专修的，生活工作却带来了打扰。<br> <br>也因为我们以为修行要守住。<br> <br>于是心向修行的人，难免有避世住山的念想。<br> <br>觉得山里进修令心安定下来，再入世会更游刃有余。<br> <br>这不能说是一种错误的观念，只是须知真修行并不需要守。<br> <br>若尽乾坤无非自己，语默动静思虑，何尝不是佛性之妙用。<br> <br>那么生活工作中的执着还需要放下吗？执着本就不存在。<br> <br>真修道人并不见得就有多用功，只因无他们用功处。<br> <br>为什么呢？整个世间如梦似幻。<br> <br>**<br> <br>所以这人世间是诸佛出身处。</p>
+
+<h1 id="进程cpu占用情况"><a href="#进程cpu占用情况" class="headerlink" title="进程cpu占用情况"></a>进程cpu占用情况</h1><span id="more"></span>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+<h2 id="增加显示选项"><a href="#增加显示选项" class="headerlink" title="增加显示选项"></a>增加显示选项</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top</span><br><span class="line">f -- 进入选项定制界面</span><br><span class="line">space -- 空格选中</span><br><span class="line">Esc -- 退出</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="多核使用率分析"><a href="#多核使用率分析" class="headerlink" title="多核使用率分析"></a>多核使用率分析</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="单核热点代码段展示"><a href="#单核热点代码段展示" class="headerlink" title="单核热点代码段展示"></a>单核热点代码段展示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">perf top -C &lt;core-id&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="如何获取各个线程的展示方式"><a href="#如何获取各个线程的展示方式" class="headerlink" title="如何获取各个线程的展示方式"></a>如何获取各个线程的展示方式</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top -H</span><br></pre></td></tr></table></figure>
+<h1 id="不冻结进程的方式来check线程或者进程的运行轨迹"><a href="#不冻结进程的方式来check线程或者进程的运行轨迹" class="headerlink" title="不冻结进程的方式来check线程或者进程的运行轨迹"></a>不冻结进程的方式来check线程或者进程的运行轨迹</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gstack &lt;pid&gt; or &lt;thread-id&gt;</span><br></pre></td></tr></table></figure>
+
+
 ]]></content>
       <categories>
-        <category>明心见性</category>
+        <category>专业技术</category>
       </categories>
       <tags>
-        <tag>明心见性</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
     <title>PlantUML工具书之一（序列图|用例图|类图）</title>
-    <url>/blog/2020/12/23/PlantUML%E5%B7%A5%E5%85%B7%E4%B9%A6%E4%B9%8B%E4%B8%80%EF%BC%88%E5%BA%8F%E5%88%97%E5%9B%BE_%E7%94%A8%E4%BE%8B%E5%9B%BE_%E7%B1%BB%E5%9B%BE%EF%BC%89/</url>
+    <url>/2020/12/23/PlantUML%E5%B7%A5%E5%85%B7%E4%B9%A6%E4%B9%8B%E4%B8%80%EF%BC%88%E5%BA%8F%E5%88%97%E5%9B%BE_%E7%94%A8%E4%BE%8B%E5%9B%BE_%E7%B1%BB%E5%9B%BE%EF%BC%89/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
 
@@ -1153,191 +1338,6 @@
       </categories>
       <tags>
         <tag>PlantUML</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GTD执行手册</title>
-    <url>/blog/2014/11/24/001_2021_03_07_GTD/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-
-
-<h1 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h1><p><img src="https://cdn.nlark.com/yuque/0/2021/png/584886/1615385376670-1d232c2d-a8e2-4cf1-bb8b-20b768be105d.png#align=left&display=inline&height=808&margin=%5Bobject%20Object%5D&name=image.png&originHeight=808&originWidth=609&size=707934&status=done&style=none&width=609" alt="image.png"></p>
-<h1 id="1-捕捉"><a href="#1-捕捉" class="headerlink" title="1 捕捉"></a>1 捕捉</h1><span id="more"></span>
-<p>用一个有形的”看板”，尽可能能全面的呈现所有需要你关注的事物<br>● 推荐用幕布，或者notion<br>● 每周一次</p>
-<h1 id="2-buffer分类"><a href="#2-buffer分类" class="headerlink" title="2 buffer分类"></a>2 buffer分类</h1><h2 id="立即执行，两分钟内完成"><a href="#立即执行，两分钟内完成" class="headerlink" title="立即执行，两分钟内完成"></a>立即执行，两分钟内完成</h2><h2 id="委派他人，跟踪进度"><a href="#委派他人，跟踪进度" class="headerlink" title="委派他人，跟踪进度"></a>委派他人，跟踪进度</h2><h2 id="时空切片，大的项目拆分"><a href="#时空切片，大的项目拆分" class="headerlink" title="时空切片，大的项目拆分"></a>时空切片，大的项目拆分</h2><h3 id="●-时间上映射为日程表"><a href="#●-时间上映射为日程表" class="headerlink" title="● 时间上映射为日程表"></a>● 时间上映射为日程表</h3><h3 id="●-空间上完成步骤内容的切分"><a href="#●-空间上完成步骤内容的切分" class="headerlink" title="● 空间上完成步骤内容的切分"></a>● 空间上完成步骤内容的切分</h3><h1 id="3-通过看板与buffer维度完成roadmap的构建，然后聚焦在有限的事务分片中，步步为营的蚕食事务！！！"><a href="#3-通过看板与buffer维度完成roadmap的构建，然后聚焦在有限的事务分片中，步步为营的蚕食事务！！！" class="headerlink" title="3 通过看板与buffer维度完成roadmap的构建，然后聚焦在有限的事务分片中，步步为营的蚕食事务！！！"></a>3 通过看板与buffer维度完成roadmap的构建，然后聚焦在有限的事务分片中，步步为营的蚕食事务！！！</h1><h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
-      <categories>
-        <category>时间管理</category>
-        <category>GTD</category>
-      </categories>
-      <tags>
-        <tag>GTD</tag>
-        <tag>时间管理</tag>
-        <tag>效率</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python机器学习--001 python基础</title>
-    <url>/blog/2021/03/14/1-ReviewPython_solution/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-
-<p>** Review Python Basics and Intro to Jupyter Notebook **</p>
-<p>Optional Reading: Python Data Science Handbook, Ch. 1: IPython</p>
-<span id="more"></span>
-<h1 id="1-Numbers-and-strings"><a href="#1-Numbers-and-strings" class="headerlink" title="1. Numbers and strings"></a>1. Numbers and strings</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = <span class="number">10</span></span><br><span class="line">b = <span class="number">3</span></span><br><span class="line">c = <span class="string">&#x27;5&#x27;</span></span><br><span class="line"><span class="comment"># Add code to print the result of a multiply with b</span></span><br><span class="line">print(a*b)</span><br><span class="line"><span class="comment"># Add code to print the result of c replicated b times</span></span><br><span class="line">print(c*b)</span><br><span class="line"><span class="comment"># Add code to print the result of a added with b</span></span><br><span class="line">print(a+b)</span><br><span class="line"><span class="comment"># Add code to print the result of c concatenate with b</span></span><br><span class="line">print(c+<span class="built_in">str</span>(b))</span><br></pre></td></tr></table></figure>
-
-<pre><code>30
-555
-13
-53
-</code></pre>
-<h1 id="2-Decisions-and-loops"><a href="#2-Decisions-and-loops" class="headerlink" title="2. Decisions and loops"></a>2. Decisions and loops</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Add code to create a loop to keep asking the user for a number until the user presses the Enter key only.</span></span><br><span class="line"><span class="comment"># After the user enters 0, print number of positive numbers and number of negative numbers entered.</span></span><br><span class="line"><span class="comment"># Note that 0 is neither positive nor negative</span></span><br><span class="line"></span><br><span class="line">num = <span class="built_in">input</span>(<span class="string">&quot;Enter a number: &quot;</span>)</span><br><span class="line">pos = neg = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">len</span>(num) != <span class="number">0</span> :<span class="comment"># 一种验证方式</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">float</span>(num) &lt; <span class="number">0</span> :</span><br><span class="line">        neg += <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">float</span>(num) &gt; <span class="number">0</span> :</span><br><span class="line">        pos += <span class="number">1</span></span><br><span class="line">    num = <span class="built_in">input</span>(<span class="string">&quot;Enter a number: &quot;</span>)</span><br><span class="line">print(<span class="string">&quot;Positive:&quot;</span>, pos, <span class="string">&quot; Negative:&quot;</span>, neg)</span><br></pre></td></tr></table></figure>
-
-<h1 id="3-Functions"><a href="#3-Functions" class="headerlink" title="3. Functions"></a>3. Functions</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pp</span>(<span class="params">*args</span>):</span><span class="comment"># 组团获取参数的方法</span></span><br><span class="line">    print(args,<span class="built_in">type</span>(args))</span><br><span class="line">pp(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<pre><code>(1, 2, 3) &lt;class &#39;tuple&#39;&gt;
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Write a function add, given the function calls below:</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">*args</span>):</span>     <span class="comment"># * packs all input args into a tuple named args</span></span><br><span class="line">    <span class="keyword">return</span>(<span class="built_in">sum</span>(args))</span><br><span class="line"></span><br><span class="line">print(add(<span class="number">1</span>, <span class="number">2</span>))   <span class="comment"># print: 3</span></span><br><span class="line">print(add())       <span class="comment"># print: 0</span></span><br><span class="line">print(add(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">17</span>,<span class="number">1</span>))   <span class="comment"># print: 153</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<pre><code>3
-0
-154
-</code></pre>
-<h1 id="4-Containers-or-iterables"><a href="#4-Containers-or-iterables" class="headerlink" title="4. Containers or iterables"></a>4. Containers or iterables</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Use a container to store the characters of the string &quot;hello&quot;  </span></span><br><span class="line"><span class="comment"># What type of container would you use? Why?</span></span><br><span class="line">t = <span class="built_in">tuple</span>(<span class="string">&quot;hello&quot;</span>)    <span class="comment"># tuple is immutable and faster to access than list</span></span><br><span class="line">print(t+<span class="built_in">tuple</span>(<span class="string">&#x27;1&#x27;</span>))</span><br></pre></td></tr></table></figure>
-
-<pre><code>(&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39;1&#39;)
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Use a container to store the characters of the string &quot;hello&quot;</span></span><br><span class="line"><span class="comment"># Then add an exclamation point to the container, after the letter &#x27;o&#x27;, and capitalize the &#x27;h&#x27;</span></span><br><span class="line">L = <span class="built_in">list</span>(<span class="string">&quot;hello&quot;</span>)   <span class="comment"># need to use a list here because we need to change values</span></span><br><span class="line">L.append(<span class="string">&#x27;!&#x27;</span>)</span><br><span class="line">L[<span class="number">0</span>] = <span class="string">&#x27;H&#x27;</span></span><br><span class="line">print(L)</span><br></pre></td></tr></table></figure>
-
-<pre><code>[&#39;H&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39;!&#39;]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Use a container to store the unique characters of the string &quot;hello&quot; </span></span><br><span class="line"><span class="comment"># unique characters means only h,e,l,o should be stored</span></span><br><span class="line">S = <span class="built_in">set</span>(<span class="string">&quot;hello&quot;</span>)    <span class="comment"># a set only contains unique elements, but there&#x27;s no order</span></span><br><span class="line">print(S)</span><br></pre></td></tr></table></figure>
-
-<pre><code>&#123;&#39;e&#39;, &#39;h&#39;, &#39;l&#39;, &#39;o&#39;&#125;
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Use a container to store the unique characters of the string &quot;hello&quot; </span></span><br><span class="line"><span class="comment"># and its ascii value. Example: &#x27;h&#x27; should be stored with the ascii value 104</span></span><br><span class="line">D = <span class="built_in">dict</span>(<span class="built_in">zip</span>(<span class="string">&#x27;hello&#x27;</span>, [<span class="built_in">ord</span>(c) <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">&#x27;hello&#x27;</span>]))<span class="comment"># 两个list压缩为字典--注意有set的中间操作</span></span><br><span class="line">print(D)</span><br></pre></td></tr></table></figure>
-
-<pre><code>&#123;&#39;h&#39;: 104, &#39;e&#39;: 101, &#39;l&#39;: 108, &#39;o&#39;: 111&#125;
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># another solution from several people in class:   </span></span><br><span class="line">dict_ = &#123;char:<span class="built_in">ord</span>(char) <span class="keyword">for</span> char <span class="keyword">in</span> <span class="string">&#x27;hello&#x27;</span>&#125;</span><br><span class="line">print(dict_)</span><br></pre></td></tr></table></figure>
-
-<pre><code>&#123;&#39;h&#39;: 104, &#39;e&#39;: 101, &#39;l&#39;: 108, &#39;o&#39;: 111&#125;
-</code></pre>
-<h1 id="5-Accessing-lists"><a href="#5-Accessing-lists" class="headerlink" title="5. Accessing lists"></a>5. Accessing lists</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">L = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">21</span>))</span><br><span class="line"><span class="comment"># Write code to print the first half of the list</span></span><br><span class="line">print(L[:<span class="number">10</span>])</span><br><span class="line"><span class="comment"># Write code to print the last 3 elements of the list</span></span><br><span class="line">print(L[-<span class="number">3</span>:])</span><br><span class="line"><span class="comment"># Write code to print every element of the list, all on one line, separated by space</span></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> L :</span><br><span class="line">    print(num, end=<span class="string">&quot; &quot;</span>)</span><br><span class="line">print()</span><br><span class="line"><span class="comment"># Write code to negate every other element of the list </span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(L),<span class="number">2</span>) :</span><br><span class="line">    L[i] *= -<span class="number">1</span></span><br><span class="line">print(L)</span><br><span class="line"></span><br><span class="line"><span class="comment"># from class discussion: negate all elements that are even in L</span></span><br><span class="line">list_neg =[-i <span class="keyword">if</span> i%<span class="number">2</span>==<span class="number">0</span> <span class="keyword">else</span> i   <span class="keyword">for</span> i <span class="keyword">in</span> L]</span><br></pre></td></tr></table></figure>
-
-<pre><code>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-[18, 19, 20]
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 
-[1, -2, 3, -4, 5, -6, 7, -8, 9, -10, 11, -12, 13, -14, 15, -16, 17, -18, 19, -20]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Write code to create a list of 20 elements and initialize it to 0</span></span><br><span class="line">L = [<span class="number">0</span>]*<span class="number">20</span></span><br><span class="line">print(L)</span><br></pre></td></tr></table></figure>
-
-<pre><code>[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print([<span class="number">1</span>]*<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
-
-<pre><code>[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Write code to create a list of 10 lists, each inner list contains 20 elements, initialized to 5.</span></span><br><span class="line"><span class="comment"># print the list of lists as 10 rows of 20 columns</span></span><br><span class="line">L = [[<span class="number">5</span>]*<span class="number">20</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)] <span class="comment"># 扩展数组的一种方式</span></span><br><span class="line">L </span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[[5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># from class discussion:</span></span><br><span class="line">L = [[<span class="number">5</span>]*<span class="number">20</span>] * <span class="number">10</span></span><br><span class="line"><span class="comment"># will not produce the same list of 10 inner lists.</span></span><br><span class="line"><span class="comment"># Instead it will produce a list of 10 references, each reference</span></span><br><span class="line"><span class="comment"># points to the same and only one inner list.</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[[5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
- [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">L = [random.randint(<span class="number">1</span>,<span class="number">10</span>)]*<span class="number">8</span> <span class="comment"># 单次激发,单次扩展</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[8, 8, 8, 8, 8, 8, 8, 8]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">random.seed()</span><br><span class="line">L = [random.randint(<span class="number">1</span>,<span class="number">10</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>)] <span class="comment"># 逐次激发</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[7, 1, 3, 8, 1, 3, 9, 4]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Write code to create a new list which is made of even values from L</span></span><br><span class="line">L2 = [n <span class="keyword">for</span> n <span class="keyword">in</span> L <span class="keyword">if</span> n%<span class="number">1</span> == <span class="number">0</span>]</span><br><span class="line"><span class="comment"># Write code to print the new list, with the elemens sorted in descending order</span></span><br><span class="line">print(<span class="built_in">sorted</span>(L2,reverse=<span class="literal">True</span>))</span><br><span class="line"><span class="comment"># Write code to print True or False, depending on whether the value 4 is in the new list</span></span><br><span class="line">print(<span class="number">4</span> <span class="keyword">in</span> L2)</span><br></pre></td></tr></table></figure>
-
-<pre><code>[9, 8, 7, 4, 3, 3, 1, 1]
-True
-</code></pre>
-<h1 id="6-Accessing-dictionaries-and-tuples"><a href="#6-Accessing-dictionaries-and-tuples" class="headerlink" title="6. Accessing dictionaries and tuples"></a>6. Accessing dictionaries and tuples</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Write a dictionary comprehension to store the letters A,B,C as keys and their ascii numbers as values</span></span><br><span class="line">D = &#123;c:<span class="built_in">ord</span>(c) <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">&quot;ABC&quot;</span>&#125;</span><br><span class="line">D</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#123;&#39;A&#39;: 65, &#39;B&#39;: 66, &#39;C&#39;: 67&#125;
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Write code to add D and its ascii value 68 to the dictionary</span></span><br><span class="line">D[<span class="string">&#x27;D&#x27;</span>] = <span class="number">68</span></span><br><span class="line">D</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&#123;&#39;A&#39;: 65, &#39;B&#39;: 66, &#39;C&#39;: 67, &#39;D&#39;: 68&#125;
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> D.items() :</span><br><span class="line">    print(k,v)</span><br></pre></td></tr></table></figure>
-
-<pre><code>A 65
-B 66
-C 67
-D 68
-</code></pre>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(v1, v2, v3, v4) = D.values()</span><br><span class="line">print(v1, v2, v3, v4)</span><br></pre></td></tr></table></figure>
-
-<pre><code>65 66 67 68
-</code></pre>
-<h1 id="6-File-IO"><a href="#6-File-IO" class="headerlink" title="6. File IO"></a>6. File IO</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;sample.csv&quot;</span>, <span class="string">&quot;w&quot;</span>, newline=<span class="string">&#x27;&#x27;</span>) <span class="keyword">as</span> f :</span><br><span class="line">    writer = csv.writer(f)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>) :</span><br><span class="line">        t=[random.randint(<span class="number">1</span>,<span class="number">11</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>)]</span><br><span class="line">        print(t)</span><br><span class="line">        writer.writerow(t)</span><br><span class="line">        </span><br><span class="line"><span class="comment"># Write code to read in sample.csv and print all numbers in one line of output, separated by space</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;sample.csv&quot;</span>) <span class="keyword">as</span> f :</span><br><span class="line">    reader = csv.reader(f)</span><br><span class="line">    <span class="keyword">for</span> L <span class="keyword">in</span> reader :</span><br><span class="line">        print(<span class="string">f&quot;=<span class="subst">&#123;L&#125;</span>=&quot;</span>)</span><br><span class="line">        print(<span class="string">&quot; &quot;</span>.join(L))</span><br><span class="line">    print()</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Write code to read in sample.csv as a text file (without using csv reader) </span></span><br><span class="line"><span class="comment"># and print all numbers in one line of output, separated by space</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;sample.csv&quot;</span>) <span class="keyword">as</span> f :</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> f :</span><br><span class="line">        print(line.rstrip().replace(<span class="string">&#x27;,&#x27;</span>,<span class="string">&#x27; &#x27;</span>), end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    print()</span><br></pre></td></tr></table></figure>
-
-<pre><code>[3, 2, 9, 5]
-[4, 11, 7, 5]
-[11, 6, 9, 5]
-=[&#39;3&#39;, &#39;2&#39;, &#39;9&#39;, &#39;5&#39;]=
-3 2 9 5
-=[&#39;4&#39;, &#39;11&#39;, &#39;7&#39;, &#39;5&#39;]=
-4 11 7 5
-=[&#39;11&#39;, &#39;6&#39;, &#39;9&#39;, &#39;5&#39;]=
-11 6 9 5
-
-3 2 9 5 4 11 7 5 11 6 9 5 
-</code></pre>
-]]></content>
-      <categories>
-        <category>专业技术</category>
-        <category>python</category>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>字典数据</tag>
       </tags>
   </entry>
 </search>
