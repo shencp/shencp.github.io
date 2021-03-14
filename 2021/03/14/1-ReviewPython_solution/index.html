@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shencp.gitee.io","root":"/blog/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="** Review Python Basics and Intro to Jupyter Notebook ** Optional Reading: Python Data Science Handbook, Ch. 1: IPython">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python机器学习--001 python基础">
+<meta property="og:url" content="https://shencp.gitee.io/blog/2021/03/14/1-ReviewPython_solution/index.html">
+<meta property="og:site_name" content="传朋 | 弗一">
+<meta property="og:description" content="** Review Python Basics and Intro to Jupyter Notebook ** Optional Reading: Python Data Science Handbook, Ch. 1: IPython">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-14T13:27:50.000Z">
+<meta property="article:modified_time" content="2021-03-14T13:33:13.337Z">
+<meta property="article:author" content="弗一">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="字典数据">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://shencp.gitee.io/blog/2021/03/14/1-ReviewPython_solution/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>python机器学习--001 python基础 | 传朋 | 弗一</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">传朋 | 弗一</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">察在知行，驻看清楚。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首页">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-归档">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-标签">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-分类">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-关于我">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于我</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://shencp.gitee.io/blog/2021/03/14/1-ReviewPython_solution/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.nlark.com/yuque/0/2020/jpeg/584886/1587300596631-de936163-10ea-4d85-ab15-b493b8d5c84b.jpeg">
+      <meta itemprop="name" content="弗一">
+      <meta itemprop="description" content="万物皆有裂缝，那是光透入的地方。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="传朋 | 弗一">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python机器学习--001 python基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-14 21:27:50 / 修改时间：21:33:13" itemprop="dateCreated datePublished" datetime="2021-03-14T21:27:50+08:00">2021-03-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E4%B8%93%E4%B8%9A%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">专业技术</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E4%B8%93%E4%B8%9A%E6%8A%80%E6%9C%AF/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E4%B8%93%E4%B8%9A%E6%8A%80%E6%9C%AF/python/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer" />
+
+
+<p>** Review Python Basics and Intro to Jupyter Notebook **</p>
+<p>Optional Reading: Python Data Science Handbook, Ch. 1: IPython</p>
+<span id="more"></span>
+<h1 id="1-Numbers-and-strings"><a href="#1-Numbers-and-strings" class="headerlink" title="1. Numbers and strings"></a>1. Numbers and strings</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">10</span></span><br><span class="line">b = <span class="number">3</span></span><br><span class="line">c = <span class="string">&#x27;5&#x27;</span></span><br><span class="line"><span class="comment"># Add code to print the result of a multiply with b</span></span><br><span class="line">print(a*b)</span><br><span class="line"><span class="comment"># Add code to print the result of c replicated b times</span></span><br><span class="line">print(c*b)</span><br><span class="line"><span class="comment"># Add code to print the result of a added with b</span></span><br><span class="line">print(a+b)</span><br><span class="line"><span class="comment"># Add code to print the result of c concatenate with b</span></span><br><span class="line">print(c+<span class="built_in">str</span>(b))</span><br></pre></td></tr></table></figure>
+
+<pre><code>30
+555
+13
+53
+</code></pre>
+<h1 id="2-Decisions-and-loops"><a href="#2-Decisions-and-loops" class="headerlink" title="2. Decisions and loops"></a>2. Decisions and loops</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Add code to create a loop to keep asking the user for a number until the user presses the Enter key only.</span></span><br><span class="line"><span class="comment"># After the user enters 0, print number of positive numbers and number of negative numbers entered.</span></span><br><span class="line"><span class="comment"># Note that 0 is neither positive nor negative</span></span><br><span class="line"></span><br><span class="line">num = <span class="built_in">input</span>(<span class="string">&quot;Enter a number: &quot;</span>)</span><br><span class="line">pos = neg = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">len</span>(num) != <span class="number">0</span> :<span class="comment"># 一种验证方式</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">float</span>(num) &lt; <span class="number">0</span> :</span><br><span class="line">        neg += <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">float</span>(num) &gt; <span class="number">0</span> :</span><br><span class="line">        pos += <span class="number">1</span></span><br><span class="line">    num = <span class="built_in">input</span>(<span class="string">&quot;Enter a number: &quot;</span>)</span><br><span class="line">print(<span class="string">&quot;Positive:&quot;</span>, pos, <span class="string">&quot; Negative:&quot;</span>, neg)</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-Functions"><a href="#3-Functions" class="headerlink" title="3. Functions"></a>3. Functions</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pp</span>(<span class="params">*args</span>):</span><span class="comment"># 组团获取参数的方法</span></span><br><span class="line">    print(args,<span class="built_in">type</span>(args))</span><br><span class="line">pp(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>(1, 2, 3) &lt;class &#39;tuple&#39;&gt;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Write a function add, given the function calls below:</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">*args</span>):</span>     <span class="comment"># * packs all input args into a tuple named args</span></span><br><span class="line">    <span class="keyword">return</span>(<span class="built_in">sum</span>(args))</span><br><span class="line"></span><br><span class="line">print(add(<span class="number">1</span>, <span class="number">2</span>))   <span class="comment"># print: 3</span></span><br><span class="line">print(add())       <span class="comment"># print: 0</span></span><br><span class="line">print(add(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">17</span>,<span class="number">1</span>))   <span class="comment"># print: 153</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>3
+0
+154
+</code></pre>
+<h1 id="4-Containers-or-iterables"><a href="#4-Containers-or-iterables" class="headerlink" title="4. Containers or iterables"></a>4. Containers or iterables</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Use a container to store the characters of the string &quot;hello&quot;  </span></span><br><span class="line"><span class="comment"># What type of container would you use? Why?</span></span><br><span class="line">t = <span class="built_in">tuple</span>(<span class="string">&quot;hello&quot;</span>)    <span class="comment"># tuple is immutable and faster to access than list</span></span><br><span class="line">print(t+<span class="built_in">tuple</span>(<span class="string">&#x27;1&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<pre><code>(&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39;1&#39;)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Use a container to store the characters of the string &quot;hello&quot;</span></span><br><span class="line"><span class="comment"># Then add an exclamation point to the container, after the letter &#x27;o&#x27;, and capitalize the &#x27;h&#x27;</span></span><br><span class="line">L = <span class="built_in">list</span>(<span class="string">&quot;hello&quot;</span>)   <span class="comment"># need to use a list here because we need to change values</span></span><br><span class="line">L.append(<span class="string">&#x27;!&#x27;</span>)</span><br><span class="line">L[<span class="number">0</span>] = <span class="string">&#x27;H&#x27;</span></span><br><span class="line">print(L)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[&#39;H&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39;!&#39;]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Use a container to store the unique characters of the string &quot;hello&quot; </span></span><br><span class="line"><span class="comment"># unique characters means only h,e,l,o should be stored</span></span><br><span class="line">S = <span class="built_in">set</span>(<span class="string">&quot;hello&quot;</span>)    <span class="comment"># a set only contains unique elements, but there&#x27;s no order</span></span><br><span class="line">print(S)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;&#39;e&#39;, &#39;h&#39;, &#39;l&#39;, &#39;o&#39;&#125;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Use a container to store the unique characters of the string &quot;hello&quot; </span></span><br><span class="line"><span class="comment"># and its ascii value. Example: &#x27;h&#x27; should be stored with the ascii value 104</span></span><br><span class="line">D = <span class="built_in">dict</span>(<span class="built_in">zip</span>(<span class="string">&#x27;hello&#x27;</span>, [<span class="built_in">ord</span>(c) <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">&#x27;hello&#x27;</span>]))<span class="comment"># 两个list压缩为字典--注意有set的中间操作</span></span><br><span class="line">print(D)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;&#39;h&#39;: 104, &#39;e&#39;: 101, &#39;l&#39;: 108, &#39;o&#39;: 111&#125;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># another solution from several people in class:   </span></span><br><span class="line">dict_ = &#123;char:<span class="built_in">ord</span>(char) <span class="keyword">for</span> char <span class="keyword">in</span> <span class="string">&#x27;hello&#x27;</span>&#125;</span><br><span class="line">print(dict_)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;&#39;h&#39;: 104, &#39;e&#39;: 101, &#39;l&#39;: 108, &#39;o&#39;: 111&#125;
+</code></pre>
+<h1 id="5-Accessing-lists"><a href="#5-Accessing-lists" class="headerlink" title="5. Accessing lists"></a>5. Accessing lists</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">L = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">21</span>))</span><br><span class="line"><span class="comment"># Write code to print the first half of the list</span></span><br><span class="line">print(L[:<span class="number">10</span>])</span><br><span class="line"><span class="comment"># Write code to print the last 3 elements of the list</span></span><br><span class="line">print(L[-<span class="number">3</span>:])</span><br><span class="line"><span class="comment"># Write code to print every element of the list, all on one line, separated by space</span></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> L :</span><br><span class="line">    print(num, end=<span class="string">&quot; &quot;</span>)</span><br><span class="line">print()</span><br><span class="line"><span class="comment"># Write code to negate every other element of the list </span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(L),<span class="number">2</span>) :</span><br><span class="line">    L[i] *= -<span class="number">1</span></span><br><span class="line">print(L)</span><br><span class="line"></span><br><span class="line"><span class="comment"># from class discussion: negate all elements that are even in L</span></span><br><span class="line">list_neg =[-i <span class="keyword">if</span> i%<span class="number">2</span>==<span class="number">0</span> <span class="keyword">else</span> i   <span class="keyword">for</span> i <span class="keyword">in</span> L]</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[18, 19, 20]
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 
+[1, -2, 3, -4, 5, -6, 7, -8, 9, -10, 11, -12, 13, -14, 15, -16, 17, -18, 19, -20]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Write code to create a list of 20 elements and initialize it to 0</span></span><br><span class="line">L = [<span class="number">0</span>]*<span class="number">20</span></span><br><span class="line">print(L)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print([<span class="number">1</span>]*<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Write code to create a list of 10 lists, each inner list contains 20 elements, initialized to 5.</span></span><br><span class="line"><span class="comment"># print the list of lists as 10 rows of 20 columns</span></span><br><span class="line">L = [[<span class="number">5</span>]*<span class="number">20</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)] <span class="comment"># 扩展数组的一种方式</span></span><br><span class="line">L </span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[[5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># from class discussion:</span></span><br><span class="line">L = [[<span class="number">5</span>]*<span class="number">20</span>] * <span class="number">10</span></span><br><span class="line"><span class="comment"># will not produce the same list of 10 inner lists.</span></span><br><span class="line"><span class="comment"># Instead it will produce a list of 10 references, each reference</span></span><br><span class="line"><span class="comment"># points to the same and only one inner list.</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[[5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+ [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">L = [random.randint(<span class="number">1</span>,<span class="number">10</span>)]*<span class="number">8</span> <span class="comment"># 单次激发,单次扩展</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[8, 8, 8, 8, 8, 8, 8, 8]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">random.seed()</span><br><span class="line">L = [random.randint(<span class="number">1</span>,<span class="number">10</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>)] <span class="comment"># 逐次激发</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[7, 1, 3, 8, 1, 3, 9, 4]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Write code to create a new list which is made of even values from L</span></span><br><span class="line">L2 = [n <span class="keyword">for</span> n <span class="keyword">in</span> L <span class="keyword">if</span> n%<span class="number">1</span> == <span class="number">0</span>]</span><br><span class="line"><span class="comment"># Write code to print the new list, with the elemens sorted in descending order</span></span><br><span class="line">print(<span class="built_in">sorted</span>(L2,reverse=<span class="literal">True</span>))</span><br><span class="line"><span class="comment"># Write code to print True or False, depending on whether the value 4 is in the new list</span></span><br><span class="line">print(<span class="number">4</span> <span class="keyword">in</span> L2)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[9, 8, 7, 4, 3, 3, 1, 1]
+True
+</code></pre>
+<h1 id="6-Accessing-dictionaries-and-tuples"><a href="#6-Accessing-dictionaries-and-tuples" class="headerlink" title="6. Accessing dictionaries and tuples"></a>6. Accessing dictionaries and tuples</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Write a dictionary comprehension to store the letters A,B,C as keys and their ascii numbers as values</span></span><br><span class="line">D = &#123;c:<span class="built_in">ord</span>(c) <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">&quot;ABC&quot;</span>&#125;</span><br><span class="line">D</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&#123;&#39;A&#39;: 65, &#39;B&#39;: 66, &#39;C&#39;: 67&#125;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Write code to add D and its ascii value 68 to the dictionary</span></span><br><span class="line">D[<span class="string">&#x27;D&#x27;</span>] = <span class="number">68</span></span><br><span class="line">D</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>&#123;&#39;A&#39;: 65, &#39;B&#39;: 66, &#39;C&#39;: 67, &#39;D&#39;: 68&#125;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> D.items() :</span><br><span class="line">    print(k,v)</span><br></pre></td></tr></table></figure>
+
+<pre><code>A 65
+B 66
+C 67
+D 68
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(v1, v2, v3, v4) = D.values()</span><br><span class="line">print(v1, v2, v3, v4)</span><br></pre></td></tr></table></figure>
+
+<pre><code>65 66 67 68
+</code></pre>
+<h1 id="6-File-IO"><a href="#6-File-IO" class="headerlink" title="6. File IO"></a>6. File IO</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;sample.csv&quot;</span>, <span class="string">&quot;w&quot;</span>, newline=<span class="string">&#x27;&#x27;</span>) <span class="keyword">as</span> f :</span><br><span class="line">    writer = csv.writer(f)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>) :</span><br><span class="line">        t=[random.randint(<span class="number">1</span>,<span class="number">11</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>)]</span><br><span class="line">        print(t)</span><br><span class="line">        writer.writerow(t)</span><br><span class="line">        </span><br><span class="line"><span class="comment"># Write code to read in sample.csv and print all numbers in one line of output, separated by space</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;sample.csv&quot;</span>) <span class="keyword">as</span> f :</span><br><span class="line">    reader = csv.reader(f)</span><br><span class="line">    <span class="keyword">for</span> L <span class="keyword">in</span> reader :</span><br><span class="line">        print(<span class="string">f&quot;=<span class="subst">&#123;L&#125;</span>=&quot;</span>)</span><br><span class="line">        print(<span class="string">&quot; &quot;</span>.join(L))</span><br><span class="line">    print()</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Write code to read in sample.csv as a text file (without using csv reader) </span></span><br><span class="line"><span class="comment"># and print all numbers in one line of output, separated by space</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;sample.csv&quot;</span>) <span class="keyword">as</span> f :</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> f :</span><br><span class="line">        print(line.rstrip().replace(<span class="string">&#x27;,&#x27;</span>,<span class="string">&#x27; &#x27;</span>), end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    print()</span><br></pre></td></tr></table></figure>
+
+<pre><code>[3, 2, 9, 5]
+[4, 11, 7, 5]
+[11, 6, 9, 5]
+=[&#39;3&#39;, &#39;2&#39;, &#39;9&#39;, &#39;5&#39;]=
+3 2 9 5
+=[&#39;4&#39;, &#39;11&#39;, &#39;7&#39;, &#39;5&#39;]=
+4 11 7 5
+=[&#39;11&#39;, &#39;6&#39;, &#39;9&#39;, &#39;5&#39;]=
+11 6 9 5
+
+3 2 9 5 4 11 7 5 11 6 9 5 
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/python/" rel="tag"># python</a>
+              <a href="/blog/tags/%E5%AD%97%E5%85%B8%E6%95%B0%E6%8D%AE/" rel="tag"># 字典数据</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2020/12/23/PlantUML%E5%B7%A5%E5%85%B7%E4%B9%A6%E4%B9%8B%E4%B8%80%EF%BC%88%E5%BA%8F%E5%88%97%E5%9B%BE_%E7%94%A8%E4%BE%8B%E5%9B%BE_%E7%B1%BB%E5%9B%BE%EF%BC%89/" rel="prev" title="PlantUML工具书之一（序列图|用例图|类图）">
+      <i class="fa fa-chevron-left"></i> PlantUML工具书之一（序列图|用例图|类图）
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Numbers-and-strings"><span class="nav-text">1. Numbers and strings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Decisions-and-loops"><span class="nav-text">2. Decisions and loops</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Functions"><span class="nav-text">3. Functions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Containers-or-iterables"><span class="nav-text">4. Containers or iterables</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Accessing-lists"><span class="nav-text">5. Accessing lists</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Accessing-dictionaries-and-tuples"><span class="nav-text">6. Accessing dictionaries and tuples</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-File-IO"><span class="nav-text">6. File IO</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="弗一"
+      src="https://cdn.nlark.com/yuque/0/2020/jpeg/584886/1587300596631-de936163-10ea-4d85-ab15-b493b8d5c84b.jpeg">
+  <p class="site-author-name" itemprop="name">弗一</p>
+  <div class="site-description" itemprop="description">万物皆有裂缝，那是光透入的地方。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+      
+           <div>
+              <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="210" height="110" src="//music.163.com/outchain/player?type=2&id=529940317&auto=1&height=66"></iframe>
+           </div>
+       
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">弗一</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/muse.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
