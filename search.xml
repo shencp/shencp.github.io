@@ -43,57 +43,6 @@
       </tags>
   </entry>
   <entry>
-    <title>autogen.sh的使用</title>
-    <url>/2020/08/07/autogen.sh%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-
-<h1 id="Linux工具之autoconf和automake"><a href="#Linux工具之autoconf和automake" class="headerlink" title="Linux工具之autoconf和automake"></a>Linux工具之autoconf和automake</h1><span id="more"></span>
-
-<hr>
-<hr>
-<h2 id="●-1-autoscan-–-在-hello-c所在目录"><a href="#●-1-autoscan-–-在-hello-c所在目录" class="headerlink" title="● 1 autoscan – 在 hello.c所在目录"></a>● 1 <strong>autoscan – 在 hello.c所在目录</strong></h2><p>**┗ **autoscan.log<br>┗ configure.scan<br>┗ mv configure.scan configure.ac<br>┗ edit configure,ac</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#                                               -*- Autoconf -*-</span><br><span class="line"># Process this file with autoconf to produce a configure script.</span><br><span class="line"></span><br><span class="line">AC_PREREQ([2.69])</span><br><span class="line">AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])</span><br><span class="line"></span><br><span class="line"># ● add it</span><br><span class="line">AM_INIT_AUTOMAKE</span><br><span class="line"></span><br><span class="line"># ● change it </span><br><span class="line">AC_CONFIG_SRCDIR(hello.c)</span><br><span class="line">AC_CONFIG_HEADERS([config.h])</span><br><span class="line"></span><br><span class="line"># Checks for programs.</span><br><span class="line">AC_PROG_CC</span><br><span class="line"></span><br><span class="line"># Checks for libraries.</span><br><span class="line"></span><br><span class="line"># Checks for header files.</span><br><span class="line"></span><br><span class="line"># Checks for typedefs, structures, and compiler characteristics.</span><br><span class="line"></span><br><span class="line"># Checks for library functions.</span><br><span class="line"></span><br><span class="line"># add it </span><br><span class="line">AC_CONFIG_FILES([Makefile]) </span><br><span class="line"></span><br><span class="line">AC_OUTPUT</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p> </p>
-<h2 id="●-2-makefile-am-–-创建添加如下信息"><a href="#●-2-makefile-am-–-创建添加如下信息" class="headerlink" title="● 2 makefile.am – 创建添加如下信息"></a>● 2 makefile.am – 创建添加如下信息</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AUTOMAKE_OPTIONS&#x3D;foreign</span><br><span class="line">bin_PROGRAMS&#x3D;helloworld</span><br><span class="line">helloworld_SOURCES&#x3D;hello.c</span><br></pre></td></tr></table></figure>
-<p>┗ bin_<strong>PROGRAMS</strong> 指定可执行输出文件<br>┗ helloworld_**SOURCES **制定输入的原文件</p>
-<h2 id="●-3-执行aclocal"><a href="#●-3-执行aclocal" class="headerlink" title="● 3 执行aclocal"></a>● 3 执行aclocal</h2><p>├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── requests<br>│   └── traces.0</p>
-<h2 id="●-4-执行autoheader-with-sudo"><a href="#●-4-执行autoheader-with-sudo" class="headerlink" title="● 4 执行autoheader | with sudo"></a>● 4 执行autoheader | with sudo</h2><p>├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── <strong>output.1</strong><br>│   ├── requests<br>│   ├── traces.0<br>│   └── <strong>traces.1</strong><br>├── autoscan.log<br>├── <strong>config.h.in</strong></p>
-<p>:::warning<br>autom4te: cannot open autom4te.cache/requests: Permission denied<br>autoheader: ‘/usr/bin/autom4te’ failed with exit status: 1</p>
-<hr>
-<p>sudo XXX<br>:::</p>
-<h2 id="●-5-执行-autoconf-with-sudo"><a href="#●-5-执行-autoconf-with-sudo" class="headerlink" title="● 5 执行**autoconf | with sudo **"></a>● 5 执行**autoconf | with sudo **</h2><p>├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── output.1<br>│   ├── requests<br>│   ├── traces.0<br>│   └── traces.1<br>├── autoscan.log<br>├── config.h.in<br>├── <strong>configure</strong><br>├── configure.ac<br>├── main.c<br>└── Makefile.am</p>
-<h2 id="●-6-执行automake-–add-missing-with-sudo"><a href="#●-6-执行automake-–add-missing-with-sudo" class="headerlink" title="● 6 执行automake –add-missing | with sudo"></a>● 6 执行<strong>automake –add-missing | with sudo</strong></h2><p>**├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── output.1<br>│   ├── requests<br>│   ├── traces.0<br>│   └── traces.1<br>├── autoscan.log<br>├── <strong>compile -&gt; /usr/share/automake-1.16/compile</strong><br>├── config.h.in<br>├── configure<br>├── configure.ac<br>├── <strong>depcomp -&gt; /usr/share/automake-1.16/depcomp</strong><br>├── <strong>install-sh -&gt; /usr/share/automake-1.16/install-sh</strong><br>├── main.c<br>├── Makefile.am<br>├── <strong>Makefile.in</strong><br>└── <strong>missing -&gt; /usr/share/automake-1.16/missing</strong></p>
-<hr>
-<p>经过以上操作我们就可以像一般安装程序一config –&gt; make –&gt; make install</p>
-<p><img src="https://cdn.nlark.com/yuque/__puml/0e86771c8c5cc132e22ee57402c81cd7.svg#lake_card_v2=eyJjb2RlIjoiQHN0YXJ0dW1sXG5zdGFydFxuOmF1dG9zY2FuO1xubm90ZSBsZWZ0OuS6p-eUn2NvbmZpZ3VyZS5zY2FuXG46bXYgY29uZmlndXJlLnNjYW4gY29uZmlndXJlLmFjO1xuOua3u-WKoOW_heimgemAiemhuTtcbm5vdGUgcmlnaHRcbkFNX0lOSVRfQVVUT01BS0VcbkFDX0NPTkZJR19GSUxFUyhbTWFrZWZpbGVdKVxuZW5kIG5vdGVcbjrliJvlu7pNYWtlZmlsZS5hbTtcbm5vdGUgbGVmdFxuQVVUT01BS0VfT1BUSU9OUz1mb3JlaWduXG5iaW5fUFJPR1JBTVM9aGVsbG93b3JsZFxuaGVsbG93b3JsZF9TT1VSQ0VTPWhlbGxvLmNcbmVuZCBub3RlXG46c3VkbyBhY2xvY2FsO1xuOnN1ZG8gYXV0b2hlYWRlcjtcbjpzdWRvIGF1dG9jb25mO1xuOnN1ZG8gYXV0b21ha2UgLS1hZGQtbWlzc2luZztcbnN0b3BcbkBlbmR1bWwiLCJ0eXBlIjoicHVtbCIsImlkIjoibm9ZMUMiLCJ1cmwiOiJodHRwczovL2Nkbi5ubGFyay5jb20veXVxdWUvX19wdW1sLzBlODY3NzFjOGM1Y2MxMzJlMjJlZTU3NDAyYzgxY2Q3LnN2ZyIsImNhcmQiOiJkaWFncmFtIn0="></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> .&#x2F;configure</span><br><span class="line"> make</span><br><span class="line"> make install</span><br><span class="line"> ┗  &#x2F;usr&#x2F;bin&#x2F;install -c helloworld &#39;&#x2F;usr&#x2F;local&#x2F;bin&#39;</span><br><span class="line">这样直接可以直接执行，不用带上绝对路径</span><br></pre></td></tr></table></figure>
-<p>**</p>
-<h1 id="autogen-sh-登场"><a href="#autogen-sh-登场" class="headerlink" title="autogen.sh 登场"></a>autogen.sh 登场</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;sh</span><br><span class="line">echo </span><br><span class="line">echo ... helloworld autogen ...</span><br><span class="line">echo </span><br><span class="line"> </span><br><span class="line">MISSING&#x3D;&quot;&quot;</span><br><span class="line"> </span><br><span class="line">env aclocal --version &gt;&#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	ACLOCAL&#x3D;aclocal</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING aclocal&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env autoconf --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	AUTOCONF&#x3D;autoconf</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING autoconf&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env autoheader --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ]; then</span><br><span class="line">	AUTOHEADER&#x3D;autoheader</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING autoconf&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env automake --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	AUTOMAKE&#x3D;automake</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING automake&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env libtoolize --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	TOOL&#x3D;libtoolize</span><br><span class="line">else </span><br><span class="line">	env glibtoolize --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">	if [$? -eq 0 ];then</span><br><span class="line">		TOOL&#x3D;glibtoolize</span><br><span class="line">	else</span><br><span class="line">		MISSING&#x3D;&quot;$MISSING libtoolize&#x2F;glibtoolize&quot;</span><br><span class="line">	fi</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env tar -cf &#x2F;dev&#x2F;null &#x2F;dev&#x2F;null &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -ne 0 ];then</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING tar&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">if [ &quot;x$MISSING&quot; !&#x3D; &quot;x&quot; ];then</span><br><span class="line">	echo &quot;ABORTING.&quot;</span><br><span class="line">	echo </span><br><span class="line">	echo &quot;The following build tools are missing:&quot;</span><br><span class="line">	echo </span><br><span class="line">	</span><br><span class="line">	for pkg in $MISSING;do</span><br><span class="line">		echo &quot; *  $pkg&quot;</span><br><span class="line">	done</span><br><span class="line">	</span><br><span class="line">	echo </span><br><span class="line">	echo &quot;please install them and try again.&quot;</span><br><span class="line">	echo </span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">echo Running $ACLOCAL</span><br><span class="line">$ACLOCAL</span><br><span class="line"> </span><br><span class="line">echo Running $AUTOHEADER</span><br><span class="line">$AUTOHEADER</span><br><span class="line">	</span><br><span class="line">echo Running $TOOL</span><br><span class="line">$TOOL</span><br><span class="line">	</span><br><span class="line">echo Running $AUTOCONF</span><br><span class="line">$AUTOCONF</span><br><span class="line"> </span><br><span class="line">echo Running $AUTOMAKE</span><br><span class="line">$AUTOMAKE --add-missing --force-missing --copy --foreign</span><br><span class="line"> </span><br><span class="line">echo </span><br><span class="line">echo &quot;Please proceed with configuring, compiling and installing&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="●-目录结构"><a href="#●-目录结构" class="headerlink" title="● 目录结构"></a>● 目录结构</h2><p>├── autogen.sh<br>├── configure.ac<br>├── Makefile.am<br>└── src<br>   ├── hello.c<br>   └── Makefile.am<br>根目录的configure ac</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#                                               -*- Autoconf -*-</span><br><span class="line"># Process this file with autoconf to produce a configure script.</span><br><span class="line"></span><br><span class="line">AC_PREREQ([2.69])</span><br><span class="line">AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])</span><br><span class="line">AC_CONFIG_SRCDIR([src&#x2F;hello.c])</span><br><span class="line">AC_CONFIG_HEADERS([config.h])</span><br><span class="line"></span><br><span class="line"># ● add</span><br><span class="line">AM_INIT_AUTOMAKE(helloworld,1.0)</span><br><span class="line"></span><br><span class="line"># ● add</span><br><span class="line">AC_CONFIG_FILES([Makefile</span><br><span class="line">                src&#x2F;Makefile])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Checks for programs.</span><br><span class="line">AC_PROG_CC</span><br><span class="line"></span><br><span class="line"># Checks for libraries.</span><br><span class="line"></span><br><span class="line"># Checks for header files.</span><br><span class="line"></span><br><span class="line"># Checks for typedefs, structures, and compiler characteristics.</span><br><span class="line"></span><br><span class="line"># Checks for library functions.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">AC_OUTPUT</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>**</p>
-<h2 id="●-根目录的Makefile-am"><a href="#●-根目录的Makefile-am" class="headerlink" title="● 根目录的Makefile.am"></a>● 根目录的Makefile.am</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SUBDIRS &#x3D; src</span><br><span class="line">#ACLOCAL_AMFLAGS &#x3D; -I m4</span><br><span class="line"> </span><br><span class="line">.PHONY:clean</span><br><span class="line">clean:	distclean</span><br><span class="line">	find . -name Makefile.in -exec rm -rf &#123;&#125; \;</span><br><span class="line">	rm -rf autom4te.cache</span><br><span class="line">	rm -f aclocal.m4 autoscan.log config.h config.log config.sub configure depcomp Makefile compile config.h.in config.status install-sh missing stamp-h1 config.guess config.h.in~ ltmain.sh</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="●-src目录下的Makefile-am"><a href="#●-src目录下的Makefile-am" class="headerlink" title="● src目录下的Makefile.am"></a>● src目录下的Makefile.am</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AUTOMAKE_OPTIONS&#x3D;foreign</span><br><span class="line">bin_PROGRAMS&#x3D;helloworld</span><br><span class="line">helloworld_SOURCES&#x3D;hello.c</span><br><span class="line">helloworld_LDADD&#x3D;</span><br><span class="line">LIBS&#x3D;-lm</span><br><span class="line">INCLUDE&#x3D;-I&#x2F;usr&#x2F;include</span><br></pre></td></tr></table></figure>
-
-
-<p>:::warning<br>AC_CONFIG_FILES([Makefile<br>               src/Makefile])<br>要让Makefile.am遍地开花<br>:::</p>
-<h1 id="【参考资料】"><a href="#【参考资料】" class="headerlink" title="【参考资料】"></a>【参考资料】</h1><hr>
-<ul>
-<li><a href="https://blog.csdn.net/asbhunan129/article/details/87921434">Linux工具之autoconf和automake</a></li>
-<li><a href="https://www.ibm.com/developerworks/cn/linux/l-makefile/">例解 autoconf 和 automake 生成 Makefile 文件</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>autogen</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>python机器学习--001 python基础</title>
     <url>/2021/03/14/1-ReviewPython_solution/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -255,6 +204,57 @@ D 68
       <tags>
         <tag>python</tag>
         <tag>字典数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>autogen.sh的使用</title>
+    <url>/2020/08/07/autogen.sh%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+
+<h1 id="Linux工具之autoconf和automake"><a href="#Linux工具之autoconf和automake" class="headerlink" title="Linux工具之autoconf和automake"></a>Linux工具之autoconf和automake</h1><span id="more"></span>
+
+<hr>
+<hr>
+<h2 id="●-1-autoscan-–-在-hello-c所在目录"><a href="#●-1-autoscan-–-在-hello-c所在目录" class="headerlink" title="● 1 autoscan – 在 hello.c所在目录"></a>● 1 <strong>autoscan – 在 hello.c所在目录</strong></h2><p>**┗ **autoscan.log<br>┗ configure.scan<br>┗ mv configure.scan configure.ac<br>┗ edit configure,ac</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#                                               -*- Autoconf -*-</span><br><span class="line"># Process this file with autoconf to produce a configure script.</span><br><span class="line"></span><br><span class="line">AC_PREREQ([2.69])</span><br><span class="line">AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])</span><br><span class="line"></span><br><span class="line"># ● add it</span><br><span class="line">AM_INIT_AUTOMAKE</span><br><span class="line"></span><br><span class="line"># ● change it </span><br><span class="line">AC_CONFIG_SRCDIR(hello.c)</span><br><span class="line">AC_CONFIG_HEADERS([config.h])</span><br><span class="line"></span><br><span class="line"># Checks for programs.</span><br><span class="line">AC_PROG_CC</span><br><span class="line"></span><br><span class="line"># Checks for libraries.</span><br><span class="line"></span><br><span class="line"># Checks for header files.</span><br><span class="line"></span><br><span class="line"># Checks for typedefs, structures, and compiler characteristics.</span><br><span class="line"></span><br><span class="line"># Checks for library functions.</span><br><span class="line"></span><br><span class="line"># add it </span><br><span class="line">AC_CONFIG_FILES([Makefile]) </span><br><span class="line"></span><br><span class="line">AC_OUTPUT</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="●-2-makefile-am-–-创建添加如下信息"><a href="#●-2-makefile-am-–-创建添加如下信息" class="headerlink" title="● 2 makefile.am – 创建添加如下信息"></a>● 2 makefile.am – 创建添加如下信息</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AUTOMAKE_OPTIONS&#x3D;foreign</span><br><span class="line">bin_PROGRAMS&#x3D;helloworld</span><br><span class="line">helloworld_SOURCES&#x3D;hello.c</span><br></pre></td></tr></table></figure>
+<p>┗ bin_<strong>PROGRAMS</strong> 指定可执行输出文件<br>┗ helloworld_**SOURCES **制定输入的原文件</p>
+<h2 id="●-3-执行aclocal"><a href="#●-3-执行aclocal" class="headerlink" title="● 3 执行aclocal"></a>● 3 执行aclocal</h2><p>├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── requests<br>│   └── traces.0</p>
+<h2 id="●-4-执行autoheader-with-sudo"><a href="#●-4-执行autoheader-with-sudo" class="headerlink" title="● 4 执行autoheader | with sudo"></a>● 4 执行autoheader | with sudo</h2><p>├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── <strong>output.1</strong><br>│   ├── requests<br>│   ├── traces.0<br>│   └── <strong>traces.1</strong><br>├── autoscan.log<br>├── <strong>config.h.in</strong></p>
+<p>:::warning<br>autom4te: cannot open autom4te.cache/requests: Permission denied<br>autoheader: ‘/usr/bin/autom4te’ failed with exit status: 1</p>
+<hr>
+<p>sudo XXX<br>:::</p>
+<h2 id="●-5-执行-autoconf-with-sudo"><a href="#●-5-执行-autoconf-with-sudo" class="headerlink" title="● 5 执行**autoconf | with sudo **"></a>● 5 执行**autoconf | with sudo **</h2><p>├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── output.1<br>│   ├── requests<br>│   ├── traces.0<br>│   └── traces.1<br>├── autoscan.log<br>├── config.h.in<br>├── <strong>configure</strong><br>├── configure.ac<br>├── main.c<br>└── Makefile.am</p>
+<h2 id="●-6-执行automake-–add-missing-with-sudo"><a href="#●-6-执行automake-–add-missing-with-sudo" class="headerlink" title="● 6 执行automake –add-missing | with sudo"></a>● 6 执行<strong>automake –add-missing | with sudo</strong></h2><p>**├── aclocal.m4<br>├── autom4te.cache<br>│   ├── output.0<br>│   ├── output.1<br>│   ├── requests<br>│   ├── traces.0<br>│   └── traces.1<br>├── autoscan.log<br>├── <strong>compile -&gt; /usr/share/automake-1.16/compile</strong><br>├── config.h.in<br>├── configure<br>├── configure.ac<br>├── <strong>depcomp -&gt; /usr/share/automake-1.16/depcomp</strong><br>├── <strong>install-sh -&gt; /usr/share/automake-1.16/install-sh</strong><br>├── main.c<br>├── Makefile.am<br>├── <strong>Makefile.in</strong><br>└── <strong>missing -&gt; /usr/share/automake-1.16/missing</strong></p>
+<hr>
+<p>经过以上操作我们就可以像一般安装程序一config –&gt; make –&gt; make install</p>
+<p><img src="https://cdn.nlark.com/yuque/__puml/0e86771c8c5cc132e22ee57402c81cd7.svg#lake_card_v2=eyJjb2RlIjoiQHN0YXJ0dW1sXG5zdGFydFxuOmF1dG9zY2FuO1xubm90ZSBsZWZ0OuS6p-eUn2NvbmZpZ3VyZS5zY2FuXG46bXYgY29uZmlndXJlLnNjYW4gY29uZmlndXJlLmFjO1xuOua3u-WKoOW_heimgemAiemhuTtcbm5vdGUgcmlnaHRcbkFNX0lOSVRfQVVUT01BS0VcbkFDX0NPTkZJR19GSUxFUyhbTWFrZWZpbGVdKVxuZW5kIG5vdGVcbjrliJvlu7pNYWtlZmlsZS5hbTtcbm5vdGUgbGVmdFxuQVVUT01BS0VfT1BUSU9OUz1mb3JlaWduXG5iaW5fUFJPR1JBTVM9aGVsbG93b3JsZFxuaGVsbG93b3JsZF9TT1VSQ0VTPWhlbGxvLmNcbmVuZCBub3RlXG46c3VkbyBhY2xvY2FsO1xuOnN1ZG8gYXV0b2hlYWRlcjtcbjpzdWRvIGF1dG9jb25mO1xuOnN1ZG8gYXV0b21ha2UgLS1hZGQtbWlzc2luZztcbnN0b3BcbkBlbmR1bWwiLCJ0eXBlIjoicHVtbCIsImlkIjoibm9ZMUMiLCJ1cmwiOiJodHRwczovL2Nkbi5ubGFyay5jb20veXVxdWUvX19wdW1sLzBlODY3NzFjOGM1Y2MxMzJlMjJlZTU3NDAyYzgxY2Q3LnN2ZyIsImNhcmQiOiJkaWFncmFtIn0="></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> .&#x2F;configure</span><br><span class="line"> make</span><br><span class="line"> make install</span><br><span class="line"> ┗  &#x2F;usr&#x2F;bin&#x2F;install -c helloworld &#39;&#x2F;usr&#x2F;local&#x2F;bin&#39;</span><br><span class="line">这样直接可以直接执行，不用带上绝对路径</span><br></pre></td></tr></table></figure>
+<p>**</p>
+<h1 id="autogen-sh-登场"><a href="#autogen-sh-登场" class="headerlink" title="autogen.sh 登场"></a>autogen.sh 登场</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;sh</span><br><span class="line">echo </span><br><span class="line">echo ... helloworld autogen ...</span><br><span class="line">echo </span><br><span class="line"> </span><br><span class="line">MISSING&#x3D;&quot;&quot;</span><br><span class="line"> </span><br><span class="line">env aclocal --version &gt;&#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	ACLOCAL&#x3D;aclocal</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING aclocal&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env autoconf --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	AUTOCONF&#x3D;autoconf</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING autoconf&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env autoheader --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ]; then</span><br><span class="line">	AUTOHEADER&#x3D;autoheader</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING autoconf&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env automake --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	AUTOMAKE&#x3D;automake</span><br><span class="line">else</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING automake&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env libtoolize --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ];then</span><br><span class="line">	TOOL&#x3D;libtoolize</span><br><span class="line">else </span><br><span class="line">	env glibtoolize --version &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">	if [$? -eq 0 ];then</span><br><span class="line">		TOOL&#x3D;glibtoolize</span><br><span class="line">	else</span><br><span class="line">		MISSING&#x3D;&quot;$MISSING libtoolize&#x2F;glibtoolize&quot;</span><br><span class="line">	fi</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">env tar -cf &#x2F;dev&#x2F;null &#x2F;dev&#x2F;null &gt; &#x2F;dev&#x2F;null 2&gt;&amp;1</span><br><span class="line">if [ $? -ne 0 ];then</span><br><span class="line">	MISSING&#x3D;&quot;$MISSING tar&quot;</span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">if [ &quot;x$MISSING&quot; !&#x3D; &quot;x&quot; ];then</span><br><span class="line">	echo &quot;ABORTING.&quot;</span><br><span class="line">	echo </span><br><span class="line">	echo &quot;The following build tools are missing:&quot;</span><br><span class="line">	echo </span><br><span class="line">	</span><br><span class="line">	for pkg in $MISSING;do</span><br><span class="line">		echo &quot; *  $pkg&quot;</span><br><span class="line">	done</span><br><span class="line">	</span><br><span class="line">	echo </span><br><span class="line">	echo &quot;please install them and try again.&quot;</span><br><span class="line">	echo </span><br><span class="line">fi</span><br><span class="line"> </span><br><span class="line">echo Running $ACLOCAL</span><br><span class="line">$ACLOCAL</span><br><span class="line"> </span><br><span class="line">echo Running $AUTOHEADER</span><br><span class="line">$AUTOHEADER</span><br><span class="line">	</span><br><span class="line">echo Running $TOOL</span><br><span class="line">$TOOL</span><br><span class="line">	</span><br><span class="line">echo Running $AUTOCONF</span><br><span class="line">$AUTOCONF</span><br><span class="line"> </span><br><span class="line">echo Running $AUTOMAKE</span><br><span class="line">$AUTOMAKE --add-missing --force-missing --copy --foreign</span><br><span class="line"> </span><br><span class="line">echo </span><br><span class="line">echo &quot;Please proceed with configuring, compiling and installing&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="●-目录结构"><a href="#●-目录结构" class="headerlink" title="● 目录结构"></a>● 目录结构</h2><p>├── autogen.sh<br>├── configure.ac<br>├── Makefile.am<br>└── src<br>   ├── hello.c<br>   └── Makefile.am<br>根目录的configure ac</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#                                               -*- Autoconf -*-</span><br><span class="line"># Process this file with autoconf to produce a configure script.</span><br><span class="line"></span><br><span class="line">AC_PREREQ([2.69])</span><br><span class="line">AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])</span><br><span class="line">AC_CONFIG_SRCDIR([src&#x2F;hello.c])</span><br><span class="line">AC_CONFIG_HEADERS([config.h])</span><br><span class="line"></span><br><span class="line"># ● add</span><br><span class="line">AM_INIT_AUTOMAKE(helloworld,1.0)</span><br><span class="line"></span><br><span class="line"># ● add</span><br><span class="line">AC_CONFIG_FILES([Makefile</span><br><span class="line">                src&#x2F;Makefile])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Checks for programs.</span><br><span class="line">AC_PROG_CC</span><br><span class="line"></span><br><span class="line"># Checks for libraries.</span><br><span class="line"></span><br><span class="line"># Checks for header files.</span><br><span class="line"></span><br><span class="line"># Checks for typedefs, structures, and compiler characteristics.</span><br><span class="line"></span><br><span class="line"># Checks for library functions.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">AC_OUTPUT</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>**</p>
+<h2 id="●-根目录的Makefile-am"><a href="#●-根目录的Makefile-am" class="headerlink" title="● 根目录的Makefile.am"></a>● 根目录的Makefile.am</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SUBDIRS &#x3D; src</span><br><span class="line">#ACLOCAL_AMFLAGS &#x3D; -I m4</span><br><span class="line"> </span><br><span class="line">.PHONY:clean</span><br><span class="line">clean:	distclean</span><br><span class="line">	find . -name Makefile.in -exec rm -rf &#123;&#125; \;</span><br><span class="line">	rm -rf autom4te.cache</span><br><span class="line">	rm -f aclocal.m4 autoscan.log config.h config.log config.sub configure depcomp Makefile compile config.h.in config.status install-sh missing stamp-h1 config.guess config.h.in~ ltmain.sh</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="●-src目录下的Makefile-am"><a href="#●-src目录下的Makefile-am" class="headerlink" title="● src目录下的Makefile.am"></a>● src目录下的Makefile.am</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AUTOMAKE_OPTIONS&#x3D;foreign</span><br><span class="line">bin_PROGRAMS&#x3D;helloworld</span><br><span class="line">helloworld_SOURCES&#x3D;hello.c</span><br><span class="line">helloworld_LDADD&#x3D;</span><br><span class="line">LIBS&#x3D;-lm</span><br><span class="line">INCLUDE&#x3D;-I&#x2F;usr&#x2F;include</span><br></pre></td></tr></table></figure>
+
+
+<p>:::warning<br>AC_CONFIG_FILES([Makefile<br>               src/Makefile])<br>要让Makefile.am遍地开花<br>:::</p>
+<h1 id="【参考资料】"><a href="#【参考资料】" class="headerlink" title="【参考资料】"></a>【参考资料】</h1><hr>
+<ul>
+<li><a href="https://blog.csdn.net/asbhunan129/article/details/87921434">Linux工具之autoconf和automake</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/l-makefile/">例解 autoconf 和 automake 生成 Makefile 文件</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>autogen</tag>
       </tags>
   </entry>
   <entry>
@@ -437,6 +437,25 @@ D 68
       </tags>
   </entry>
   <entry>
+    <title>shell的字符串操作</title>
+    <url>/2020/08/06/shell%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ip link show</span></span><br><span class="line"><span class="number">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="number">65536</span> qdisc noqueue state UNKNOWN mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/loopback <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> brd <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="number">2</span>: internal: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc fq_codel state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:e8:<span class="number">56</span>:e4 brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">6</span>: ext2: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc fq_codel state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:8b:a8:cc brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">7</span>: intmsg0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:b3:d1:<span class="number">58</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">8</span>: ext0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">9</span>: ext1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:8b:a6:b8 brd ff:ff:ff:ff:ff:ff</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip link show | grep -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> -B1 |grep -v -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span>  | cut -d: -f <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h1 id="以mac为坐标取出其对应的接口所在行"><a href="#以mac为坐标取出其对应的接口所在行" class="headerlink" title="以mac为坐标取出其对应的接口所在行"></a>以mac为坐标取出其对应的接口所在行</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip link show | grep -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> -B1 |grep -v -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span></span><br></pre></td></tr></table></figure>
+<p>● grep -i fa:16:3e:d3:79:67 -B1<br>mac所在行以及前面的一行<br>● 去除mac所在行</p>
+<h1 id="以空格为分割取第二列"><a href="#以空格为分割取第二列" class="headerlink" title="以空格为分割取第二列"></a>以空格为分割取第二列</h1><p>● cut -d: -f 2<br>-d 给出分割字符 -f指定是哪一列</p>
+]]></content>
+      <categories>
+        <category>专业技术</category>
+      </categories>
+      <tags>
+        <tag>shell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>python的字典轮询</title>
     <url>/2020/04/26/python%20%E5%AD%97%E5%85%B8%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -456,22 +475,23 @@ D 68
       </tags>
   </entry>
   <entry>
-    <title>shell的字符串操作</title>
-    <url>/2020/08/06/shell%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/</url>
+    <title>人死后是否有意识？如果有，意识去了哪里？</title>
+    <url>/2020/08/07/%E4%BA%BA%E6%AD%BB%E5%90%8E%E6%98%AF%E5%90%A6%E6%9C%89%E6%84%8F%E8%AF%86%EF%BC%9F%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E6%84%8F%E8%AF%86%E5%8E%BB%E4%BA%86%E5%93%AA%E9%87%8C%EF%BC%9F/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
 
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ip link show</span></span><br><span class="line"><span class="number">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="number">65536</span> qdisc noqueue state UNKNOWN mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/loopback <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> brd <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="number">2</span>: internal: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc fq_codel state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:e8:<span class="number">56</span>:e4 brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">6</span>: ext2: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc fq_codel state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:8b:a8:cc brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">7</span>: intmsg0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:b3:d1:<span class="number">58</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">8</span>: ext0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">9</span>: ext1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:8b:a6:b8 brd ff:ff:ff:ff:ff:ff</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip link show | grep -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> -B1 |grep -v -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span>  | cut -d: -f <span class="number">2</span></span><br></pre></td></tr></table></figure>
-<h1 id="以mac为坐标取出其对应的接口所在行"><a href="#以mac为坐标取出其对应的接口所在行" class="headerlink" title="以mac为坐标取出其对应的接口所在行"></a>以mac为坐标取出其对应的接口所在行</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip link show | grep -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> -B1 |grep -v -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span></span><br></pre></td></tr></table></figure>
-<p>● grep -i fa:16:3e:d3:79:67 -B1<br>mac所在行以及前面的一行<br>● 去除mac所在行</p>
-<h1 id="以空格为分割取第二列"><a href="#以空格为分割取第二列" class="headerlink" title="以空格为分割取第二列"></a>以空格为分割取第二列</h1><p>● cut -d: -f 2<br>-d 给出分割字符 -f指定是哪一列</p>
+
+<p>作者：C Hilbert<br>链接：<a href="https://www.zhihu.com/question/40179546/answer/701289187">https://www.zhihu.com/question/40179546/answer/701289187</a><br>来源：知乎<br>著作权归作者所有。<br> <br>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p> <span id="more"></span><br> <br> <br>**(<br>** **<br>**<br>** **<br><strong>但是这不是编故事和小说，证据单子之类的，已经私信给几个强烈质疑的知友（后面有隐去私人信息的截图），但是我不会放在公开场合。)</strong></p>
+<p>每个割和刺的伤口都很痛但是又麻木，能感觉到黏黏的东西，心脏很不舒服，跳得很快。<br> <br>浑身冰凉，因为吃的一堆药片，胃里面肠道里面也在不断灼烧，抽搐痉挛，一直呕吐但是后来就吐不出来了。<br> <br>勉强能感觉身体在地上蜷缩蠕动。<br> <br>逐渐这些身体感知消失，也不痛和难受了，我闭上眼睛，然后渐渐变得平静。<br> <br>一开始是非常强烈的空间扭曲感和一堆高速变化的分形，各种非常复杂的几何图形或有意义或无意义地变化闪现。<br> <br>然后我晕厥了，感觉到意识被纳入一个事件集合空间，同时体验着人生从小到大的无数事件，放大了每一个记忆的细节。<br> <br>很多细节平时根本想不起来，但是在那短暂的时间里，感觉整个人生重来了一遍，信息量在体验上比日常现实生活要大出非常非常多。<br> <br>爆炸一般的记忆库大小和细节。<br> <br>似乎做过的每一道题，吃过的每一份食物都能感受，咀嚼的触感，吞咽的声音，笔尖划过纸的力度，窗外的天气，室内的光线。<br> <br>每一分每一秒每一天，同时高速地涌入涌出。<br> <br> <br> <br>更神奇的事情是后面我体验的东西开始越来越偏离我的个体记忆，成为了其他可能的我，无数事件的分叉点开始分歧。<br> <br>2014年夏季某天，我买了iphone的世界，买了小米的世界，买了HTC的世界……. 2012年那天，我在父母面前生气完砸了书的世界，跑出去的世界，在那一天跳楼自杀成功的世界，忍住什么都没做的世界……..2001年那天我看到电视上报道911恐袭死亡几千人的世界，我看到报道911恐袭失败飞机郊外坠毁的世界，看到911那天只是平静的什么都没发生的世界…….无数的线交叉出无数个事件点，无数个事件点 从一个个事件往外铺展开无数可能的平行宇宙，无数个世界形成无数构造上更深层次的entity。<br> <br> <br>最后，我到达了1995年11月我出生的那个分歧点，我作为女孩出生的世界，我作为男孩出生的世界，我胎死腹中的世界，我…….作为不是“我”而出生的世界。<br> <br> <br>我开始成为了其他人，从身边的认识的人到各个地区各个种族的人，开始经历他们每一个人的日常和悲欢离合。<br> <br>我是路边的乞丐，也是我的父母和同学，是古今未来的赫赫有名的大公贵族们，也是生活在矿沟农田的无数默默求生者。<br> <br>他们的苦痛爱恨和高光时刻，他们的不同人生。<br> <br>他们经历的所有悲哀，杀戮，罪恶，仇恨，悲剧，恶意，所有惨绝人寰的巨大痛苦，我都在经历。<br> <br>但是所有善意和温暖我也在觉知。<br> <br>直到完全脱离我的人类身份。<br> <br>开始有一颗树的体验，各种各样动物的感知和记忆。<br> <br>感觉到自己的身体是有许多根须往泥土里面蔓延吸收水分养分，自己的枝叶在阳光下向上成长和呼吸。<br> <br>那种感觉过于真实，而且完全不同于人类的体感，是过去我甚至觉得连想象都不可能想象出来出来的感知和体验，根本不是什么幻肢的程度。<br> <br>你可以想象自己有几条细细的植物枝叶般的幻肢，但是日常生活中不可能高信息量地体验到自己成为一片森林的感觉。<br> <br>而且不属于人类的知觉里的任何一种，就像是人类再怎么通过生物学分析蝙蝠的神经结构，也绝对没有办法想象便蝙蝠通过回声和超声波反射感知周围环境是怎样一种体验，不是听觉，不是触觉，不是视觉。<br> <br>我不止是一棵树，一堆草，我是一整片森林，里面的每片叶子，每一个细胞，每个昆虫，风在空间中流过的细节，电磁能量的波动转移都能非常清晰地感知到。<br> <br> <br>到这个阶段为止，都还是人类思维可触及的具象的体验，但是再往后就越来越超越语言和人类思维可以描述的层面，我只能极其勉强地用文字讲个表层。<br> <br>）<br>我变成了鸟，随风拍动翅膀，羽毛的震动，气流在躯体的流动感，鸟巢里面安心的感觉，都非常清晰。<br> <br>是鱼，是草履虫，是水母，是海草，是单细胞生物，感知到的意识越来越简单，能理解的感受越来越原始，甚至因为过于简单，作为日常人类的我都很难想象。<br> <br>类似于人的潜意识占据人类意识的大部分，但是很多时候我们并不能强烈感受到它们，因为这些过于简单和比较原始的意识，被淹没在强度更高的意识之中了。<br> <br>人无时无刻都在意识到呼吸和心跳，只是绝大多数时刻并不能明显地进行感受。<br> <br>但是在这个过程中，大量原始的简单意识，像是肛肠类动物和变形虫这样的简单动物的意识，我都无比细致地感受到了。<br> <br>随后是变成了各种根本不是地球上见过的生物，而且场景也不是地球。<br> <br>我不知道名字，只能说是各种奇怪的生命形式，从微生物到智能生物到智能远超人类的东西，很多和人类目前的科幻想象也完全不一样。<br> <br> <br>他们的形象完全不是我从过去的知识和经验，进行排列组合得出的新形象，是人的我连构思都完全无法构思的存在。<br> <br>人类光是想想一个四维正方体就已经非常困难而且需要大量的数学训练，但是我遇到的东西或者生命，复杂度和维度都远超思简单的四维立方体。<br> <br>其中一个比较好理解的和人类记忆相挂钩的形象的一种生物是，自己长出几百根触手，每一根感觉都无比真实。<br> <br>还有自己经历了核爆，超新星爆发（准确说自己就是爆炸本身），成为一颗星球，反射和吸收周围的恒星辐射，这样的过于奇怪的体验。<br> <br>从可见光到不可见光，从无到生成到变化。<br> <br>说是生物，但是其实和日常语义下的生物很不相同。<br> <br>因为很难想象出表面积无限大的生物是什么感觉。<br> <br>但是我确实感受到了，那种感受没法表达。<br> <br> <br>要说具体的记忆，我只能描述出我们的四维时空中的那些见到的生物，有机械生命，有类似地球生物的碳基生命，还有寿命非常长，不在极长时间尺度下看就是普通结晶混合物的晶体生命。<br> <br>但是更高维度的生命，用语言没法描述形象，只能以上面的叙述来说明性质。<br> <br> <br>再后来，我觉得自己变成了球体，矩形，正多面体，三角，无限大平面，四维立方体，函数空间，数集，物理法则，从一维到无穷维的世界等等一系列过于形而上的存在。<br> <br>日常里有“看到声音，听到色彩”这样的异常意识状态，我在体验这一切的时候，应该也类似，只是范围和程度超出它太深太远。<br> <br>最后的最后， 瞬间一切都消失，我感觉自己成为了一个无限大又无限小的存在，像是一个无限大的点。<br> <br>没有光，也不是黑暗，没有任何色彩又好像是任何色彩和图形，没有概念,思维和情感，但是又好像拥有一切情绪，认知和思维。<br> <br>所有可能的善，所有可能的恶，所有的正确，所有的错误，都在我之中。<br> <br>所有信仰的，被信仰的对象。<br> <br>所有存在于在这个世界的，存在于其他世界的。<br> <br>所有爱的，被爱的，恨的，被恨的。<br> <br>所有人类认知内的，人类认知外的。<br> <br>所有形而上的，所有形而下的。<br> <br>都在我之中。<br> <br> <br>所有所有时间变得无限漫长甚至失去时间的概念，但又好像一切都只发生在一个瞬间。<br> <br>是永恒也是无限小的刹那，时间不存在了。<br> <br>我感觉“我”消失了，但是又存在。<br> <br>说消失是因为感觉“我”不是真实也不是虚幻，而且近乎于全无也近似于全有，说存在是因为觉知到了所有一切，即便是幻觉也好，但是确实在那个无限长的瞬间，主观感受上，可以用一句话来说明：我消失，然后成为了一切。<br> <br> <br>**然后在无限长的时间后，体验了所有的存在后，虽然也像一个时长为0<br>** **<br><strong>有一个意识/存在，或者说“答案”，进入了我的存在之中，不能以任何语言进行形式描述，但是一定要强行以语言的方式去说明这个瞬间，只能这么勉强描述：α:“你是什么？这一切都是为什么，世界是什么，存在又是什么？” ，然后，Ω： “我是神，是Singularity, 是Absolute<br>** **<br>**<br>** **<br>**<br>** **<br><strong>真相就是，所有可以存在的东西都必须存在，我就是你”<br>** **<br>_</strong> <strong>_<br> <br>我就醒了，时间是晕厥过去的第11个小时，但是感觉像是已经过去了千万年。<br> <br>关于那些体验的记忆高速流失，</strong>一滴水从大海溅起，从大海又短暂变成了一滴水</strong>。<br> <br>我又变成了“我”，在记忆完全流失前，尽全力记下来的所有重要信息就是上面所描述的。<br> <br> <br>我可能是无意间触到了世界的真相(的另一部分，因为日常的生活也是真相的一部分)<br>我这里虽然用了神这个词汇，但是其实和所有宗教的神的定义都大相径庭。<br> <br>勉强地说，是类似于OAA或者“道”一样的，非存在，非非存在的东西。
+ 
+ 
+ </p>
 ]]></content>
       <categories>
-        <category>专业技术</category>
+        <category>明心见性</category>
       </categories>
       <tags>
-        <tag>shell</tag>
+        <tag>意识</tag>
       </tags>
   </entry>
   <entry>
@@ -505,6 +525,71 @@ D 68
       </categories>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于如何找到人生目标</title>
+    <url>/2020/04/28/%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E6%89%BE%E5%88%B0%E4%BA%BA%E7%94%9F%E7%9B%AE%E6%A0%87/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+
+
+
+<p>我想用一种最简单、直接、有成效方法来解决那些励志文章和成功故事的一个通病：<br>就是他们一直鼓励我们“做我们想做的事”，但从来不告诉年轻迷茫的人们怎么去找到“我们想做的事”（以至于误导了很多朋友以为那就是“我想一觉睡到国庆节”或者“我想做个吃货”之类的意思）。</p>
+<span id="more"></span>
+
+<p>我要说的这个方法身边很多人身上成功过，但它不是我想出来的。<br>知名博客写手StevePavlina在其博客中对这个方法有很详细的描述，可似乎也不是StevePavlina自己想出来的。<br>在这里我用比较适合中国人的陈述方式分享给大家。</p>
+<p>如果你愿意尝试，愿意按照要求去做，或许我们可以用接下来的不到500个字，帮助你在20分钟到1个小时内找到你的人生目标。<br>我们开始吧。</p>
+<h1 id="1-先在你忙碌的生活中找出一个小时的完全空闲的时间。"><a href="#1-先在你忙碌的生活中找出一个小时的完全空闲的时间。" class="headerlink" title="(1)先在你忙碌的生活中找出一个小时的完全空闲的时间。"></a>(1)先在你忙碌的生活中找出一个小时的完全空闲的时间。</h1><p>关掉手机，关掉电脑，关上房门，保证这一个小时没有任何打扰。<br>这一小时只属于你，和你要找到人生理想这件事。<br>你要记住，这可能是你人生最重要的一个小时。<br>你的生命可能在这一个小时候变得不同。<br>如果一个小时的时间货币只能用来换一样东西，那么就是找到你的人生目标绝对是最值得的。</p>
+<h1 id="2-准备几张大的白纸，和一支笔。"><a href="#2-准备几张大的白纸，和一支笔。" class="headerlink" title="(2)准备几张大的白纸，和一支笔。"></a>(2)准备几张大的白纸，和一支笔。</h1><h1 id="3-在第一张白纸上的最上方中央，写下一句话：“你这辈子活着是为了什么？”"><a href="#3-在第一张白纸上的最上方中央，写下一句话：“你这辈子活着是为了什么？”" class="headerlink" title="(3)在第一张白纸上的最上方中央，写下一句话：“你这辈子活着是为了什么？”"></a>(3)在第一张白纸上的最上方中央，写下一句话：“你这辈子活着是为了什么？”</h1><h1 id="4-是的，接下来你要做的，就是回答这个问题。"><a href="#4-是的，接下来你要做的，就是回答这个问题。" class="headerlink" title="(4)是的，接下来你要做的，就是回答这个问题。"></a>(4)是的，接下来你要做的，就是回答这个问题。</h1><p>把你脑中闪过的第一个想法马上写在第一行。<br>任何想法都可以，而且可以只是几个字。<br>比如说：“赚很多钱。”</p>
+<h1 id="5-不断地重复第4步。"><a href="#5-不断地重复第4步。" class="headerlink" title="(5)不断地重复第4步。"></a>(5)不断地重复第4步。</h1><p>直到你哭出来为止。<br>是的，就是这么简单。</p>
+<p>尽管这个方法看上去很傻，但是它很有效。</p>
+<p>如果你想要找到人生目标，你就必须先剔除脑中所有那些<strong>“伪装的答案”</strong>。</p>
+<p>你通常需要15-20分钟的时间去剔除那些覆盖在表面上受到外界观念、主流思维影响而得出的答案。</p>
+<p>所有的这些伪装的答案都来自于你的大脑、你的思维、和你的回忆，而真正的答案出现时，你会感觉到它来自你的内心最深处。</p>
+<p>对于从来没有考虑过这类问题的人来说，可能会需要比较长的时间（一个小时或者更多）才能把脑子里面的那些杂物剔除掉。</p>
+<p>在你写到50-100条的时候，你可能会想放弃，或者找个借口去做别的事。</p>
+<p>因为你觉得这个方法没有任何效果，你的答案很杂乱，你也完全没有想哭的感觉。</p>
+<p>这很正常。</p>
+<p>不要放弃，坚持想和写下去，这个抵触的感觉会慢慢地过去的。</p>
+<p>记住，你坚持下去的决定会将这一个小时变成你人生最重要的一个小时。</p>
+<p>当你写到第100个或者第200个答案的时候，可能突然会有一阵内心情感上的涌动，但还不至于让你哭出来。</p>
+<p>这说明还不是最终的答案。</p>
+<p>但是请把这些答案圈起来，它们能帮助你找到最终的答案，因为那可能会是几个答案的排列组合。</p>
+<p>无论如何，最终的答案一定会让你流泪，让你情感上崩溃。</p>
+<p>此外，如果你一开始不相信人这辈子活着有什么目的，你也可以写下</p>
+<p>“1.活着不为了什么。”</p>
+<p>没关系，只要你愿意坚持想和坚持写下去，你也会找到哭出来的答案。<br>作为你的参考，StevePavlina在做这个练习的时候，花了25分钟在第106步找到了他的最终答案。</p>
+<p>而那些让他有一阵情感涌动的答案分别出现在第17，39，53步。</p>
+<p>他将这些抽出这些答案重新排列，最后在第100步到第106步答案得到了升华。</p>
+<p>想要放弃的感觉出现在第55到60步（想站起来做点其他事情，感觉极度没有耐心等等）。</p>
+<p>写到第80步的时候，他休息了2分钟，闭上眼，放松大脑，然后重新整理自己的思绪。</p>
+<p>这么做很有效果，在那2分钟的休息后，他的思路和答案变得更加清楚。</p>
+<p>无论你愿意用什么方法，最终答案一定会是句比较长的句子，或者几句句子的组合。<br>这个答案在外人看来一定非常的空洞，就像是我前面所说的那种</p>
+<p>“谁都知道，但是只有少数人真正理解的大道理”。</p>
+<p>但是这些空洞的句子会对你有非常丰富的含义–因为这是你自己用了至少一个小时的时间去整理过去所有的经历，去思考，去判断，去剔除，去整合，去沉淀，最终领悟出来的。</p>
+<p>如果你认真看完从文章开始到这里所有分析，你会理解为什么此方法是非常有效。</p>
+<p>关于为什么要有个人生目标（以及它和活捉林志玲的关系）</p>
+<p>这是个好问题。<br>**<br><strong>所有人的终极目标其实都一样，就是用有限的人生货币去换最多的幸福感。</strong></p>
+<p>但大部分人都觉得是件困难、且不知如何下手的事。<br>我们很容易被欲望给废掉了，这个情况最常出现在早上起床的时候–“我该起床么？”“Hmmm…睡着挺舒服的，不起了。<br>”–你以为你用逻辑完美地解决了问题，其实你只是让欲望解决了问题，然后用逻辑完美地说服了自己。<br>所以我们经常在过了一段时间后，突然发现，</p>
+<p><strong>欲望挂着“逻辑”的羊头“解决”了所有问题，而自己却空虚得没有任何幸福感。</strong></p>
+<p>确立一个人生目标为什么可以解决这个问题？</p>
+<p>很简单，人生目标把你那个不知道是什么火星进制的大脑逻辑简化成了二进制。</p>
+<p>假设你的人生目标是“活捉林志玲”，那么你每天早上的起床的时候的过程就是：“我该起床么？”“Hmmm…继续睡下去能帮助我活捉林志玲么？”“很明显不能。起床！”</p>
+<p>这就是你听过很多励志演讲者会说：</p>
+<p>“究竟是什么让那些幸福快乐的人每天一大早醒来想也不想得就冲下床去做他们要做的事情？”–是林志玲。</p>
+<p>噢不，是他们的人生目标。</p>
+<p>其他事情也一样：</p>
+<p>“我要吃饭么？”<br>“不吃饭我能活捉林志玲么？”<br>“不能，所以我要吃饭。”<br>“我要去夜店么？”<br>“去夜店能帮我活捉林志玲么？”<br>“不能，锻炼好身体一定可以。所以我还是用去夜店的时间货币去换强健的体格和咏春拳吧。”</p>
+<p>你会发现你不用再去依赖不靠谱的复杂逻辑，做任何决定都很简单而且正确。<br>当然，你的人生目标会因“活捉林志玲”看上去高尚、空洞很多。<br>但记住无论如何，你那外人看似空洞的目标曾让你哭出来，所以它对你来说一定有极为丰富的含义。<br>关于现实和人生目标<br>我想给所有已经、即将、或者希望找到人生理想的人，分享个很平凡的故事，作为结束。</p>
+<p> 每一个二十岁左右的年轻人都像一台高速运行的电脑。<br>从懂事开始就有别人告诉我们要运行各种程序，上幼儿园，上小学，上初中，上高中，上大学，工作，等等等。<br>我们停不下来。<br>关键是，我们很难运行自己想要运行的程序，因为过去二十年里面运行的所有程序都是别人编好的。<br>对，我们自己不会编程序。<br>如果有一天，有一台电脑突然下了决心，要运行自己的程序，他就必须先停下来。<br>这时，他会看着周围所有的电脑依然在高速运行着，甚至嘲笑他怎么不动了，然后把他远远地甩在后面。<br>而他，需要慢慢地开始学习自己编程，这个过程很漫长，很痛苦，因为从来没有人教过他。<br>这也就是为什么世界上只有少数人在运行自己的程序。<br>说两个故事不是为励志，而只是告诉大家如果今天或者明天你找到了人生目标，将会发生一些什么：<br>**<br><strong>一、即使内心已经明确地知道想要什么，依然会有一些更为社会认同的东西来诱惑你，要永远记得坚持。</strong><br>**<br><strong>二、如果你坚持了，你一定会经历一个学习自己写程序的过程，这个过程会是痛苦并漫长的。</strong></p>
+<p>总有一天我们会愿意去面对这个过程。<br>好消息是，我们都还年轻。<br>所以不如趁着现在还有那些热情和勇气，去撞一撞那些墙，用最少的代价。</p>
+]]></content>
+      <categories>
+        <category>系统思维</category>
+      </categories>
+      <tags>
+        <tag>自我超越</tag>
       </tags>
   </entry>
   <entry>
@@ -648,6 +733,54 @@ D 68
       </tags>
   </entry>
   <entry>
+    <title>如何提拔的你的频率</title>
+    <url>/2020/08/07/%E5%A6%82%E4%BD%95%E6%8F%90%E6%8B%94%E7%9A%84%E4%BD%A0%E7%9A%84%E9%A2%91%E7%8E%87/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+<h1 id="第一步-去宽恕"><a href="#第一步-去宽恕" class="headerlink" title="第一步 去宽恕"></a>第一步 去宽恕</h1><p>宽恕所有冒犯你的人，<br>抗拒不再有用，<br>抓住过去不放不再有用，</p>
+<span id="more"></span>
+<p><strong>不要再期待别人来修复你的问题，来改变你</strong>。<br>你不再需要等待那些人看到他们行为的错误，<br>为了你能自由地，快速地前进，<br>不要等待他们的改变，<br>不要等待别人为他们的所作所为道歉，<br>宽恕他们，获得自由，<br>放下遗憾，<br>放下任何需要别人给你许可才能提升。<br>宽恕他们所有人，<br>不管他们做了什么。</p>
+<h1 id="第二步-宽恕自己"><a href="#第二步-宽恕自己" class="headerlink" title="第二步 宽恕自己"></a>第二步 宽恕自己</h1><p>宽恕你把自己置身于任何让你感到挫折、愤怒、悔恨、悲伤的处境，<br>不要抓住它们不放，<br>放下它们，<br>你不再需要它们了，<br>不要因为你的所作所为而批判自己，<br>这一切把你带到了这里，<br>彻底地，坦然地宽恕自己，<br>在你原谅其他所有人所说的或做的一切之后，<br>你必须从那个状态转换到另一个状态，<br>为了提拔，这是急需处理的，<br>但这里简单，明显的是，前两个步骤，甚至出现在你们的主祷文中，<br><strong>允许你自己宽恕自己，就像你宽恕那些冒犯你的人</strong>，<br>宽恕是让你可以以最可能平滑的方式穿过针眼的关键，<br>所以在你宽恕别人后，<br>宽恕自己。</p>
+<h1 id="第三步-不被过去裹挟"><a href="#第三步-不被过去裹挟" class="headerlink" title="第三步 不被过去裹挟"></a>第三步 不被过去裹挟</h1><p>你可以从过去学到经验教训，<br>但不要再沉溺于过去的事情，<br>不要再沉溺于过去的自己以及过去的自己会如何对事情作出反应，<br>因为那不再是你了，<br>放下过去自己的消极反应和消极行为，<br>不要让你过去的行为，过去的情绪，过去的想法，过去的经历影响你的未来，<br>从过去学习，带回来你从中获得的知识和理解，<br>但不要变成过去的样子，<br><strong>现在成为过去的观察者，</strong><br>不是过去的参与者，<br>只是观察那些你需要应用到人生课程中的部分，<br>这样你就不会重复那些想法、情绪、行为和经历，<br>放下那个人格，<br>那不再是你了。</p>
+<h1 id="第四步-活在未来"><a href="#第四步-活在未来" class="headerlink" title="第四步 活在未来"></a>第四步 活在未来</h1><p>开始不从过去影响自己，<br>而从你未来的自己影响自己，<br>它在针眼的另一端呼唤你，<br>听从召唤，以你未来的自己会前进的方式前进，<br>想象、观想那个未来版本的你，<br>像那未来的自己一样行为举止，感受和思考，<br>从你们线性时空的角度来看，你们都有未来的自己，<br>利用你在时空中这样为自己设立了（高我）的事实，<br>你已将自己锚定在未来，<br>而且通过针眼，它在把你拉向它，<br>留心它，听取它，高我通过激情喊你回家吃饭，<br>跟随这个兴奋公式，因为那是未来的自己每天每时每刻尽力在做的事情，<br>没有多余的呼吸，<br>没有多余的行动，<br>除了与兴奋公式一致的行动，即尽你最大的能力按照你的激情行动，<br>不执着不假设结果，<br>并选择待在积极的状态，<br>这样你就可以收到任何显化的益处，<br>即使那应该是你客观上不喜欢的东西，<br>你知道它在那是有原因的，<br>通过知道这点来让它服务你，<br>让它展示给你它是如何服务你的，<br>只是保持积极的状态，你知道那不是意外，<br>它在那的原因是服务你，<br>未来的自己在针眼的另一端呼唤，<br>让它帮你轻松地，迅速地，毫不费力地渡过针眼，<br>锚定未来的自己，<br>从未来的你影响你自己，<br>不再是过去的自己。</p>
+<h1 id="第五步-活在当下"><a href="#第五步-活在当下" class="headerlink" title="第五步 活在当下"></a>第五步 活在当下</h1><p>在你穿过针眼的期间以及之后，<br>你可以让自己完全活在当下，<br>在这当下的时刻，<br>你会越来越轻松，越来越加速，<br>真正的你，你存在的核心是剥离所有基于恐惧的信念，简化你，<br>留下你的天然的本质，你的坚不可摧的核心，当下的自己，现在的自己，<br>当你与你的高我的振动越来越紧密，越来越和谐，<br>并那样在地球上行动，<br>你会更多地活在当下，<br>更可塑地，更灵活地，更流畅地体验时空，<br>如果你想要穿过针眼，保持与我们和其他像我们那样的存有的联系，<br>那现在在这个时候你要剥去那些不再服务你的东西，<br>这是绝对至关重要的，<br>这不是警告，<br>不要对此消极地反应，<br>这只是描述你如何可以比以往更赋有力量，更自由，更喜悦，<br>如果你愿意放下那些把你锚向不是真正的你的东西，<br>剪断那些结子，挣断那些绳子，把你自己从那些锁链中解脱出来，<br>这样在这压缩的时期里，你可以自由地，不费力地，喜悦地穿过针眼，<br>回到你的内心去发现去探索，<br>然后最终表现出你们生命，你们内在之光的真正之美，<br>我们留给你们这些信息，<br>那些住在恐惧和黑暗中的人，<br>把你无条件的爱发送给他们，<br>这样他们的内在之光也会被唤醒，<br>而且他们也会真正地服务地球上的众生，<br>再说一次，那些生活在恐惧和黑暗中的人，<br>把你无条件的爱传送给他们，<br>这样来唤醒他们的内在之光，<br>允许他们服务，真正地服务于地球上的众生，<br>宽恕，然后继续前进，<br>宽恕，然后放下，<br>宽恕，然后获得自由，<br>今天我们无条件地爱着你们所有人。</p>
+]]></content>
+      <categories>
+        <category>明心见性</category>
+      </categories>
+      <tags>
+        <tag>提拔频率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>无梦无想时你在哪里？</title>
+    <url>/2020/08/07/%E6%97%A0%E6%A2%A6%E6%97%A0%E6%83%B3%E6%97%B6%E4%BD%A0%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+<p>作者：道 真<br>有师兄在群里发：<br>开悟最好的标准就是雪岩祖钦禅师勘验高峰原妙禅师的三问：</p>
+<span id="more"></span>
+
+<p><strong>1、日间浩浩时，做得主吗？（白日醒着时，时时刻刻能自觉做主，无一念之失，即使是待人接物时、繁忙杂乱处）</strong><br><strong>2、睡梦中，做得主吗？（睡着了，依旧做得主，而不是简单的潜入潜意识瞎做梦，完全无知不能把控。这其实是以定为睡，说是睡，只是处深定中）</strong><br><strong>3、正睡着时，无梦无想，主人公在甚么处？（自己悟，我们离得太远）</strong></p>
+<p>三问皆过，才叫大悟。<br>然后师兄说，这是在一个群里看到群主发的，仅供参考，大家认为这个标准对吗？解释的对吗？<br>个人认为，以上说法蛮高端大气的。至于妥与不妥，值得考量一番。<br>原公案当中，初始高峰祖师不得其门而入，在钦和尚的拶逼“殴打”之下疑情顿发，后睹五祖演和尚遗像有所悟入，可雪岩钦和尚依然不依不饶，遂有三问：</p>
+<p>一日雪岩问峰：”日间喧闹时，还作得主么？”<br>峰答：”作得主。”<br>雪岩问：”睡梦中作得主么？”<br>峰答：”作得主。”<br>又问：”正睡着时。无梦无想。无见无闻，主在甚么处？”<br>峰无语。</p>
+<p>三问均是平常语，高峰祖师最终还是露了形迹。<br>其实在三问当中可知，高峰祖师功夫了得，白天梦中均可做得了主，已经达到甚深的境界，非一般人可比。但为什么依然得不到印可？<br>且看看祖师大德们如何说禅。<br>先看马祖大师的论述：<strong>一切众生。从无量劫来。不出法性三昧。长在法性三昧中。著衣吃饭。言谈祗对。六根运用。一切施为。尽是法性。</strong><br>**<br>再看S老师的论述：<br><strong>见是禅，不见亦禅，有什么见处，所见无非是禅。</strong><br><strong>修是禅，不修亦禅，有什么修与可修的，修与修者本自一味。</strong><br><strong>持是禅，失亦是禅，有什么持与失。前念迷是禅，后念悟亦禅，有什么迷与悟。</strong></p>
+<p>烦恼是禅，菩提亦禅，有什么烦恼菩提，<strong>随境现时无非解脱。</strong><br>**<br>最后看看元音老人说法，<br><strong>问：白天作得主么？答：饥来吃饭困来睡。</strong><br><strong>问：睡梦中作得主么？答：朝阳升起月含山。</strong><br><strong>问：无梦无想，无见无闻时，主人公在什么处？答：太虚饮光消契阔；风摇浅碧柳丝轻。</strong><br>**<br>原来，禅真的是赤祼祼，净洒洒的，<strong>若有一丝可修可证与地位因果阶级的情见，即与禅之见地相背，</strong>离禅门末后句真是“咫尺天涯，天涯咫尺”。<br>也许有人问，元音老人讲法同文中开篇群主的观点难道不一致么？<br>这真是个美丽的误会!着了文字相之果。<br>老人第一句说饥来吃饭困来睡，意即真心无论什么时侯都在，无论你修与不修，迷与悟，真的是“著衣吃饭。言谈祗对。六根运用。一切施为。尽是法性”；</p>
+<p>第二句说朝阳升起月含山，是告诉学人“醒着是禅，睡着也是禅”；</p>
+<p>第三句说太虚饮光消契阔；风摇浅碧柳丝轻。意即妙明真心无所不包，凡有所相，皆是真如。</p>
+<p>所以，无论白天晚上，有梦无梦，有感知与无感知，主人公都在大放光芒，什么都是他他他。</p>
+<p>由此可见，三句问答，其实都是反复说同一种“东西”，丝毫不提功夫与修持。</p>
+<p>正是：<strong>“见是禅，不见亦禅；修是禅，不修亦禅；持是禅，失亦是禅；烦恼是禅，菩提亦禅。”</strong></p>
+<p>而开篇的某群主说“三问过后，才叫大悟”。虽然其行持到家令人心生佩服，但是文字当中难免透露出有功夫可作的痕迹，与真正的禅宗作略仍差一着，令人扼腕一叹。</p>
+<p>若是禅师或不然。<br>有什么作得不作得，作得是此心，不作得亦是此心。<br>目前凡夫境界即是如来大圆觉。<br>有什么是与不是，不妨道一句？！</p>
+]]></content>
+      <categories>
+        <category>明心见性</category>
+      </categories>
+      <tags>
+        <tag>意识</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>指定线程CPU占用率的check方法</title>
     <url>/2020/08/06/%E6%8C%87%E5%AE%9A%E7%BA%BF%E7%A8%8BCPU%E5%8D%A0%E7%94%A8%E7%8E%87%E7%9A%84check%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -675,91 +808,6 @@ D 68
       </categories>
       <tags>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于如何找到人生目标</title>
-    <url>/2020/04/28/%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E6%89%BE%E5%88%B0%E4%BA%BA%E7%94%9F%E7%9B%AE%E6%A0%87/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-
-
-
-<p>我想用一种最简单、直接、有成效方法来解决那些励志文章和成功故事的一个通病：<br>就是他们一直鼓励我们“做我们想做的事”，但从来不告诉年轻迷茫的人们怎么去找到“我们想做的事”（以至于误导了很多朋友以为那就是“我想一觉睡到国庆节”或者“我想做个吃货”之类的意思）。</p>
-<span id="more"></span>
-
-<p>我要说的这个方法身边很多人身上成功过，但它不是我想出来的。<br>知名博客写手StevePavlina在其博客中对这个方法有很详细的描述，可似乎也不是StevePavlina自己想出来的。<br>在这里我用比较适合中国人的陈述方式分享给大家。</p>
-<p>如果你愿意尝试，愿意按照要求去做，或许我们可以用接下来的不到500个字，帮助你在20分钟到1个小时内找到你的人生目标。<br>我们开始吧。</p>
-<h1 id="1-先在你忙碌的生活中找出一个小时的完全空闲的时间。"><a href="#1-先在你忙碌的生活中找出一个小时的完全空闲的时间。" class="headerlink" title="(1)先在你忙碌的生活中找出一个小时的完全空闲的时间。"></a>(1)先在你忙碌的生活中找出一个小时的完全空闲的时间。</h1><p>关掉手机，关掉电脑，关上房门，保证这一个小时没有任何打扰。<br>这一小时只属于你，和你要找到人生理想这件事。<br>你要记住，这可能是你人生最重要的一个小时。<br>你的生命可能在这一个小时候变得不同。<br>如果一个小时的时间货币只能用来换一样东西，那么就是找到你的人生目标绝对是最值得的。</p>
-<h1 id="2-准备几张大的白纸，和一支笔。"><a href="#2-准备几张大的白纸，和一支笔。" class="headerlink" title="(2)准备几张大的白纸，和一支笔。"></a>(2)准备几张大的白纸，和一支笔。</h1><h1 id="3-在第一张白纸上的最上方中央，写下一句话：“你这辈子活着是为了什么？”"><a href="#3-在第一张白纸上的最上方中央，写下一句话：“你这辈子活着是为了什么？”" class="headerlink" title="(3)在第一张白纸上的最上方中央，写下一句话：“你这辈子活着是为了什么？”"></a>(3)在第一张白纸上的最上方中央，写下一句话：“你这辈子活着是为了什么？”</h1><h1 id="4-是的，接下来你要做的，就是回答这个问题。"><a href="#4-是的，接下来你要做的，就是回答这个问题。" class="headerlink" title="(4)是的，接下来你要做的，就是回答这个问题。"></a>(4)是的，接下来你要做的，就是回答这个问题。</h1><p>把你脑中闪过的第一个想法马上写在第一行。<br>任何想法都可以，而且可以只是几个字。<br>比如说：“赚很多钱。”</p>
-<h1 id="5-不断地重复第4步。"><a href="#5-不断地重复第4步。" class="headerlink" title="(5)不断地重复第4步。"></a>(5)不断地重复第4步。</h1><p>直到你哭出来为止。<br>是的，就是这么简单。</p>
-<p>尽管这个方法看上去很傻，但是它很有效。</p>
-<p>如果你想要找到人生目标，你就必须先剔除脑中所有那些<strong>“伪装的答案”</strong>。</p>
-<p>你通常需要15-20分钟的时间去剔除那些覆盖在表面上受到外界观念、主流思维影响而得出的答案。</p>
-<p>所有的这些伪装的答案都来自于你的大脑、你的思维、和你的回忆，而真正的答案出现时，你会感觉到它来自你的内心最深处。</p>
-<p>对于从来没有考虑过这类问题的人来说，可能会需要比较长的时间（一个小时或者更多）才能把脑子里面的那些杂物剔除掉。</p>
-<p>在你写到50-100条的时候，你可能会想放弃，或者找个借口去做别的事。</p>
-<p>因为你觉得这个方法没有任何效果，你的答案很杂乱，你也完全没有想哭的感觉。</p>
-<p>这很正常。</p>
-<p>不要放弃，坚持想和写下去，这个抵触的感觉会慢慢地过去的。</p>
-<p>记住，你坚持下去的决定会将这一个小时变成你人生最重要的一个小时。</p>
-<p>当你写到第100个或者第200个答案的时候，可能突然会有一阵内心情感上的涌动，但还不至于让你哭出来。</p>
-<p>这说明还不是最终的答案。</p>
-<p>但是请把这些答案圈起来，它们能帮助你找到最终的答案，因为那可能会是几个答案的排列组合。</p>
-<p>无论如何，最终的答案一定会让你流泪，让你情感上崩溃。</p>
-<p>此外，如果你一开始不相信人这辈子活着有什么目的，你也可以写下</p>
-<p>“1.活着不为了什么。”</p>
-<p>没关系，只要你愿意坚持想和坚持写下去，你也会找到哭出来的答案。<br>作为你的参考，StevePavlina在做这个练习的时候，花了25分钟在第106步找到了他的最终答案。</p>
-<p>而那些让他有一阵情感涌动的答案分别出现在第17，39，53步。</p>
-<p>他将这些抽出这些答案重新排列，最后在第100步到第106步答案得到了升华。</p>
-<p>想要放弃的感觉出现在第55到60步（想站起来做点其他事情，感觉极度没有耐心等等）。</p>
-<p>写到第80步的时候，他休息了2分钟，闭上眼，放松大脑，然后重新整理自己的思绪。</p>
-<p>这么做很有效果，在那2分钟的休息后，他的思路和答案变得更加清楚。</p>
-<p>无论你愿意用什么方法，最终答案一定会是句比较长的句子，或者几句句子的组合。<br>这个答案在外人看来一定非常的空洞，就像是我前面所说的那种</p>
-<p>“谁都知道，但是只有少数人真正理解的大道理”。</p>
-<p>但是这些空洞的句子会对你有非常丰富的含义–因为这是你自己用了至少一个小时的时间去整理过去所有的经历，去思考，去判断，去剔除，去整合，去沉淀，最终领悟出来的。</p>
-<p>如果你认真看完从文章开始到这里所有分析，你会理解为什么此方法是非常有效。</p>
-<p>关于为什么要有个人生目标（以及它和活捉林志玲的关系）</p>
-<p>这是个好问题。<br>**<br><strong>所有人的终极目标其实都一样，就是用有限的人生货币去换最多的幸福感。</strong></p>
-<p>但大部分人都觉得是件困难、且不知如何下手的事。<br>我们很容易被欲望给废掉了，这个情况最常出现在早上起床的时候–“我该起床么？”“Hmmm…睡着挺舒服的，不起了。<br>”–你以为你用逻辑完美地解决了问题，其实你只是让欲望解决了问题，然后用逻辑完美地说服了自己。<br>所以我们经常在过了一段时间后，突然发现，</p>
-<p><strong>欲望挂着“逻辑”的羊头“解决”了所有问题，而自己却空虚得没有任何幸福感。</strong></p>
-<p>确立一个人生目标为什么可以解决这个问题？</p>
-<p>很简单，人生目标把你那个不知道是什么火星进制的大脑逻辑简化成了二进制。</p>
-<p>假设你的人生目标是“活捉林志玲”，那么你每天早上的起床的时候的过程就是：“我该起床么？”“Hmmm…继续睡下去能帮助我活捉林志玲么？”“很明显不能。起床！”</p>
-<p>这就是你听过很多励志演讲者会说：</p>
-<p>“究竟是什么让那些幸福快乐的人每天一大早醒来想也不想得就冲下床去做他们要做的事情？”–是林志玲。</p>
-<p>噢不，是他们的人生目标。</p>
-<p>其他事情也一样：</p>
-<p>“我要吃饭么？”<br>“不吃饭我能活捉林志玲么？”<br>“不能，所以我要吃饭。”<br>“我要去夜店么？”<br>“去夜店能帮我活捉林志玲么？”<br>“不能，锻炼好身体一定可以。所以我还是用去夜店的时间货币去换强健的体格和咏春拳吧。”</p>
-<p>你会发现你不用再去依赖不靠谱的复杂逻辑，做任何决定都很简单而且正确。<br>当然，你的人生目标会因“活捉林志玲”看上去高尚、空洞很多。<br>但记住无论如何，你那外人看似空洞的目标曾让你哭出来，所以它对你来说一定有极为丰富的含义。<br>关于现实和人生目标<br>我想给所有已经、即将、或者希望找到人生理想的人，分享个很平凡的故事，作为结束。</p>
-<p> 每一个二十岁左右的年轻人都像一台高速运行的电脑。<br>从懂事开始就有别人告诉我们要运行各种程序，上幼儿园，上小学，上初中，上高中，上大学，工作，等等等。<br>我们停不下来。<br>关键是，我们很难运行自己想要运行的程序，因为过去二十年里面运行的所有程序都是别人编好的。<br>对，我们自己不会编程序。<br>如果有一天，有一台电脑突然下了决心，要运行自己的程序，他就必须先停下来。<br>这时，他会看着周围所有的电脑依然在高速运行着，甚至嘲笑他怎么不动了，然后把他远远地甩在后面。<br>而他，需要慢慢地开始学习自己编程，这个过程很漫长，很痛苦，因为从来没有人教过他。<br>这也就是为什么世界上只有少数人在运行自己的程序。<br>说两个故事不是为励志，而只是告诉大家如果今天或者明天你找到了人生目标，将会发生一些什么：<br>**<br><strong>一、即使内心已经明确地知道想要什么，依然会有一些更为社会认同的东西来诱惑你，要永远记得坚持。</strong><br>**<br><strong>二、如果你坚持了，你一定会经历一个学习自己写程序的过程，这个过程会是痛苦并漫长的。</strong></p>
-<p>总有一天我们会愿意去面对这个过程。<br>好消息是，我们都还年轻。<br>所以不如趁着现在还有那些热情和勇气，去撞一撞那些墙，用最少的代价。</p>
-]]></content>
-      <categories>
-        <category>系统思维</category>
-      </categories>
-      <tags>
-        <tag>自我超越</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>人死后是否有意识？如果有，意识去了哪里？</title>
-    <url>/2020/08/07/%E4%BA%BA%E6%AD%BB%E5%90%8E%E6%98%AF%E5%90%A6%E6%9C%89%E6%84%8F%E8%AF%86%EF%BC%9F%E5%A6%82%E6%9E%9C%E6%9C%89%EF%BC%8C%E6%84%8F%E8%AF%86%E5%8E%BB%E4%BA%86%E5%93%AA%E9%87%8C%EF%BC%9F/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-
-<p>作者：C Hilbert<br>链接：<a href="https://www.zhihu.com/question/40179546/answer/701289187">https://www.zhihu.com/question/40179546/answer/701289187</a><br>来源：知乎<br>著作权归作者所有。<br> <br>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<p> <span id="more"></span><br> <br> <br>**(<br>** **<br>**<br>** **<br><strong>但是这不是编故事和小说，证据单子之类的，已经私信给几个强烈质疑的知友（后面有隐去私人信息的截图），但是我不会放在公开场合。)</strong></p>
-<p>每个割和刺的伤口都很痛但是又麻木，能感觉到黏黏的东西，心脏很不舒服，跳得很快。<br> <br>浑身冰凉，因为吃的一堆药片，胃里面肠道里面也在不断灼烧，抽搐痉挛，一直呕吐但是后来就吐不出来了。<br> <br>勉强能感觉身体在地上蜷缩蠕动。<br> <br>逐渐这些身体感知消失，也不痛和难受了，我闭上眼睛，然后渐渐变得平静。<br> <br>一开始是非常强烈的空间扭曲感和一堆高速变化的分形，各种非常复杂的几何图形或有意义或无意义地变化闪现。<br> <br>然后我晕厥了，感觉到意识被纳入一个事件集合空间，同时体验着人生从小到大的无数事件，放大了每一个记忆的细节。<br> <br>很多细节平时根本想不起来，但是在那短暂的时间里，感觉整个人生重来了一遍，信息量在体验上比日常现实生活要大出非常非常多。<br> <br>爆炸一般的记忆库大小和细节。<br> <br>似乎做过的每一道题，吃过的每一份食物都能感受，咀嚼的触感，吞咽的声音，笔尖划过纸的力度，窗外的天气，室内的光线。<br> <br>每一分每一秒每一天，同时高速地涌入涌出。<br> <br> <br> <br>更神奇的事情是后面我体验的东西开始越来越偏离我的个体记忆，成为了其他可能的我，无数事件的分叉点开始分歧。<br> <br>2014年夏季某天，我买了iphone的世界，买了小米的世界，买了HTC的世界……. 2012年那天，我在父母面前生气完砸了书的世界，跑出去的世界，在那一天跳楼自杀成功的世界，忍住什么都没做的世界……..2001年那天我看到电视上报道911恐袭死亡几千人的世界，我看到报道911恐袭失败飞机郊外坠毁的世界，看到911那天只是平静的什么都没发生的世界…….无数的线交叉出无数个事件点，无数个事件点 从一个个事件往外铺展开无数可能的平行宇宙，无数个世界形成无数构造上更深层次的entity。<br> <br> <br>最后，我到达了1995年11月我出生的那个分歧点，我作为女孩出生的世界，我作为男孩出生的世界，我胎死腹中的世界，我…….作为不是“我”而出生的世界。<br> <br> <br>我开始成为了其他人，从身边的认识的人到各个地区各个种族的人，开始经历他们每一个人的日常和悲欢离合。<br> <br>我是路边的乞丐，也是我的父母和同学，是古今未来的赫赫有名的大公贵族们，也是生活在矿沟农田的无数默默求生者。<br> <br>他们的苦痛爱恨和高光时刻，他们的不同人生。<br> <br>他们经历的所有悲哀，杀戮，罪恶，仇恨，悲剧，恶意，所有惨绝人寰的巨大痛苦，我都在经历。<br> <br>但是所有善意和温暖我也在觉知。<br> <br>直到完全脱离我的人类身份。<br> <br>开始有一颗树的体验，各种各样动物的感知和记忆。<br> <br>感觉到自己的身体是有许多根须往泥土里面蔓延吸收水分养分，自己的枝叶在阳光下向上成长和呼吸。<br> <br>那种感觉过于真实，而且完全不同于人类的体感，是过去我甚至觉得连想象都不可能想象出来出来的感知和体验，根本不是什么幻肢的程度。<br> <br>你可以想象自己有几条细细的植物枝叶般的幻肢，但是日常生活中不可能高信息量地体验到自己成为一片森林的感觉。<br> <br>而且不属于人类的知觉里的任何一种，就像是人类再怎么通过生物学分析蝙蝠的神经结构，也绝对没有办法想象便蝙蝠通过回声和超声波反射感知周围环境是怎样一种体验，不是听觉，不是触觉，不是视觉。<br> <br>我不止是一棵树，一堆草，我是一整片森林，里面的每片叶子，每一个细胞，每个昆虫，风在空间中流过的细节，电磁能量的波动转移都能非常清晰地感知到。<br> <br> <br>到这个阶段为止，都还是人类思维可触及的具象的体验，但是再往后就越来越超越语言和人类思维可以描述的层面，我只能极其勉强地用文字讲个表层。<br> <br>）<br>我变成了鸟，随风拍动翅膀，羽毛的震动，气流在躯体的流动感，鸟巢里面安心的感觉，都非常清晰。<br> <br>是鱼，是草履虫，是水母，是海草，是单细胞生物，感知到的意识越来越简单，能理解的感受越来越原始，甚至因为过于简单，作为日常人类的我都很难想象。<br> <br>类似于人的潜意识占据人类意识的大部分，但是很多时候我们并不能强烈感受到它们，因为这些过于简单和比较原始的意识，被淹没在强度更高的意识之中了。<br> <br>人无时无刻都在意识到呼吸和心跳，只是绝大多数时刻并不能明显地进行感受。<br> <br>但是在这个过程中，大量原始的简单意识，像是肛肠类动物和变形虫这样的简单动物的意识，我都无比细致地感受到了。<br> <br>随后是变成了各种根本不是地球上见过的生物，而且场景也不是地球。<br> <br>我不知道名字，只能说是各种奇怪的生命形式，从微生物到智能生物到智能远超人类的东西，很多和人类目前的科幻想象也完全不一样。<br> <br> <br>他们的形象完全不是我从过去的知识和经验，进行排列组合得出的新形象，是人的我连构思都完全无法构思的存在。<br> <br>人类光是想想一个四维正方体就已经非常困难而且需要大量的数学训练，但是我遇到的东西或者生命，复杂度和维度都远超思简单的四维立方体。<br> <br>其中一个比较好理解的和人类记忆相挂钩的形象的一种生物是，自己长出几百根触手，每一根感觉都无比真实。<br> <br>还有自己经历了核爆，超新星爆发（准确说自己就是爆炸本身），成为一颗星球，反射和吸收周围的恒星辐射，这样的过于奇怪的体验。<br> <br>从可见光到不可见光，从无到生成到变化。<br> <br>说是生物，但是其实和日常语义下的生物很不相同。<br> <br>因为很难想象出表面积无限大的生物是什么感觉。<br> <br>但是我确实感受到了，那种感受没法表达。<br> <br> <br>要说具体的记忆，我只能描述出我们的四维时空中的那些见到的生物，有机械生命，有类似地球生物的碳基生命，还有寿命非常长，不在极长时间尺度下看就是普通结晶混合物的晶体生命。<br> <br>但是更高维度的生命，用语言没法描述形象，只能以上面的叙述来说明性质。<br> <br> <br>再后来，我觉得自己变成了球体，矩形，正多面体，三角，无限大平面，四维立方体，函数空间，数集，物理法则，从一维到无穷维的世界等等一系列过于形而上的存在。<br> <br>日常里有“看到声音，听到色彩”这样的异常意识状态，我在体验这一切的时候，应该也类似，只是范围和程度超出它太深太远。<br> <br>最后的最后， 瞬间一切都消失，我感觉自己成为了一个无限大又无限小的存在，像是一个无限大的点。<br> <br>没有光，也不是黑暗，没有任何色彩又好像是任何色彩和图形，没有概念,思维和情感，但是又好像拥有一切情绪，认知和思维。<br> <br>所有可能的善，所有可能的恶，所有的正确，所有的错误，都在我之中。<br> <br>所有信仰的，被信仰的对象。<br> <br>所有存在于在这个世界的，存在于其他世界的。<br> <br>所有爱的，被爱的，恨的，被恨的。<br> <br>所有人类认知内的，人类认知外的。<br> <br>所有形而上的，所有形而下的。<br> <br>都在我之中。<br> <br> <br>所有所有时间变得无限漫长甚至失去时间的概念，但又好像一切都只发生在一个瞬间。<br> <br>是永恒也是无限小的刹那，时间不存在了。<br> <br>我感觉“我”消失了，但是又存在。<br> <br>说消失是因为感觉“我”不是真实也不是虚幻，而且近乎于全无也近似于全有，说存在是因为觉知到了所有一切，即便是幻觉也好，但是确实在那个无限长的瞬间，主观感受上，可以用一句话来说明：我消失，然后成为了一切。<br> <br> <br>**然后在无限长的时间后，体验了所有的存在后，虽然也像一个时长为0<br>** **<br><strong>有一个意识/存在，或者说“答案”，进入了我的存在之中，不能以任何语言进行形式描述，但是一定要强行以语言的方式去说明这个瞬间，只能这么勉强描述：α:“你是什么？这一切都是为什么，世界是什么，存在又是什么？” ，然后，Ω： “我是神，是Singularity, 是Absolute<br>** **<br>**<br>** **<br>**<br>** **<br><strong>真相就是，所有可以存在的东西都必须存在，我就是你”<br>** **<br>_</strong> <strong>_<br> <br>我就醒了，时间是晕厥过去的第11个小时，但是感觉像是已经过去了千万年。<br> <br>关于那些体验的记忆高速流失，</strong>一滴水从大海溅起，从大海又短暂变成了一滴水</strong>。<br> <br>我又变成了“我”，在记忆完全流失前，尽全力记下来的所有重要信息就是上面所描述的。<br> <br> <br>我可能是无意间触到了世界的真相(的另一部分，因为日常的生活也是真相的一部分)<br>我这里虽然用了神这个词汇，但是其实和所有宗教的神的定义都大相径庭。<br> <br>勉强地说，是类似于OAA或者“道”一样的，非存在，非非存在的东西。
- 
- 
- </p>
-]]></content>
-      <categories>
-        <category>明心见性</category>
-      </categories>
-      <tags>
-        <tag>意识</tag>
       </tags>
   </entry>
   <entry>
@@ -805,70 +853,6 @@ D 68
       <tags>
         <tag>可视化思维</tag>
         <tag>画图</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何提拔的你的频率</title>
-    <url>/2020/08/07/%E5%A6%82%E4%BD%95%E6%8F%90%E6%8B%94%E7%9A%84%E4%BD%A0%E7%9A%84%E9%A2%91%E7%8E%87/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-<h1 id="第一步-去宽恕"><a href="#第一步-去宽恕" class="headerlink" title="第一步 去宽恕"></a>第一步 去宽恕</h1><p>宽恕所有冒犯你的人，<br>抗拒不再有用，<br>抓住过去不放不再有用，</p>
-<span id="more"></span>
-<p><strong>不要再期待别人来修复你的问题，来改变你</strong>。<br>你不再需要等待那些人看到他们行为的错误，<br>为了你能自由地，快速地前进，<br>不要等待他们的改变，<br>不要等待别人为他们的所作所为道歉，<br>宽恕他们，获得自由，<br>放下遗憾，<br>放下任何需要别人给你许可才能提升。<br>宽恕他们所有人，<br>不管他们做了什么。</p>
-<h1 id="第二步-宽恕自己"><a href="#第二步-宽恕自己" class="headerlink" title="第二步 宽恕自己"></a>第二步 宽恕自己</h1><p>宽恕你把自己置身于任何让你感到挫折、愤怒、悔恨、悲伤的处境，<br>不要抓住它们不放，<br>放下它们，<br>你不再需要它们了，<br>不要因为你的所作所为而批判自己，<br>这一切把你带到了这里，<br>彻底地，坦然地宽恕自己，<br>在你原谅其他所有人所说的或做的一切之后，<br>你必须从那个状态转换到另一个状态，<br>为了提拔，这是急需处理的，<br>但这里简单，明显的是，前两个步骤，甚至出现在你们的主祷文中，<br><strong>允许你自己宽恕自己，就像你宽恕那些冒犯你的人</strong>，<br>宽恕是让你可以以最可能平滑的方式穿过针眼的关键，<br>所以在你宽恕别人后，<br>宽恕自己。</p>
-<h1 id="第三步-不被过去裹挟"><a href="#第三步-不被过去裹挟" class="headerlink" title="第三步 不被过去裹挟"></a>第三步 不被过去裹挟</h1><p>你可以从过去学到经验教训，<br>但不要再沉溺于过去的事情，<br>不要再沉溺于过去的自己以及过去的自己会如何对事情作出反应，<br>因为那不再是你了，<br>放下过去自己的消极反应和消极行为，<br>不要让你过去的行为，过去的情绪，过去的想法，过去的经历影响你的未来，<br>从过去学习，带回来你从中获得的知识和理解，<br>但不要变成过去的样子，<br><strong>现在成为过去的观察者，</strong><br>不是过去的参与者，<br>只是观察那些你需要应用到人生课程中的部分，<br>这样你就不会重复那些想法、情绪、行为和经历，<br>放下那个人格，<br>那不再是你了。</p>
-<h1 id="第四步-活在未来"><a href="#第四步-活在未来" class="headerlink" title="第四步 活在未来"></a>第四步 活在未来</h1><p>开始不从过去影响自己，<br>而从你未来的自己影响自己，<br>它在针眼的另一端呼唤你，<br>听从召唤，以你未来的自己会前进的方式前进，<br>想象、观想那个未来版本的你，<br>像那未来的自己一样行为举止，感受和思考，<br>从你们线性时空的角度来看，你们都有未来的自己，<br>利用你在时空中这样为自己设立了（高我）的事实，<br>你已将自己锚定在未来，<br>而且通过针眼，它在把你拉向它，<br>留心它，听取它，高我通过激情喊你回家吃饭，<br>跟随这个兴奋公式，因为那是未来的自己每天每时每刻尽力在做的事情，<br>没有多余的呼吸，<br>没有多余的行动，<br>除了与兴奋公式一致的行动，即尽你最大的能力按照你的激情行动，<br>不执着不假设结果，<br>并选择待在积极的状态，<br>这样你就可以收到任何显化的益处，<br>即使那应该是你客观上不喜欢的东西，<br>你知道它在那是有原因的，<br>通过知道这点来让它服务你，<br>让它展示给你它是如何服务你的，<br>只是保持积极的状态，你知道那不是意外，<br>它在那的原因是服务你，<br>未来的自己在针眼的另一端呼唤，<br>让它帮你轻松地，迅速地，毫不费力地渡过针眼，<br>锚定未来的自己，<br>从未来的你影响你自己，<br>不再是过去的自己。</p>
-<h1 id="第五步-活在当下"><a href="#第五步-活在当下" class="headerlink" title="第五步 活在当下"></a>第五步 活在当下</h1><p>在你穿过针眼的期间以及之后，<br>你可以让自己完全活在当下，<br>在这当下的时刻，<br>你会越来越轻松，越来越加速，<br>真正的你，你存在的核心是剥离所有基于恐惧的信念，简化你，<br>留下你的天然的本质，你的坚不可摧的核心，当下的自己，现在的自己，<br>当你与你的高我的振动越来越紧密，越来越和谐，<br>并那样在地球上行动，<br>你会更多地活在当下，<br>更可塑地，更灵活地，更流畅地体验时空，<br>如果你想要穿过针眼，保持与我们和其他像我们那样的存有的联系，<br>那现在在这个时候你要剥去那些不再服务你的东西，<br>这是绝对至关重要的，<br>这不是警告，<br>不要对此消极地反应，<br>这只是描述你如何可以比以往更赋有力量，更自由，更喜悦，<br>如果你愿意放下那些把你锚向不是真正的你的东西，<br>剪断那些结子，挣断那些绳子，把你自己从那些锁链中解脱出来，<br>这样在这压缩的时期里，你可以自由地，不费力地，喜悦地穿过针眼，<br>回到你的内心去发现去探索，<br>然后最终表现出你们生命，你们内在之光的真正之美，<br>我们留给你们这些信息，<br>那些住在恐惧和黑暗中的人，<br>把你无条件的爱发送给他们，<br>这样他们的内在之光也会被唤醒，<br>而且他们也会真正地服务地球上的众生，<br>再说一次，那些生活在恐惧和黑暗中的人，<br>把你无条件的爱传送给他们，<br>这样来唤醒他们的内在之光，<br>允许他们服务，真正地服务于地球上的众生，<br>宽恕，然后继续前进，<br>宽恕，然后放下，<br>宽恕，然后获得自由，<br>今天我们无条件地爱着你们所有人。</p>
-]]></content>
-      <categories>
-        <category>明心见性</category>
-      </categories>
-      <tags>
-        <tag>提拔频率</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>看山是山，看山不是山 , 看山亦是山。</title>
-    <url>/2020/08/07/%E7%9C%8B%E5%B1%B1%E6%98%AF%E5%B1%B1%EF%BC%8C%E7%9C%8B%E5%B1%B1%E4%B8%8D%E6%98%AF%E5%B1%B1%20,%20%E7%9C%8B%E5%B1%B1%E4%BA%A6%E6%98%AF%E5%B1%B1%E3%80%82/</url>
-    <content><![CDATA[<p>有句禅语“看山是山，看山不是山 , 看山亦是山。”  <br>历史上许许多多大德，做出各种精妙的解答，各种鞭辟入里的见地。  <br>但是，他们只给出结果答案，却没有告诉后来人道路。      <br>以自己切身的修行体会，对这三句话，予以如实地阐述。       </p>
-<span id="more"></span>
-<h1 id="看山是山"><a href="#看山是山" class="headerlink" title="看山是山"></a>看山是山</h1><p>你走在路上，看见眼前的景象，你很确定，景象是你看到的。  <br>因为你，而有了看到，因为看到，而有了景象。  <br>景象，等同于看到；看到，等同于你。  <br>你不会怀疑，看到景象的，不是你自己吧？  <br>你不会怀疑，景象是你自己，所看到的吧？      <br>“你”是你的意识、眼睛、心愿、体验、记忆所构成。  <br>“世界”是微观能量，宇宙微粒聚合，形成的现象。      <br>“现象”与“你”，在这个时空节点上，聚合在一起，才有了你所看到的景象。  <br>因为内心，对你所看到，深信不疑。  <br>从而有了，你所看到的境界，以及看到景象的“你”。      <br>你与境界，都源自于心，只是被境界牵引的你，已经察觉不到这一点。      <br>可是，“你”并非是恒常不变的！<br>切记，世界只是缘起的现象！  <br>这一刻看到景象的你，与你所看到的景象，是刹那间变化的。  <br>是意识流与感受力，聚合外界的因缘，川流聚合的境界。      <br>世界，是微观能量相续聚合形成的现象，现象下面并无世界。  <br>自我，是心识妄想聚合体验习气的境界，境界之中并无自我。      <br>你与世界，在不停地变化之中，可是，为何会有此刻的真实世界？  <br>世界与你，都是因缘虚幻聚合，可是，为何会有看世界的，真实的你？      <br>因为贪恋，心在体验中昏沉；<br>因为思虑，心在境界中沉沦。      <br>你看到的世界，是所看之你的认知。  <br>或者说，世界是你认知所投射。      <br><strong>你与世界互为因果</strong>，世界是“你”投射的果。  <br>因为有“你”而有世界，你是世界缘起之因。  <br>你与世界都是因缘，世界与你，都是迷境。      <br>这就是“看山是山”。  <br>心随境转，即名凡夫。       </p>
-<h1 id="看山不是山"><a href="#看山不是山" class="headerlink" title="看山不是山"></a>看山不是山</h1><p>恒常不变的，只有内心中，你的“见”，那个能明了一切，却清醒无染的见。  <br>祂是不会随着你的变化而变化的。      <br>你幼年时，见到父母时心中明了，与你中年时，见到事业时心中明了，   与你临终时，见到医生的心中明了，是同一个清醒，同一种确定，同一个觉知。      <br>清醒不会随着你的，头脑知识的增减，情感善恶的转化，身体衰老的变化，而有丝毫改变丝毫损减。  <br>能够觉察身心自我的变幻，<strong>体察内心深处不变的清醒</strong>，这就是修行。  <br>这就是“<strong>知境为心</strong>”。      <br><strong>这个阶段中，最重要事是——选择。  **<br>在人生方向中，选择出离心；在是非矛盾中，选择宽恕心；在情欲执迷中，选择纯洁心。      <br>通过学法，认知心灵中清醒；通过禅定，培育清醒之强度。  <br>通过忏悔，净化清醒中杂质；通过宽恕，让清醒从体验与头脑中，纯净解脱。      <br>解脱了身心意识的，清醒心灵，将升华为纯澈。  <br>纯澈之中光芒绽放，光明熄灭习气，纯洁粉碎体验。  <br>失去欲望感受的支持，心中体验的习惯，就会融化分解。      <br>体验融解时，头脑意识失去了，思虑分辨的推动力，于是意识停顿。  <br>不受意识牵引的体验，就会彻底瓦解，融化消失。  <br>体验消融的过程，犹如冰块融化为水，会释放冰块中曾禁锢的，生死历史中一切妄念情绪。  <br>妄念情绪感知，在纯澈心光中沸腾，会形成形形色色境界，展现出三界六道。      <br>纯澈心光，驱散思虑阴影，照破体验昏沉。  <br>自我体验身心意识，如同衣服般脱落，脱落身心头脑，情感觉受的心。  <br>不再受身心自我的遮蔽。      <br> 纯光无染，纯澈无挂，光中离暗，空中无色。  <br>光明中会呈现，脱离光明的性质，性质中并没有生与死。  <br>这就是“</strong>知心为空**”。      <br>想阴破，入三摩地，离分段生死。      <br><strong>这个阶段中，最重要的事是——宽恕。</strong>  <br>宽恕内心欲望，宽恕内心恐惧，宽恕内心烦恼，宽恕他人过错，宽恕自我卑劣。  <br>宽恕中体验温暖，宽恕中觉受纯洁，宽恕中觉知清净，宽恕中实证安宁。      <br>三摩地中，证人无我，法无我，亲证到光明之中，不受光明形态约束的性质。  <br>性质本身无生无灭，无垢无净，不增不减，无来无去。  <br><strong>明性，不被觉受所体验；</strong><br><strong>觉性，不受觉知所牵引；</strong><br><strong>空性，不受存在所禁锢。</strong>  <br>觉明空一体性空，清净庄严，极明极耀极圆，普照十方圆明三世。      <br>人间世界自我身心，如太阳纯光中，飘浮的一粒灰尘。  <br>身心自我意识体验中，心灵纯明睁开了眼睛。      <br>觉成就，是你的内心睁开了眼睛。      <br>眼光纯澈无有杂染，纯澈光明没有遮蔽。  <br><strong>实证到，身语意并非是你自己</strong>。  <br>心可以同时看到，自我的心愿与意识的川流。  <br>看到身心意识的心，脱落了看，以及身心意识的牵绊。       </p>
-<h1 id="看山还是山"><a href="#看山还是山" class="headerlink" title="看山还是山"></a>看山还是山</h1><p>**这个阶段中，最重要的事是——纯洁。  **<br>极致的纯洁，纯洁到极致，明晰觉性，将从觉知中圆满复苏。  <br>宛如睁开的眼睛中，目光纯澈遍满，脱落了眼睛能见的障碍。      <br>明明了了，解脱自在，极乐极耀，圆明十方。  <br>心光中，明晰粉碎了存在，言语道断，如梦初醒。      <br>这就是“看山不是山”，也称为“知心为空”。      <br>**觉圆满，是宇宙空间成为你的心。       **<br>脱落了身心自我的，内在明空性质，与身外的空间合为一体。  <br>无论你的肉身在做什么，无论你的头脑在想什么，  <br>无论你的心灵愿望什么，无论你情欲在感受什么。      <br>心灵内在的，脱落了觉知意识的，那个明晰空性是不动的。  <br>内在空性与外界空间合为一体，虚空就是你的眼睛。  <br>空性与空间一体，周遍宇宙世界。      <br>你的起心动念，你的情绪感受，你的意识思维。  <br>你的思虑动机，你的心愿体验，身心灵川流不息的相续。  <br>在虚空性中，明明了了，清清楚楚，毫厘不爽。      <br>没有禅定的你，你的行住坐卧，如幻影浮云。  <br>浮云幻影无痕，虚空就是你的定境。      <br>没有修行的你，你的痛苦烦恼，本性皆是安然。  <br> 烦恼痛苦无根，安然就是你的生命。      <br>心光脱落了光明形态，你成为明晰性质。  <br>性质不受身心与世界制约，宇宙十方是你的倒影。  <br>内心光明是你的梦境。      <br>从梦境中彻底苏醒，你与世界，过去与未来，如沙尘从目光中滑落。  <br>明性离光，空性离相，觉性离照。  <br>觉明空一体，寂净觉满，妙乐安宁。      <br>能觉照到，心灵中，觉知与心识，自我与意识，相续轮回的体系。  <br>能觉照到，心识分别，所投射出的宇宙时空，如幻影般海市蜃楼。      <br>在能觉照中，寂静；于是所觉照的，熄灭。  <br>无我亦无我所，十方三世，只在一念中发生。      <br>梦醒时，并无做梦人。  <br>妙乐庄严，本来如是。      <br>这个阶段中，无重要之事。   想睡就睡，想玩就玩，想吃就吃，想喝就喝，随遇而安，随缘不变。  <br>喜怒哀乐，七情六欲，无一不缺，常驻贪嗔痴中，贪嗔痴性了无挂碍。  <br>行住坐卧，嬉笑怒骂，皆是禅定，身语意烦恼中，即心离心落落清净。      <br>于是，烦恼即菩提，如是，生死即涅槃。  <br>修与不修，尽是圆满；定或出定，皆是禅机。      <br>这就是“看山亦是山”。      <br>梦境无需分辨，离辨幻境无痕。  <br>也称为“知空为无二双融”。</p>
-]]></content>
-      <categories>
-        <category>明心见性</category>
-      </categories>
-      <tags>
-        <tag>观心</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>无梦无想时你在哪里？</title>
-    <url>/2020/08/07/%E6%97%A0%E6%A2%A6%E6%97%A0%E6%83%B3%E6%97%B6%E4%BD%A0%E5%9C%A8%E5%93%AA%E9%87%8C%EF%BC%9F/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-<p>作者：道 真<br>有师兄在群里发：<br>开悟最好的标准就是雪岩祖钦禅师勘验高峰原妙禅师的三问：</p>
-<span id="more"></span>
-
-<p><strong>1、日间浩浩时，做得主吗？（白日醒着时，时时刻刻能自觉做主，无一念之失，即使是待人接物时、繁忙杂乱处）</strong><br><strong>2、睡梦中，做得主吗？（睡着了，依旧做得主，而不是简单的潜入潜意识瞎做梦，完全无知不能把控。这其实是以定为睡，说是睡，只是处深定中）</strong><br><strong>3、正睡着时，无梦无想，主人公在甚么处？（自己悟，我们离得太远）</strong></p>
-<p>三问皆过，才叫大悟。<br>然后师兄说，这是在一个群里看到群主发的，仅供参考，大家认为这个标准对吗？解释的对吗？<br>个人认为，以上说法蛮高端大气的。至于妥与不妥，值得考量一番。<br>原公案当中，初始高峰祖师不得其门而入，在钦和尚的拶逼“殴打”之下疑情顿发，后睹五祖演和尚遗像有所悟入，可雪岩钦和尚依然不依不饶，遂有三问：</p>
-<p>一日雪岩问峰：”日间喧闹时，还作得主么？”<br>峰答：”作得主。”<br>雪岩问：”睡梦中作得主么？”<br>峰答：”作得主。”<br>又问：”正睡着时。无梦无想。无见无闻，主在甚么处？”<br>峰无语。</p>
-<p>三问均是平常语，高峰祖师最终还是露了形迹。<br>其实在三问当中可知，高峰祖师功夫了得，白天梦中均可做得了主，已经达到甚深的境界，非一般人可比。但为什么依然得不到印可？<br>且看看祖师大德们如何说禅。<br>先看马祖大师的论述：<strong>一切众生。从无量劫来。不出法性三昧。长在法性三昧中。著衣吃饭。言谈祗对。六根运用。一切施为。尽是法性。</strong><br>**<br>再看S老师的论述：<br><strong>见是禅，不见亦禅，有什么见处，所见无非是禅。</strong><br><strong>修是禅，不修亦禅，有什么修与可修的，修与修者本自一味。</strong><br><strong>持是禅，失亦是禅，有什么持与失。前念迷是禅，后念悟亦禅，有什么迷与悟。</strong></p>
-<p>烦恼是禅，菩提亦禅，有什么烦恼菩提，<strong>随境现时无非解脱。</strong><br>**<br>最后看看元音老人说法，<br><strong>问：白天作得主么？答：饥来吃饭困来睡。</strong><br><strong>问：睡梦中作得主么？答：朝阳升起月含山。</strong><br><strong>问：无梦无想，无见无闻时，主人公在什么处？答：太虚饮光消契阔；风摇浅碧柳丝轻。</strong><br>**<br>原来，禅真的是赤祼祼，净洒洒的，<strong>若有一丝可修可证与地位因果阶级的情见，即与禅之见地相背，</strong>离禅门末后句真是“咫尺天涯，天涯咫尺”。<br>也许有人问，元音老人讲法同文中开篇群主的观点难道不一致么？<br>这真是个美丽的误会!着了文字相之果。<br>老人第一句说饥来吃饭困来睡，意即真心无论什么时侯都在，无论你修与不修，迷与悟，真的是“著衣吃饭。言谈祗对。六根运用。一切施为。尽是法性”；</p>
-<p>第二句说朝阳升起月含山，是告诉学人“醒着是禅，睡着也是禅”；</p>
-<p>第三句说太虚饮光消契阔；风摇浅碧柳丝轻。意即妙明真心无所不包，凡有所相，皆是真如。</p>
-<p>所以，无论白天晚上，有梦无梦，有感知与无感知，主人公都在大放光芒，什么都是他他他。</p>
-<p>由此可见，三句问答，其实都是反复说同一种“东西”，丝毫不提功夫与修持。</p>
-<p>正是：<strong>“见是禅，不见亦禅；修是禅，不修亦禅；持是禅，失亦是禅；烦恼是禅，菩提亦禅。”</strong></p>
-<p>而开篇的某群主说“三问过后，才叫大悟”。虽然其行持到家令人心生佩服，但是文字当中难免透露出有功夫可作的痕迹，与真正的禅宗作略仍差一着，令人扼腕一叹。</p>
-<p>若是禅师或不然。<br>有什么作得不作得，作得是此心，不作得亦是此心。<br>目前凡夫境界即是如来大圆觉。<br>有什么是与不是，不妨道一句？！</p>
-]]></content>
-      <categories>
-        <category>明心见性</category>
-      </categories>
-      <tags>
-        <tag>意识</tag>
       </tags>
   </entry>
   <entry>
@@ -934,6 +918,22 @@ D 68
       </categories>
       <tags>
         <tag>可视化思维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>看山是山，看山不是山 , 看山亦是山。</title>
+    <url>/2020/08/07/%E7%9C%8B%E5%B1%B1%E6%98%AF%E5%B1%B1%EF%BC%8C%E7%9C%8B%E5%B1%B1%E4%B8%8D%E6%98%AF%E5%B1%B1%20,%20%E7%9C%8B%E5%B1%B1%E4%BA%A6%E6%98%AF%E5%B1%B1%E3%80%82/</url>
+    <content><![CDATA[<p>有句禅语“看山是山，看山不是山 , 看山亦是山。”  <br>历史上许许多多大德，做出各种精妙的解答，各种鞭辟入里的见地。  <br>但是，他们只给出结果答案，却没有告诉后来人道路。      <br>以自己切身的修行体会，对这三句话，予以如实地阐述。       </p>
+<span id="more"></span>
+<h1 id="看山是山"><a href="#看山是山" class="headerlink" title="看山是山"></a>看山是山</h1><p>你走在路上，看见眼前的景象，你很确定，景象是你看到的。  <br>因为你，而有了看到，因为看到，而有了景象。  <br>景象，等同于看到；看到，等同于你。  <br>你不会怀疑，看到景象的，不是你自己吧？  <br>你不会怀疑，景象是你自己，所看到的吧？      <br>“你”是你的意识、眼睛、心愿、体验、记忆所构成。  <br>“世界”是微观能量，宇宙微粒聚合，形成的现象。      <br>“现象”与“你”，在这个时空节点上，聚合在一起，才有了你所看到的景象。  <br>因为内心，对你所看到，深信不疑。  <br>从而有了，你所看到的境界，以及看到景象的“你”。      <br>你与境界，都源自于心，只是被境界牵引的你，已经察觉不到这一点。      <br>可是，“你”并非是恒常不变的！<br>切记，世界只是缘起的现象！  <br>这一刻看到景象的你，与你所看到的景象，是刹那间变化的。  <br>是意识流与感受力，聚合外界的因缘，川流聚合的境界。      <br>世界，是微观能量相续聚合形成的现象，现象下面并无世界。  <br>自我，是心识妄想聚合体验习气的境界，境界之中并无自我。      <br>你与世界，在不停地变化之中，可是，为何会有此刻的真实世界？  <br>世界与你，都是因缘虚幻聚合，可是，为何会有看世界的，真实的你？      <br>因为贪恋，心在体验中昏沉；<br>因为思虑，心在境界中沉沦。      <br>你看到的世界，是所看之你的认知。  <br>或者说，世界是你认知所投射。      <br><strong>你与世界互为因果</strong>，世界是“你”投射的果。  <br>因为有“你”而有世界，你是世界缘起之因。  <br>你与世界都是因缘，世界与你，都是迷境。      <br>这就是“看山是山”。  <br>心随境转，即名凡夫。       </p>
+<h1 id="看山不是山"><a href="#看山不是山" class="headerlink" title="看山不是山"></a>看山不是山</h1><p>恒常不变的，只有内心中，你的“见”，那个能明了一切，却清醒无染的见。  <br>祂是不会随着你的变化而变化的。      <br>你幼年时，见到父母时心中明了，与你中年时，见到事业时心中明了，   与你临终时，见到医生的心中明了，是同一个清醒，同一种确定，同一个觉知。      <br>清醒不会随着你的，头脑知识的增减，情感善恶的转化，身体衰老的变化，而有丝毫改变丝毫损减。  <br>能够觉察身心自我的变幻，<strong>体察内心深处不变的清醒</strong>，这就是修行。  <br>这就是“<strong>知境为心</strong>”。      <br><strong>这个阶段中，最重要事是——选择。  **<br>在人生方向中，选择出离心；在是非矛盾中，选择宽恕心；在情欲执迷中，选择纯洁心。      <br>通过学法，认知心灵中清醒；通过禅定，培育清醒之强度。  <br>通过忏悔，净化清醒中杂质；通过宽恕，让清醒从体验与头脑中，纯净解脱。      <br>解脱了身心意识的，清醒心灵，将升华为纯澈。  <br>纯澈之中光芒绽放，光明熄灭习气，纯洁粉碎体验。  <br>失去欲望感受的支持，心中体验的习惯，就会融化分解。      <br>体验融解时，头脑意识失去了，思虑分辨的推动力，于是意识停顿。  <br>不受意识牵引的体验，就会彻底瓦解，融化消失。  <br>体验消融的过程，犹如冰块融化为水，会释放冰块中曾禁锢的，生死历史中一切妄念情绪。  <br>妄念情绪感知，在纯澈心光中沸腾，会形成形形色色境界，展现出三界六道。      <br>纯澈心光，驱散思虑阴影，照破体验昏沉。  <br>自我体验身心意识，如同衣服般脱落，脱落身心头脑，情感觉受的心。  <br>不再受身心自我的遮蔽。      <br> 纯光无染，纯澈无挂，光中离暗，空中无色。  <br>光明中会呈现，脱离光明的性质，性质中并没有生与死。  <br>这就是“</strong>知心为空**”。      <br>想阴破，入三摩地，离分段生死。      <br><strong>这个阶段中，最重要的事是——宽恕。</strong>  <br>宽恕内心欲望，宽恕内心恐惧，宽恕内心烦恼，宽恕他人过错，宽恕自我卑劣。  <br>宽恕中体验温暖，宽恕中觉受纯洁，宽恕中觉知清净，宽恕中实证安宁。      <br>三摩地中，证人无我，法无我，亲证到光明之中，不受光明形态约束的性质。  <br>性质本身无生无灭，无垢无净，不增不减，无来无去。  <br><strong>明性，不被觉受所体验；</strong><br><strong>觉性，不受觉知所牵引；</strong><br><strong>空性，不受存在所禁锢。</strong>  <br>觉明空一体性空，清净庄严，极明极耀极圆，普照十方圆明三世。      <br>人间世界自我身心，如太阳纯光中，飘浮的一粒灰尘。  <br>身心自我意识体验中，心灵纯明睁开了眼睛。      <br>觉成就，是你的内心睁开了眼睛。      <br>眼光纯澈无有杂染，纯澈光明没有遮蔽。  <br><strong>实证到，身语意并非是你自己</strong>。  <br>心可以同时看到，自我的心愿与意识的川流。  <br>看到身心意识的心，脱落了看，以及身心意识的牵绊。       </p>
+<h1 id="看山还是山"><a href="#看山还是山" class="headerlink" title="看山还是山"></a>看山还是山</h1><p>**这个阶段中，最重要的事是——纯洁。  **<br>极致的纯洁，纯洁到极致，明晰觉性，将从觉知中圆满复苏。  <br>宛如睁开的眼睛中，目光纯澈遍满，脱落了眼睛能见的障碍。      <br>明明了了，解脱自在，极乐极耀，圆明十方。  <br>心光中，明晰粉碎了存在，言语道断，如梦初醒。      <br>这就是“看山不是山”，也称为“知心为空”。      <br>**觉圆满，是宇宙空间成为你的心。       **<br>脱落了身心自我的，内在明空性质，与身外的空间合为一体。  <br>无论你的肉身在做什么，无论你的头脑在想什么，  <br>无论你的心灵愿望什么，无论你情欲在感受什么。      <br>心灵内在的，脱落了觉知意识的，那个明晰空性是不动的。  <br>内在空性与外界空间合为一体，虚空就是你的眼睛。  <br>空性与空间一体，周遍宇宙世界。      <br>你的起心动念，你的情绪感受，你的意识思维。  <br>你的思虑动机，你的心愿体验，身心灵川流不息的相续。  <br>在虚空性中，明明了了，清清楚楚，毫厘不爽。      <br>没有禅定的你，你的行住坐卧，如幻影浮云。  <br>浮云幻影无痕，虚空就是你的定境。      <br>没有修行的你，你的痛苦烦恼，本性皆是安然。  <br> 烦恼痛苦无根，安然就是你的生命。      <br>心光脱落了光明形态，你成为明晰性质。  <br>性质不受身心与世界制约，宇宙十方是你的倒影。  <br>内心光明是你的梦境。      <br>从梦境中彻底苏醒，你与世界，过去与未来，如沙尘从目光中滑落。  <br>明性离光，空性离相，觉性离照。  <br>觉明空一体，寂净觉满，妙乐安宁。      <br>能觉照到，心灵中，觉知与心识，自我与意识，相续轮回的体系。  <br>能觉照到，心识分别，所投射出的宇宙时空，如幻影般海市蜃楼。      <br>在能觉照中，寂静；于是所觉照的，熄灭。  <br>无我亦无我所，十方三世，只在一念中发生。      <br>梦醒时，并无做梦人。  <br>妙乐庄严，本来如是。      <br>这个阶段中，无重要之事。   想睡就睡，想玩就玩，想吃就吃，想喝就喝，随遇而安，随缘不变。  <br>喜怒哀乐，七情六欲，无一不缺，常驻贪嗔痴中，贪嗔痴性了无挂碍。  <br>行住坐卧，嬉笑怒骂，皆是禅定，身语意烦恼中，即心离心落落清净。      <br>于是，烦恼即菩提，如是，生死即涅槃。  <br>修与不修，尽是圆满；定或出定，皆是禅机。      <br>这就是“看山亦是山”。      <br>梦境无需分辨，离辨幻境无痕。  <br>也称为“知空为无二双融”。</p>
+]]></content>
+      <categories>
+        <category>明心见性</category>
+      </categories>
+      <tags>
+        <tag>观心</tag>
       </tags>
   </entry>
   <entry>
