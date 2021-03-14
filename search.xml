@@ -22,27 +22,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C++ 智能指针使用</title>
-    <url>/2020/04/26/C%20%20%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-
-<p>由于 C++ 语言没有自动内存回收机制，程序员每次 new 出来的内存都要手动 delete。程序员忘记 delete，流程太复杂，最终导致没有 delete，异常导致程序过早退出，没有执行 delete 的情况并不罕见。<br>用智能指针便可以有效缓解这类问题。</p>
-<span id="more"></span>
-
-<h1 id="智能指针如何智能"><a href="#智能指针如何智能" class="headerlink" title="智能指针如何智能"></a>智能指针如何智能</h1><p><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1587472580671-3b7755bf-7875-4468-8353-7d9373e15219.png#align=left&display=inline&height=428&margin=%5Bobject%20Object%5D&name=image.png&originHeight=505&originWidth=881&size=611899&status=done&style=none&width=746" alt="image.png"></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __SMARTPTR_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __SMARTPTR_H__</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//智能指针类模板</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmartPtr</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// @ 套否？</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 非套</span></span><br><span class="line">    SmartPtr() : _ptr(<span class="keyword">new</span> T()), _ref(<span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">1</span>))</span><br><span class="line">    &#123; <span class="comment">//成员变量的初始化</span></span><br><span class="line">        <span class="comment">//默认构造函数</span></span><br><span class="line">    &#125;</span><br><span class="line">    SmartPtr(T *p) : _ptr(p), _ref(<span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">1</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//拷贝构造函数 因为我们这个指针是第一次引用</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 套</span></span><br><span class="line">    SmartPtr(<span class="keyword">const</span> SmartPtr &amp;sptr) : _ptr(sptr._ptr), _ref(sptr._ref)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//拷贝构造函数</span></span><br><span class="line">        ++(*_ref); <span class="comment">//引用计数+1 前++比后++效率要高</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ~SmartPtr()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (--*_ref == <span class="number">0</span>)</span><br><span class="line">        &#123; <span class="comment">//如果原本的引用计数为0，释放指针</span></span><br><span class="line">            <span class="keyword">delete</span> _ptr;</span><br><span class="line">            <span class="keyword">delete</span> _ref;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 召唤</span></span><br><span class="line">    T *<span class="keyword">operator</span>-&gt;()</span><br><span class="line">    &#123; <span class="comment">//重载操作符 -&gt;</span></span><br><span class="line">        <span class="keyword">return</span> _ptr;</span><br><span class="line">    &#125;</span><br><span class="line">    T &amp;<span class="keyword">operator</span>*()</span><br><span class="line">    &#123; <span class="comment">//重载操作符 *</span></span><br><span class="line">        <span class="keyword">return</span> *_ptr;</span><br><span class="line">    &#125;</span><br><span class="line">    SmartPtr &amp;<span class="keyword">operator</span>=(SmartPtr &amp;inst)</span><br><span class="line">    &#123;                 <span class="comment">//重载操作符 =</span></span><br><span class="line">        ++*inst._ref; <span class="comment">//引用计数+1</span></span><br><span class="line">        <span class="keyword">if</span> (--*_ref == <span class="number">0</span>)</span><br><span class="line">        &#123; <span class="comment">//如果原本的引用计数为0，释放原本的指针</span></span><br><span class="line">            <span class="keyword">delete</span> _ptr;</span><br><span class="line">            <span class="keyword">delete</span> _ref;</span><br><span class="line">        &#125;</span><br><span class="line">        _ptr = inst._ptr;</span><br><span class="line">        _ref = inst._ref;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> *_ref; <span class="comment">//指用计数</span></span><br><span class="line">    T *_ptr;   <span class="comment">//要管理的对象指针</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>● 关注引用的操作，凡是用引用的操作，就会造成只能指针的计数增加</p>
-]]></content>
-      <categories>
-        <category>专业技术</category>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>python机器学习--001 python基础</title>
     <url>/2021/03/14/1-ReviewPython_solution/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -204,6 +183,27 @@ D 68
       <tags>
         <tag>python</tag>
         <tag>字典数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ 智能指针使用</title>
+    <url>/2020/04/26/C%20%20%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+
+<p>由于 C++ 语言没有自动内存回收机制，程序员每次 new 出来的内存都要手动 delete。程序员忘记 delete，流程太复杂，最终导致没有 delete，异常导致程序过早退出，没有执行 delete 的情况并不罕见。<br>用智能指针便可以有效缓解这类问题。</p>
+<span id="more"></span>
+
+<h1 id="智能指针如何智能"><a href="#智能指针如何智能" class="headerlink" title="智能指针如何智能"></a>智能指针如何智能</h1><p><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1587472580671-3b7755bf-7875-4468-8353-7d9373e15219.png#align=left&display=inline&height=428&margin=%5Bobject%20Object%5D&name=image.png&originHeight=505&originWidth=881&size=611899&status=done&style=none&width=746" alt="image.png"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __SMARTPTR_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __SMARTPTR_H__</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//智能指针类模板</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmartPtr</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// @ 套否？</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 非套</span></span><br><span class="line">    SmartPtr() : _ptr(<span class="keyword">new</span> T()), _ref(<span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">1</span>))</span><br><span class="line">    &#123; <span class="comment">//成员变量的初始化</span></span><br><span class="line">        <span class="comment">//默认构造函数</span></span><br><span class="line">    &#125;</span><br><span class="line">    SmartPtr(T *p) : _ptr(p), _ref(<span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">1</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//拷贝构造函数 因为我们这个指针是第一次引用</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 套</span></span><br><span class="line">    SmartPtr(<span class="keyword">const</span> SmartPtr &amp;sptr) : _ptr(sptr._ptr), _ref(sptr._ref)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//拷贝构造函数</span></span><br><span class="line">        ++(*_ref); <span class="comment">//引用计数+1 前++比后++效率要高</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ~SmartPtr()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (--*_ref == <span class="number">0</span>)</span><br><span class="line">        &#123; <span class="comment">//如果原本的引用计数为0，释放指针</span></span><br><span class="line">            <span class="keyword">delete</span> _ptr;</span><br><span class="line">            <span class="keyword">delete</span> _ref;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 召唤</span></span><br><span class="line">    T *<span class="keyword">operator</span>-&gt;()</span><br><span class="line">    &#123; <span class="comment">//重载操作符 -&gt;</span></span><br><span class="line">        <span class="keyword">return</span> _ptr;</span><br><span class="line">    &#125;</span><br><span class="line">    T &amp;<span class="keyword">operator</span>*()</span><br><span class="line">    &#123; <span class="comment">//重载操作符 *</span></span><br><span class="line">        <span class="keyword">return</span> *_ptr;</span><br><span class="line">    &#125;</span><br><span class="line">    SmartPtr &amp;<span class="keyword">operator</span>=(SmartPtr &amp;inst)</span><br><span class="line">    &#123;                 <span class="comment">//重载操作符 =</span></span><br><span class="line">        ++*inst._ref; <span class="comment">//引用计数+1</span></span><br><span class="line">        <span class="keyword">if</span> (--*_ref == <span class="number">0</span>)</span><br><span class="line">        &#123; <span class="comment">//如果原本的引用计数为0，释放原本的指针</span></span><br><span class="line">            <span class="keyword">delete</span> _ptr;</span><br><span class="line">            <span class="keyword">delete</span> _ref;</span><br><span class="line">        &#125;</span><br><span class="line">        _ptr = inst._ptr;</span><br><span class="line">        _ref = inst._ref;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> *_ref; <span class="comment">//指用计数</span></span><br><span class="line">    T *_ptr;   <span class="comment">//要管理的对象指针</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>● 关注引用的操作，凡是用引用的操作，就会造成只能指针的计数增加</p>
+]]></content>
+      <categories>
+        <category>专业技术</category>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -437,25 +437,6 @@ D 68
       </tags>
   </entry>
   <entry>
-    <title>shell的字符串操作</title>
-    <url>/2020/08/06/shell%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ip link show</span></span><br><span class="line"><span class="number">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="number">65536</span> qdisc noqueue state UNKNOWN mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/loopback <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> brd <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="number">2</span>: internal: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc fq_codel state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:e8:<span class="number">56</span>:e4 brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">6</span>: ext2: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc fq_codel state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:8b:a8:cc brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">7</span>: intmsg0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:b3:d1:<span class="number">58</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">8</span>: ext0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">9</span>: ext1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:8b:a6:b8 brd ff:ff:ff:ff:ff:ff</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip link show | grep -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> -B1 |grep -v -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span>  | cut -d: -f <span class="number">2</span></span><br></pre></td></tr></table></figure>
-<h1 id="以mac为坐标取出其对应的接口所在行"><a href="#以mac为坐标取出其对应的接口所在行" class="headerlink" title="以mac为坐标取出其对应的接口所在行"></a>以mac为坐标取出其对应的接口所在行</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip link show | grep -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> -B1 |grep -v -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span></span><br></pre></td></tr></table></figure>
-<p>● grep -i fa:16:3e:d3:79:67 -B1<br>mac所在行以及前面的一行<br>● 去除mac所在行</p>
-<h1 id="以空格为分割取第二列"><a href="#以空格为分割取第二列" class="headerlink" title="以空格为分割取第二列"></a>以空格为分割取第二列</h1><p>● cut -d: -f 2<br>-d 给出分割字符 -f指定是哪一列</p>
-]]></content>
-      <categories>
-        <category>专业技术</category>
-      </categories>
-      <tags>
-        <tag>shell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>python的字典轮询</title>
     <url>/2020/04/26/python%20%E5%AD%97%E5%85%B8%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -472,6 +453,25 @@ D 68
       <tags>
         <tag>python</tag>
         <tag>字典数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>shell的字符串操作</title>
+    <url>/2020/08/06/shell%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ip link show</span></span><br><span class="line"><span class="number">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="number">65536</span> qdisc noqueue state UNKNOWN mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/loopback <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> brd <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"><span class="number">2</span>: internal: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc fq_codel state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:e8:<span class="number">56</span>:e4 brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">6</span>: ext2: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc fq_codel state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:8b:a8:cc brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">7</span>: intmsg0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:b3:d1:<span class="number">58</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">8</span>: ext0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line"><span class="number">9</span>: ext1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc mq state UP mode DEFAULT group default qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:3e:8b:a6:b8 brd ff:ff:ff:ff:ff:ff</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip link show | grep -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> -B1 |grep -v -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span>  | cut -d: -f <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h1 id="以mac为坐标取出其对应的接口所在行"><a href="#以mac为坐标取出其对应的接口所在行" class="headerlink" title="以mac为坐标取出其对应的接口所在行"></a>以mac为坐标取出其对应的接口所在行</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip link show | grep -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span> -B1 |grep -v -i fa:<span class="number">16</span>:3e:d3:<span class="number">79</span>:<span class="number">67</span></span><br></pre></td></tr></table></figure>
+<p>● grep -i fa:16:3e:d3:79:67 -B1<br>mac所在行以及前面的一行<br>● 去除mac所在行</p>
+<h1 id="以空格为分割取第二列"><a href="#以空格为分割取第二列" class="headerlink" title="以空格为分割取第二列"></a>以空格为分割取第二列</h1><p>● cut -d: -f 2<br>-d 给出分割字符 -f指定是哪一列</p>
+]]></content>
+      <categories>
+        <category>专业技术</category>
+      </categories>
+      <tags>
+        <tag>shell</tag>
       </tags>
   </entry>
   <entry>
@@ -492,39 +492,6 @@ D 68
       </categories>
       <tags>
         <tag>意识</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>virtual 函数修饰符的用法</title>
-    <url>/2020/08/06/virtual%20%E5%87%BD%E6%95%B0%E4%BF%AE%E9%A5%B0%E7%AC%A6%E7%9A%84%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-
-<h1 id="适用范围-a-non-static-member-function"><a href="#适用范围-a-non-static-member-function" class="headerlink" title="适用范围 a non-static member function"></a>适用范围 a non-static member function</h1><h1 id="具体作用，弱化父类函数，默认让子类函数掌权"><a href="#具体作用，弱化父类函数，默认让子类函数掌权" class="headerlink" title="具体作用，弱化父类函数，默认让子类函数掌权"></a>具体作用，弱化父类函数，默认让子类函数掌权</h1><span id="more"></span>
-
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;base\n&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> Base &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span>  </span>&#123; <span class="comment">// &#x27;override&#x27; is optional</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;derived\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Base b;</span><br><span class="line">    Derived d;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// virtual function call through reference</span></span><br><span class="line">    Base&amp; br = b; <span class="comment">// the type of br is Base&amp;</span></span><br><span class="line">    Base&amp; dr = d; <span class="comment">// the type of dr is Base&amp; as  well</span></span><br><span class="line">    br.f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">    dr.f(); <span class="comment">// prints &quot;derived&quot;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// virtual function call through pointer</span></span><br><span class="line">    Base* bp = &amp;b; <span class="comment">// the type of bp is Base*</span></span><br><span class="line">    Base* dp = &amp;d; <span class="comment">// the type of dp is Base* as  well</span></span><br><span class="line">    bp-&gt;f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">    dp-&gt;f(); <span class="comment">// prints &quot;derived&quot;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// non-virtual function call</span></span><br><span class="line">    br.Base::f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">    dr.Base::f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>没有使用virtual的情况:</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">base</span><br><span class="line">base</span><br><span class="line">base</span><br><span class="line">base</span><br><span class="line">base</span><br><span class="line">base</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">   <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;base\n&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> Base &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123; <span class="comment">// &#x27;override&#x27; is optional</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;derived\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Base b;</span><br><span class="line">    Derived d;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// virtual function call through reference</span></span><br><span class="line">    Base&amp; br = b; <span class="comment">// the type of br is Base&amp;</span></span><br><span class="line">    Base&amp; dr = d; <span class="comment">// the type of dr is Base&amp; as  well</span></span><br><span class="line">    br.f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">    dr.f(); <span class="comment">// prints &quot;derived&quot;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// virtual function call through pointer</span></span><br><span class="line">    Base* bp = &amp;b; <span class="comment">// the type of bp is Base*</span></span><br><span class="line">    Base* dp = &amp;d; <span class="comment">// the type of dp is Base* as  well</span></span><br><span class="line">    bp-&gt;f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">    dp-&gt;f(); <span class="comment">// prints &quot;derived&quot;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// non-virtual function call</span></span><br><span class="line">    br.Base::f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">    dr.Base::f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用virtual的情况:</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">base</span><br><span class="line">derived</span><br><span class="line">base</span><br><span class="line">derived</span><br><span class="line">base</span><br><span class="line">base</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>virtual 可以在子类中用override宣告掌权，没有virual，贸然使用override会编译报错</li>
-<li>使用virtual，override的宣告是可选的，不加也可以掌权</li>
-<li>父类引用或者指针可以通过Base::f();完成夺权</li>
-</ul>
-<h1 id="重写与可见"><a href="#重写与可见" class="headerlink" title="重写与可见"></a>重写与可见</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span> &#123;</span> <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; &#125;;     <span class="comment">// A::f is virtual</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> :</span> A &#123; <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; &#125;;         <span class="comment">// B::f overrides A::f in B</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">C</span> :</span> <span class="keyword">virtual</span> B &#123; <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; &#125;; <span class="comment">// C::f overrides A::f in C</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">D</span> :</span> <span class="keyword">virtual</span> B &#123;&#125;; <span class="comment">// D does not introduce an overrider, B::f is final in D</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">E</span> :</span> C, D  &#123;       <span class="comment">// E does not introduce an overrider, C::f is final in E</span></span><br><span class="line">    <span class="keyword">using</span> A::f; <span class="comment">// not a function declaration, just makes A::f visible to lookup</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   E e;</span><br><span class="line">   e.f();    <span class="comment">// virtual call calls C::f, the final overrider in e</span></span><br><span class="line">   e.E::f(); <span class="comment">// non-virtual call calls A::f, which is visible in E</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>专业技术</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -733,6 +700,39 @@ D 68
       </tags>
   </entry>
   <entry>
+    <title>virtual 函数修饰符的用法</title>
+    <url>/2020/08/06/virtual%20%E5%87%BD%E6%95%B0%E4%BF%AE%E9%A5%B0%E7%AC%A6%E7%9A%84%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+
+<h1 id="适用范围-a-non-static-member-function"><a href="#适用范围-a-non-static-member-function" class="headerlink" title="适用范围 a non-static member function"></a>适用范围 a non-static member function</h1><h1 id="具体作用，弱化父类函数，默认让子类函数掌权"><a href="#具体作用，弱化父类函数，默认让子类函数掌权" class="headerlink" title="具体作用，弱化父类函数，默认让子类函数掌权"></a>具体作用，弱化父类函数，默认让子类函数掌权</h1><span id="more"></span>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;base\n&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> Base &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span>  </span>&#123; <span class="comment">// &#x27;override&#x27; is optional</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;derived\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Base b;</span><br><span class="line">    Derived d;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// virtual function call through reference</span></span><br><span class="line">    Base&amp; br = b; <span class="comment">// the type of br is Base&amp;</span></span><br><span class="line">    Base&amp; dr = d; <span class="comment">// the type of dr is Base&amp; as  well</span></span><br><span class="line">    br.f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">    dr.f(); <span class="comment">// prints &quot;derived&quot;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// virtual function call through pointer</span></span><br><span class="line">    Base* bp = &amp;b; <span class="comment">// the type of bp is Base*</span></span><br><span class="line">    Base* dp = &amp;d; <span class="comment">// the type of dp is Base* as  well</span></span><br><span class="line">    bp-&gt;f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">    dp-&gt;f(); <span class="comment">// prints &quot;derived&quot;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// non-virtual function call</span></span><br><span class="line">    br.Base::f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">    dr.Base::f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>没有使用virtual的情况:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">base</span><br><span class="line">base</span><br><span class="line">base</span><br><span class="line">base</span><br><span class="line">base</span><br><span class="line">base</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">   <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;base\n&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Derived</span> :</span> Base &#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123; <span class="comment">// &#x27;override&#x27; is optional</span></span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;derived\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Base b;</span><br><span class="line">    Derived d;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// virtual function call through reference</span></span><br><span class="line">    Base&amp; br = b; <span class="comment">// the type of br is Base&amp;</span></span><br><span class="line">    Base&amp; dr = d; <span class="comment">// the type of dr is Base&amp; as  well</span></span><br><span class="line">    br.f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">    dr.f(); <span class="comment">// prints &quot;derived&quot;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// virtual function call through pointer</span></span><br><span class="line">    Base* bp = &amp;b; <span class="comment">// the type of bp is Base*</span></span><br><span class="line">    Base* dp = &amp;d; <span class="comment">// the type of dp is Base* as  well</span></span><br><span class="line">    bp-&gt;f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">    dp-&gt;f(); <span class="comment">// prints &quot;derived&quot;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">// non-virtual function call</span></span><br><span class="line">    br.Base::f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">    dr.Base::f(); <span class="comment">// prints &quot;base&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用virtual的情况:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">base</span><br><span class="line">derived</span><br><span class="line">base</span><br><span class="line">derived</span><br><span class="line">base</span><br><span class="line">base</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>virtual 可以在子类中用override宣告掌权，没有virual，贸然使用override会编译报错</li>
+<li>使用virtual，override的宣告是可选的，不加也可以掌权</li>
+<li>父类引用或者指针可以通过Base::f();完成夺权</li>
+</ul>
+<h1 id="重写与可见"><a href="#重写与可见" class="headerlink" title="重写与可见"></a>重写与可见</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span> &#123;</span> <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; &#125;;     <span class="comment">// A::f is virtual</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span> :</span> A &#123; <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; &#125;;         <span class="comment">// B::f overrides A::f in B</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">C</span> :</span> <span class="keyword">virtual</span> B &#123; <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>; &#125;; <span class="comment">// C::f overrides A::f in C</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">D</span> :</span> <span class="keyword">virtual</span> B &#123;&#125;; <span class="comment">// D does not introduce an overrider, B::f is final in D</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">E</span> :</span> C, D  &#123;       <span class="comment">// E does not introduce an overrider, C::f is final in E</span></span><br><span class="line">    <span class="keyword">using</span> A::f; <span class="comment">// not a function declaration, just makes A::f visible to lookup</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   E e;</span><br><span class="line">   e.f();    <span class="comment">// virtual call calls C::f, the final overrider in e</span></span><br><span class="line">   e.E::f(); <span class="comment">// non-virtual call calls A::f, which is visible in E</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>专业技术</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何提拔的你的频率</title>
     <url>/2020/08/07/%E5%A6%82%E4%BD%95%E6%8F%90%E6%8B%94%E7%9A%84%E4%BD%A0%E7%9A%84%E9%A2%91%E7%8E%87/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -781,36 +781,6 @@ D 68
       </tags>
   </entry>
   <entry>
-    <title>指定线程CPU占用率的check方法</title>
-    <url>/2020/08/06/%E6%8C%87%E5%AE%9A%E7%BA%BF%E7%A8%8BCPU%E5%8D%A0%E7%94%A8%E7%8E%87%E7%9A%84check%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-
-<h1 id="进程cpu占用情况"><a href="#进程cpu占用情况" class="headerlink" title="进程cpu占用情况"></a>进程cpu占用情况</h1><span id="more"></span>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
-<h2 id="增加显示选项"><a href="#增加显示选项" class="headerlink" title="增加显示选项"></a>增加显示选项</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top</span><br><span class="line">f -- 进入选项定制界面</span><br><span class="line">space -- 空格选中</span><br><span class="line">Esc -- 退出</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="多核使用率分析"><a href="#多核使用率分析" class="headerlink" title="多核使用率分析"></a>多核使用率分析</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="单核热点代码段展示"><a href="#单核热点代码段展示" class="headerlink" title="单核热点代码段展示"></a>单核热点代码段展示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">perf top -C &lt;core-id&gt;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="如何获取各个线程的展示方式"><a href="#如何获取各个线程的展示方式" class="headerlink" title="如何获取各个线程的展示方式"></a>如何获取各个线程的展示方式</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top -H</span><br></pre></td></tr></table></figure>
-<h1 id="不冻结进程的方式来check线程或者进程的运行轨迹"><a href="#不冻结进程的方式来check线程或者进程的运行轨迹" class="headerlink" title="不冻结进程的方式来check线程或者进程的运行轨迹"></a>不冻结进程的方式来check线程或者进程的运行轨迹</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gstack &lt;pid&gt; or &lt;thread-id&gt;</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>专业技术</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>枚举与枚举字符串的转换</title>
     <url>/2020/08/06/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%9E%9A%E4%B8%BE%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer" />
@@ -827,32 +797,6 @@ D 68
       </categories>
       <tags>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>工具与方法积累</title>
-    <url>/2020/06/30/%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%96%B9%E6%B3%95%E7%A7%AF%E7%B4%AF/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-<h1 id="经典案例收集"><a href="#经典案例收集" class="headerlink" title="经典案例收集"></a>经典案例收集</h1><h1 id="克隆复制对象"><a href="#克隆复制对象" class="headerlink" title="克隆复制对象"></a>克隆复制对象</h1><p>逻辑图 <a href="https://www.processon.com/u/58fc0a56e4b0639c2f5b2076/profile">https://www.processon.com/u/58fc0a56e4b0639c2f5b2076/profile</a><br>思维导图 <a href="https://www.processon.com/u/jingle1267/profile">https://www.processon.com/u/jingle1267/profile</a></p>
-<span id="more"></span>
-
-<h1 id="●-旅游路线图"><a href="#●-旅游路线图" class="headerlink" title="● 旅游路线图"></a>● 旅游路线图</h1><p><a href="https://www.processon.com/view/5c418c5de4b02f84d02d937d">https://www.processon.com/view/5c418c5de4b02f84d02d937d</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1590399375212-d09ce017-6b71-4c18-abcc-16e92bf476ab.png#align=left&display=inline&height=385&margin=%5Bobject%20Object%5D&name=image.png&originHeight=770&originWidth=1202&size=209980&status=done&style=none&width=601" alt="image.png"></p>
-<h1 id="●-经典git工作流程展示"><a href="#●-经典git工作流程展示" class="headerlink" title="● 经典git工作流程展示"></a>● 经典git工作流程展示</h1><p><a href="https://www.processon.com/view/5ad46af0e4b0518eacb413f8">https://www.processon.com/view/5ad46af0e4b0518eacb413f8</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1590399263737-672bf5b8-a430-431f-85cb-9db06da28583.png#align=left&display=inline&height=544&margin=%5Bobject%20Object%5D&name=image.png&originHeight=595&originWidth=816&size=110319&status=done&style=none&width=746" alt="image.png"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589425945857-471b3c05-cac6-4876-96d1-61a1f86f2bf2.png#align=left&display=inline&height=899&margin=%5Bobject%20Object%5D&name=image.png&originHeight=899&originWidth=1164&size=99475&status=done&style=none&width=1164" alt="image.png"></p>
-<h1 id="●-框架"><a href="#●-框架" class="headerlink" title="● 框架"></a>● 框架</h1><p><a href="https://www.processon.com/view/5dc2c0ffe4b0e433945eefe9">https://www.processon.com/view/5dc2c0ffe4b0e433945eefe9</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589426389535-637c9fd0-1a4f-4e13-bdb5-f368d656ae9a.png#align=left&display=inline&height=750&margin=%5Bobject%20Object%5D&name=image.png&originHeight=750&originWidth=1396&size=128933&status=done&style=none&width=1396" alt="image.png"></p>
-<h1 id="●-设计原则与模式"><a href="#●-设计原则与模式" class="headerlink" title="● 设计原则与模式"></a>● 设计原则与模式</h1><p><a href="https://www.processon.com/view/5eb90e74e0b34d5f26ff3fc3#map">https://www.processon.com/view/5eb90e74e0b34d5f26ff3fc3#map</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589426583289-5832277e-5c5e-4f40-82ce-ee6fc3a3573e.png#align=left&display=inline&height=709&margin=%5Bobject%20Object%5D&name=image.png&originHeight=709&originWidth=1234&size=114675&status=done&style=none&width=1234" alt="image.png"></p>
-<h1 id="●-流程展示"><a href="#●-流程展示" class="headerlink" title="● 流程展示"></a>● 流程展示</h1><p><a href="https://www.processon.com/view/5a333f15e4b0b9ffb02324e2">https://www.processon.com/view/5a333f15e4b0b9ffb02324e2</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589432746584-794bab57-da6b-44f6-8a7a-06b0d1cafd80.png#align=left&display=inline&height=652&margin=%5Bobject%20Object%5D&name=image.png&originHeight=652&originWidth=1245&size=80590&status=done&style=none&width=1245" alt="image.png"></p>
-<h1 id="●-宝宝作息图"><a href="#●-宝宝作息图" class="headerlink" title="● 宝宝作息图"></a>● 宝宝作息图</h1><h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589432805210-88726782-8d5e-4987-9420-a0da9191d47d.png#align=left&display=inline&height=498&margin=%5Bobject%20Object%5D&name=image.png&originHeight=498&originWidth=944&size=75007&status=done&style=none&width=944" alt="image.png"></h1><h1 id="●-委派"><a href="#●-委派" class="headerlink" title="● 委派"></a>● 委派</h1><p><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589433051606-d190b405-05e3-46e1-8d88-0aebfa987242.png#align=left&display=inline&height=416&margin=%5Bobject%20Object%5D&name=image.png&originHeight=416&originWidth=792&size=51096&status=done&style=none&width=792" alt="image.png">
- </p>
-<h1 id="●-车趣系统进度影响评估"><a href="#●-车趣系统进度影响评估" class="headerlink" title="● 车趣系统进度影响评估"></a>● 车趣系统进度影响评估</h1><p><a href="https://www.processon.com/view/5b690768e4b067df59fcefbe">https://www.processon.com/view/5b690768e4b067df59fcefbe</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589433659127-5d2b22e9-81f7-453c-a368-aaee6f36adf1.png#align=left&display=inline&height=550&margin=%5Bobject%20Object%5D&name=image.png&originHeight=550&originWidth=844&size=54429&status=done&style=none&width=844" alt="image.png"></p>
-<h1 id="●-金融平台构架"><a href="#●-金融平台构架" class="headerlink" title="● 金融平台构架"></a>● 金融平台构架</h1>]]></content>
-      <categories>
-        <category>专业技术</category>
-      </categories>
-      <tags>
-        <tag>可视化思维</tag>
-        <tag>画图</tag>
       </tags>
   </entry>
   <entry>
@@ -921,6 +865,36 @@ D 68
       </tags>
   </entry>
   <entry>
+    <title>指定线程CPU占用率的check方法</title>
+    <url>/2020/08/06/%E6%8C%87%E5%AE%9A%E7%BA%BF%E7%A8%8BCPU%E5%8D%A0%E7%94%A8%E7%8E%87%E7%9A%84check%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+
+<h1 id="进程cpu占用情况"><a href="#进程cpu占用情况" class="headerlink" title="进程cpu占用情况"></a>进程cpu占用情况</h1><span id="more"></span>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+<h2 id="增加显示选项"><a href="#增加显示选项" class="headerlink" title="增加显示选项"></a>增加显示选项</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top</span><br><span class="line">f -- 进入选项定制界面</span><br><span class="line">space -- 空格选中</span><br><span class="line">Esc -- 退出</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="多核使用率分析"><a href="#多核使用率分析" class="headerlink" title="多核使用率分析"></a>多核使用率分析</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="单核热点代码段展示"><a href="#单核热点代码段展示" class="headerlink" title="单核热点代码段展示"></a>单核热点代码段展示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">perf top -C &lt;core-id&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="如何获取各个线程的展示方式"><a href="#如何获取各个线程的展示方式" class="headerlink" title="如何获取各个线程的展示方式"></a>如何获取各个线程的展示方式</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">top -H</span><br></pre></td></tr></table></figure>
+<h1 id="不冻结进程的方式来check线程或者进程的运行轨迹"><a href="#不冻结进程的方式来check线程或者进程的运行轨迹" class="headerlink" title="不冻结进程的方式来check线程或者进程的运行轨迹"></a>不冻结进程的方式来check线程或者进程的运行轨迹</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gstack &lt;pid&gt; or &lt;thread-id&gt;</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>专业技术</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>看山是山，看山不是山 , 看山亦是山。</title>
     <url>/2020/08/07/%E7%9C%8B%E5%B1%B1%E6%98%AF%E5%B1%B1%EF%BC%8C%E7%9C%8B%E5%B1%B1%E4%B8%8D%E6%98%AF%E5%B1%B1%20,%20%E7%9C%8B%E5%B1%B1%E4%BA%A6%E6%98%AF%E5%B1%B1%E3%80%82/</url>
     <content><![CDATA[<p>有句禅语“看山是山，看山不是山 , 看山亦是山。”  <br>历史上许许多多大德，做出各种精妙的解答，各种鞭辟入里的见地。  <br>但是，他们只给出结果答案，却没有告诉后来人道路。      <br>以自己切身的修行体会，对这三句话，予以如实地阐述。       </p>
@@ -934,22 +908,6 @@ D 68
       </categories>
       <tags>
         <tag>观心</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>触目遇缘，无非是佛，身处世间，即大涅槃。</title>
-    <url>/2020/08/07/%E8%A7%A6%E7%9B%AE%E9%81%87%E7%BC%98%EF%BC%8C%E6%97%A0%E9%9D%9E%E6%98%AF%E4%BD%9B%EF%BC%8C%E8%BA%AB%E5%A4%84%E4%B8%96%E9%97%B4%EF%BC%8C%E5%8D%B3%E5%A4%A7%E6%B6%85%E6%A7%83%E3%80%82/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-
-<p>修行哪能是一下子就可以的。<br> <br>得个入处，还得有个转身。<br> <br>古来禅德多也是这么过来的。<br> <br>可转身又是怎么一个转身呢？时候到了自然就转身了。</p>
-<span id="more"></span>
-<p> <br>不过嘛，得知道后面还有东西，得少为足自以为悟，当然不能更进一步了。<br> <br>宋·释道原《景德传灯录》卷十：<br>“师示一偈曰<br>**<br> <br><strong>百尺竿头须进步，十方世界是全身。</strong>’”<br> <br>青原惟信禅师说：<br> <br>**<br> <br>**<br> <br>**<br> <br>**<br> <br>大众，这三般见解，是同是别？<br> <br>有人缁素得出，许汝亲见老僧。<br> <br>这里入处与休歇处有不一样的地方。<br> <br>很多时候我们总是会困惑于学习工作太忙了，怎么修行呢？这位朋友也是这样，工作忙，又想修行，难免纠结。<br> <br>其实修行生活不矛盾的，净慧长老强调生活禅，<strong>就是把修行落实于生活，把生活融入修行。</strong><br> <br>修行并不只在看书打坐，<strong>每时每刻所见所感何尝不是觉性之显现。</strong><br> <br>但同时问题也就出来了，平常我们常常忘失修行的正念，被事情带着走，这又怎么办呢？<br>每个人修行都这样，差别在心法。<br> <br>为什么修行是不用修的呢，为什么佛说一切众生本来成佛。<br> <br>这些都还真不是修出来的。<br> <br>**<br> <br>只这个本来如是。<br> <br>我们却要去悟，去修。<br> <br>有些时候有些话，我们当时以为明白了，后来回头看时，其实并没有。<br> <br>我常常这样，所以有一段话，直到去年才算看明白。<br> <br>四祖道信大师《方寸论 》：夫百千法门，同归方寸。<br> <br>河沙妙德，总在心源。<br> <br>一切戒门、定门、慧门，神通变化，悉自具足，不离汝心。<br> <br>一切烦恼业障，本来空寂，一切因果皆如梦幻。<br> <br>**<br> <br>大道虚旷，绝思绝虑。<br> <br>  如是之法，汝今已得，更无缺少，与佛何殊，更无别法。<br> <br>汝但任心自在，莫作观行，亦莫澄心，莫起贪瞋，莫怀愁虑，荡荡无碍。<br> <br>任意纵横，不作诸善，不作诸恶，行住坐卧，触目遇缘，总是佛之妙用。<br> <br>快乐无忧，故名为佛。<br> <br>  朋友还问我，我是怎么安排学习和工作时间。<br> <br>怎么做到放下呢？ 我说，该干嘛干嘛呗。<br> <br>我们之所以纠结是因为觉得生活工作与修行是冲突的。<br> <br>因为我们认为修行是要专一专修的，生活工作却带来了打扰。<br> <br>也因为我们以为修行要守住。<br> <br>于是心向修行的人，难免有避世住山的念想。<br> <br>觉得山里进修令心安定下来，再入世会更游刃有余。<br> <br>这不能说是一种错误的观念，只是须知真修行并不需要守。<br> <br>若尽乾坤无非自己，语默动静思虑，何尝不是佛性之妙用。<br> <br>那么生活工作中的执着还需要放下吗？执着本就不存在。<br> <br>真修道人并不见得就有多用功，只因无他们用功处。<br> <br>为什么呢？整个世间如梦似幻。<br> <br>**<br> <br>所以这人世间是诸佛出身处。</p>
-]]></content>
-      <categories>
-        <category>明心见性</category>
-      </categories>
-      <tags>
-        <tag>明心见性</tag>
       </tags>
   </entry>
   <entry>
@@ -969,6 +927,48 @@ D 68
       </categories>
       <tags>
         <tag>观心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>工具与方法积累</title>
+    <url>/2020/06/30/%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%96%B9%E6%B3%95%E7%A7%AF%E7%B4%AF/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+<h1 id="经典案例收集"><a href="#经典案例收集" class="headerlink" title="经典案例收集"></a>经典案例收集</h1><h1 id="克隆复制对象"><a href="#克隆复制对象" class="headerlink" title="克隆复制对象"></a>克隆复制对象</h1><p>逻辑图 <a href="https://www.processon.com/u/58fc0a56e4b0639c2f5b2076/profile">https://www.processon.com/u/58fc0a56e4b0639c2f5b2076/profile</a><br>思维导图 <a href="https://www.processon.com/u/jingle1267/profile">https://www.processon.com/u/jingle1267/profile</a></p>
+<span id="more"></span>
+
+<h1 id="●-旅游路线图"><a href="#●-旅游路线图" class="headerlink" title="● 旅游路线图"></a>● 旅游路线图</h1><p><a href="https://www.processon.com/view/5c418c5de4b02f84d02d937d">https://www.processon.com/view/5c418c5de4b02f84d02d937d</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1590399375212-d09ce017-6b71-4c18-abcc-16e92bf476ab.png#align=left&display=inline&height=385&margin=%5Bobject%20Object%5D&name=image.png&originHeight=770&originWidth=1202&size=209980&status=done&style=none&width=601" alt="image.png"></p>
+<h1 id="●-经典git工作流程展示"><a href="#●-经典git工作流程展示" class="headerlink" title="● 经典git工作流程展示"></a>● 经典git工作流程展示</h1><p><a href="https://www.processon.com/view/5ad46af0e4b0518eacb413f8">https://www.processon.com/view/5ad46af0e4b0518eacb413f8</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1590399263737-672bf5b8-a430-431f-85cb-9db06da28583.png#align=left&display=inline&height=544&margin=%5Bobject%20Object%5D&name=image.png&originHeight=595&originWidth=816&size=110319&status=done&style=none&width=746" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589425945857-471b3c05-cac6-4876-96d1-61a1f86f2bf2.png#align=left&display=inline&height=899&margin=%5Bobject%20Object%5D&name=image.png&originHeight=899&originWidth=1164&size=99475&status=done&style=none&width=1164" alt="image.png"></p>
+<h1 id="●-框架"><a href="#●-框架" class="headerlink" title="● 框架"></a>● 框架</h1><p><a href="https://www.processon.com/view/5dc2c0ffe4b0e433945eefe9">https://www.processon.com/view/5dc2c0ffe4b0e433945eefe9</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589426389535-637c9fd0-1a4f-4e13-bdb5-f368d656ae9a.png#align=left&display=inline&height=750&margin=%5Bobject%20Object%5D&name=image.png&originHeight=750&originWidth=1396&size=128933&status=done&style=none&width=1396" alt="image.png"></p>
+<h1 id="●-设计原则与模式"><a href="#●-设计原则与模式" class="headerlink" title="● 设计原则与模式"></a>● 设计原则与模式</h1><p><a href="https://www.processon.com/view/5eb90e74e0b34d5f26ff3fc3#map">https://www.processon.com/view/5eb90e74e0b34d5f26ff3fc3#map</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589426583289-5832277e-5c5e-4f40-82ce-ee6fc3a3573e.png#align=left&display=inline&height=709&margin=%5Bobject%20Object%5D&name=image.png&originHeight=709&originWidth=1234&size=114675&status=done&style=none&width=1234" alt="image.png"></p>
+<h1 id="●-流程展示"><a href="#●-流程展示" class="headerlink" title="● 流程展示"></a>● 流程展示</h1><p><a href="https://www.processon.com/view/5a333f15e4b0b9ffb02324e2">https://www.processon.com/view/5a333f15e4b0b9ffb02324e2</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589432746584-794bab57-da6b-44f6-8a7a-06b0d1cafd80.png#align=left&display=inline&height=652&margin=%5Bobject%20Object%5D&name=image.png&originHeight=652&originWidth=1245&size=80590&status=done&style=none&width=1245" alt="image.png"></p>
+<h1 id="●-宝宝作息图"><a href="#●-宝宝作息图" class="headerlink" title="● 宝宝作息图"></a>● 宝宝作息图</h1><h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589432805210-88726782-8d5e-4987-9420-a0da9191d47d.png#align=left&display=inline&height=498&margin=%5Bobject%20Object%5D&name=image.png&originHeight=498&originWidth=944&size=75007&status=done&style=none&width=944" alt="image.png"></h1><h1 id="●-委派"><a href="#●-委派" class="headerlink" title="● 委派"></a>● 委派</h1><p><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589433051606-d190b405-05e3-46e1-8d88-0aebfa987242.png#align=left&display=inline&height=416&margin=%5Bobject%20Object%5D&name=image.png&originHeight=416&originWidth=792&size=51096&status=done&style=none&width=792" alt="image.png">
+ </p>
+<h1 id="●-车趣系统进度影响评估"><a href="#●-车趣系统进度影响评估" class="headerlink" title="● 车趣系统进度影响评估"></a>● 车趣系统进度影响评估</h1><p><a href="https://www.processon.com/view/5b690768e4b067df59fcefbe">https://www.processon.com/view/5b690768e4b067df59fcefbe</a><br><img src="https://cdn.nlark.com/yuque/0/2020/png/584886/1589433659127-5d2b22e9-81f7-453c-a368-aaee6f36adf1.png#align=left&display=inline&height=550&margin=%5Bobject%20Object%5D&name=image.png&originHeight=550&originWidth=844&size=54429&status=done&style=none&width=844" alt="image.png"></p>
+<h1 id="●-金融平台构架"><a href="#●-金融平台构架" class="headerlink" title="● 金融平台构架"></a>● 金融平台构架</h1>]]></content>
+      <categories>
+        <category>专业技术</category>
+      </categories>
+      <tags>
+        <tag>可视化思维</tag>
+        <tag>画图</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>触目遇缘，无非是佛，身处世间，即大涅槃。</title>
+    <url>/2020/08/07/%E8%A7%A6%E7%9B%AE%E9%81%87%E7%BC%98%EF%BC%8C%E6%97%A0%E9%9D%9E%E6%98%AF%E4%BD%9B%EF%BC%8C%E8%BA%AB%E5%A4%84%E4%B8%96%E9%97%B4%EF%BC%8C%E5%8D%B3%E5%A4%A7%E6%B6%85%E6%A7%83%E3%80%82/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+
+<p>修行哪能是一下子就可以的。<br> <br>得个入处，还得有个转身。<br> <br>古来禅德多也是这么过来的。<br> <br>可转身又是怎么一个转身呢？时候到了自然就转身了。</p>
+<span id="more"></span>
+<p> <br>不过嘛，得知道后面还有东西，得少为足自以为悟，当然不能更进一步了。<br> <br>宋·释道原《景德传灯录》卷十：<br>“师示一偈曰<br>**<br> <br><strong>百尺竿头须进步，十方世界是全身。</strong>’”<br> <br>青原惟信禅师说：<br> <br>**<br> <br>**<br> <br>**<br> <br>**<br> <br>大众，这三般见解，是同是别？<br> <br>有人缁素得出，许汝亲见老僧。<br> <br>这里入处与休歇处有不一样的地方。<br> <br>很多时候我们总是会困惑于学习工作太忙了，怎么修行呢？这位朋友也是这样，工作忙，又想修行，难免纠结。<br> <br>其实修行生活不矛盾的，净慧长老强调生活禅，<strong>就是把修行落实于生活，把生活融入修行。</strong><br> <br>修行并不只在看书打坐，<strong>每时每刻所见所感何尝不是觉性之显现。</strong><br> <br>但同时问题也就出来了，平常我们常常忘失修行的正念，被事情带着走，这又怎么办呢？<br>每个人修行都这样，差别在心法。<br> <br>为什么修行是不用修的呢，为什么佛说一切众生本来成佛。<br> <br>这些都还真不是修出来的。<br> <br>**<br> <br>只这个本来如是。<br> <br>我们却要去悟，去修。<br> <br>有些时候有些话，我们当时以为明白了，后来回头看时，其实并没有。<br> <br>我常常这样，所以有一段话，直到去年才算看明白。<br> <br>四祖道信大师《方寸论 》：夫百千法门，同归方寸。<br> <br>河沙妙德，总在心源。<br> <br>一切戒门、定门、慧门，神通变化，悉自具足，不离汝心。<br> <br>一切烦恼业障，本来空寂，一切因果皆如梦幻。<br> <br>**<br> <br>大道虚旷，绝思绝虑。<br> <br>  如是之法，汝今已得，更无缺少，与佛何殊，更无别法。<br> <br>汝但任心自在，莫作观行，亦莫澄心，莫起贪瞋，莫怀愁虑，荡荡无碍。<br> <br>任意纵横，不作诸善，不作诸恶，行住坐卧，触目遇缘，总是佛之妙用。<br> <br>快乐无忧，故名为佛。<br> <br>  朋友还问我，我是怎么安排学习和工作时间。<br> <br>怎么做到放下呢？ 我说，该干嘛干嘛呗。<br> <br>我们之所以纠结是因为觉得生活工作与修行是冲突的。<br> <br>因为我们认为修行是要专一专修的，生活工作却带来了打扰。<br> <br>也因为我们以为修行要守住。<br> <br>于是心向修行的人，难免有避世住山的念想。<br> <br>觉得山里进修令心安定下来，再入世会更游刃有余。<br> <br>这不能说是一种错误的观念，只是须知真修行并不需要守。<br> <br>若尽乾坤无非自己，语默动静思虑，何尝不是佛性之妙用。<br> <br>那么生活工作中的执着还需要放下吗？执着本就不存在。<br> <br>真修道人并不见得就有多用功，只因无他们用功处。<br> <br>为什么呢？整个世间如梦似幻。<br> <br>**<br> <br>所以这人世间是诸佛出身处。</p>
+]]></content>
+      <categories>
+        <category>明心见性</category>
+      </categories>
+      <tags>
+        <tag>明心见性</tag>
       </tags>
   </entry>
   <entry>
